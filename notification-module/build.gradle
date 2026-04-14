@@ -1,0 +1,13 @@
+version = '1.0.0-SNAPSHOT'
+
+dependencies {
+    implementation project(':shared-core')
+    implementation project(':shared-objects')
+
+    implementation libs.awspring.sns
+    implementation libs.awsdk.ses
+    implementation libs.java.mail
+    implementation libs.firebase.admin
+
+
+}

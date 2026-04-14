@@ -1,0 +1,664 @@
+ecommerce-platform/
+├── pom.xml (Parent POM)
+├── shared-core/                          # Shared Core Framework
+│   ├── pom.xml
+│   └── src/main/java/com/platform/core/
+│       ├── config/
+│       │   ├── CoreAutoConfiguration.java
+│       │   ├── JpaAuditingConfig.java
+│       │   ├── CacheConfig.java
+│       │   ├── AsyncConfig.java
+│       │   ├── SecurityCoreConfig.java
+│       │   └── CloudConfig.java
+│       ├── domain/
+│       │   ├── BaseEntity.java
+│       │   ├── AuditableEntity.java
+│       │   ├── TenantAwareEntity.java
+│       │   ├── Money.java
+│       │   ├── Address.java
+│       │   ├── PhoneNumber.java
+│       │   └── SlugGenerator.java
+│       ├── event/
+│       │   ├── DomainEvent.java
+│       │   ├── DomainEventPublisher.java
+│       │   ├── IntegrationEvent.java
+│       │   ├── EventStore.java
+│       │   └── SpringDomainEventPublisher.java
+│       ├── exception/
+│       │   ├── BusinessException.java
+│       │   ├── ResourceNotFoundException.java
+│       │   ├── ConflictException.java
+│       │   ├── UnauthorizedException.java
+│       │   ├── ValidationException.java
+│       │   └── GlobalExceptionHandler.java
+│       ├── repository/
+│       │   ├── BaseRepository.java
+│       │   ├── SoftDeleteRepository.java
+│       │   └── Specification/ 
+│       │       └── BaseSpecification.java
+│       ├── service/
+│       │   ├── CrudService.java
+│       │   └── AbstractCrudService.java
+│       ├── dto/
+│       │   ├── PagedResponse.java
+│       │   ├── ApiResponse.java
+│       │   ├── ErrorResponse.java
+│       │   └── SearchCriteria.java
+│       ├── security/
+│       │   ├── CurrentUser.java
+│       │   ├── UserContext.java
+│       │   ├── SecurityUtils.java
+│       │   └── TenantContext.java
+│       ├── multitenancy/
+│       │   ├── TenantIdentifierResolver.java
+│       │   ├── TenantFilter.java
+│       │   └── TenantInterceptor.java
+│       ├── validation/
+│       │   ├── PhoneNumberValidator.java
+│       │   └── SlugValidator.java
+│       ├── util/
+│       │   ├── JsonUtils.java
+│       │   ├── DateUtils.java
+│       │   └── StringUtils.java
+│       └── cloud/
+│           ├── storage/
+│           │   ├── StorageService.java
+│           │   ├── S3StorageService.java
+│           │   └── StorageProperties.java
+│           └── messaging/
+│               ├── MessagePublisher.java
+│               └── SqsMessagePublisher.java
+│
+├── iam-module/                           # Identity & Access Management
+│   ├── pom.xml
+│   └── src/main/java/com/platform/iam/
+│       ├── IamModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── User.java
+│       │   │   ├── Role.java
+│       │   │   ├── Permission.java
+│       │   │   ├── Vendor.java
+│       │   │   ├── Customer.java
+│       │   │   ├── Admin.java
+│       │   │   ├── UserStatus.java
+│       │   │   ├── VendorStatus.java
+│       │   │   └── OtpToken.java
+│       │   ├── repository/
+│       │   │   ├── UserRepository.java
+│       │   │   ├── RoleRepository.java
+│       │   │   ├── VendorRepository.java
+│       │   │   └── CustomerRepository.java
+│       │   ├── service/
+│       │   │   ├── UserDomainService.java
+│       │   │   └── VendorDomainService.java
+│       │   └── event/
+│       │       ├── UserRegisteredEvent.java
+│       │       ├── VendorApprovedEvent.java
+│       │       └── VendorSuspendedEvent.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── AuthService.java
+│       │   │   ├── UserService.java
+│       │   │   ├── VendorService.java
+│       │   │   ├── RoleService.java
+│       │   │   └── OtpService.java
+│       │   ├── dto/
+│       │   │   ├── LoginRequest.java
+│       │   │   ├── RegisterRequest.java
+│       │   │   ├── VendorRegistrationRequest.java
+│       │   │   ├── UserResponse.java
+│       │   │   ├── VendorResponse.java
+│       │   │   ├── TokenResponse.java
+│       │   │   └── VendorApprovalRequest.java
+│       │   └── mapper/
+│       │       ├── UserMapper.java
+│       │       └── VendorMapper.java
+│       ├── infrastructure/
+│       │   ├── security/
+│       │   │   ├── JwtTokenProvider.java
+│       │   │   ├── JwtAuthenticationFilter.java
+│       │   │   ├── CustomUserDetailsService.java
+│       │   │   ├── OAuth2SuccessHandler.java
+│       │   │   └── SecurityConfig.java
+│       │   └── persistence/
+│       │       └── JpaUserRepository.java
+│       ├── api/
+│       │   ├── AuthController.java
+│       │   ├── UserController.java
+│       │   ├── VendorController.java
+│       │   └── AdminUserController.java
+│       └── integration/
+│           └── IamModuleApi.java          # Module API exposed to others
+│
+├── catalog-module/                        # Product Catalog
+│   ├── pom.xml
+│   └── src/main/java/com/platform/catalog/
+│       ├── CatalogModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Product.java
+│       │   │   ├── ProductVariant.java
+│       │   │   ├── Category.java
+│       │   │   ├── Brand.java
+│       │   │   ├── ProductAttribute.java
+│       │   │   ├── AttributeValue.java
+│       │   │   ├── ProductImage.java
+│       │   │   ├── ProductStatus.java
+│       │   │   ├── ProductReview.java
+│       │   │   └── SEOMetadata.java
+│       │   ├── repository/
+│       │   │   ├── ProductRepository.java
+│       │   │   ├── CategoryRepository.java
+│       │   │   ├── BrandRepository.java
+│       │   │   └── ReviewRepository.java
+│       │   ├── service/
+│       │   │   ├── ProductDomainService.java
+│       │   │   ├── PricingDomainService.java
+│       │   │   └── CategoryDomainService.java
+│       │   └── event/
+│       │       ├── ProductCreatedEvent.java
+│       │       ├── ProductApprovedEvent.java
+│       │       ├── ProductPriceChangedEvent.java
+│       │       └── ProductStockUpdatedEvent.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── ProductService.java
+│       │   │   ├── CategoryService.java
+│       │   │   ├── BrandService.java
+│       │   │   ├── ProductSearchService.java
+│       │   │   ├── ReviewService.java
+│       │   │   └── ProductImportService.java
+│       │   ├── dto/
+│       │   │   ├── CreateProductRequest.java
+│       │   │   ├── UpdateProductRequest.java
+│       │   │   ├── ProductResponse.java
+│       │   │   ├── ProductDetailResponse.java
+│       │   │   ├── CategoryResponse.java
+│       │   │   ├── CategoryTreeResponse.java
+│       │   │   ├── ProductSearchRequest.java
+│       │   │   ├── ProductFilterDTO.java
+│       │   │   ├── ReviewRequest.java
+│       │   │   └── BulkProductImportDTO.java
+│       │   └── mapper/
+│       │       ├── ProductMapper.java
+│       │       └── CategoryMapper.java
+│       ├── infrastructure/
+│       │   ├── search/
+│       │   │   ├── ElasticsearchProductRepository.java
+│       │   │   └── ProductSearchIndex.java
+│       │   ├── persistence/
+│       │   │   └── JpaProductRepository.java
+│       │   └── cache/
+│       │       └── ProductCacheManager.java
+│       ├── api/
+│       │   ├── ProductController.java
+│       │   ├── CategoryController.java
+│       │   ├── BrandController.java
+│       │   ├── VendorProductController.java
+│       │   ├── ReviewController.java
+│       │   └── AdminCatalogController.java
+│       └── integration/
+│           └── CatalogModuleApi.java
+│
+├── inventory-module/                      # Inventory Management
+│   ├── pom.xml
+│   └── src/main/java/com/platform/inventory/
+│       ├── InventoryModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── InventoryItem.java
+│       │   │   ├── Warehouse.java
+│       │   │   ├── StockMovement.java
+│       │   │   ├── StockReservation.java
+│       │   │   ├── ReorderAlert.java
+│       │   │   └── MovementType.java
+│       │   ├── repository/
+│       │   │   ├── InventoryRepository.java
+│       │   │   ├── WarehouseRepository.java
+│       │   │   └── StockMovementRepository.java
+│       │   ├── service/
+│       │   │   └── InventoryDomainService.java
+│       │   └── event/
+│       │       ├── StockDepletedEvent.java
+│       │       ├── StockReservedEvent.java
+│       │       └── StockReleasedEvent.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── InventoryService.java
+│       │   │   ├── WarehouseService.java
+│       │   │   └── StockAlertService.java
+│       │   ├── dto/
+│       │   │   ├── StockUpdateRequest.java
+│       │   │   ├── InventoryResponse.java
+│       │   │   ├── ReservationRequest.java
+│       │   │   └── StockMovementResponse.java
+│       │   └── mapper/
+│       │       └── InventoryMapper.java
+│       ├── api/
+│       │   ├── InventoryController.java
+│       │   └── VendorInventoryController.java
+│       └── integration/
+│           └── InventoryModuleApi.java
+│
+├── cart-module/                           # Shopping Cart
+│   ├── pom.xml
+│   └── src/main/java/com/platform/cart/
+│       ├── CartModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Cart.java
+│       │   │   ├── CartItem.java
+│       │   │   └── CartStatus.java
+│       │   ├── repository/
+│       │   │   └── CartRepository.java
+│       │   └── service/
+│       │       └── CartDomainService.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── CartService.java
+│       │   │   └── CartMergeService.java
+│       │   ├── dto/
+│       │   │   ├── AddToCartRequest.java
+│       │   │   ├── UpdateCartItemRequest.java
+│       │   │   └── CartResponse.java
+│       │   └── mapper/
+│       │       └── CartMapper.java
+│       ├── infrastructure/
+│       │   └── cache/
+│       │       └── RedisCartRepository.java
+│       ├── api/
+│       │   └── CartController.java
+│       └── integration/
+│           └── CartModuleApi.java
+│
+├── order-module/                          # Order Management
+│   ├── pom.xml
+│   └── src/main/java/com/platform/order/
+│       ├── OrderModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Order.java
+│       │   │   ├── OrderItem.java
+│       │   │   ├── SubOrder.java          # Per-vendor sub-order
+│       │   │   ├── OrderStatus.java
+│       │   │   ├── SubOrderStatus.java
+│       │   │   ├── ShippingAddress.java
+│       │   │   ├── OrderTimeline.java
+│       │   │   └── ReturnRequest.java
+│       │   ├── repository/
+│       │   │   ├── OrderRepository.java
+│       │   │   ├── SubOrderRepository.java
+│       │   │   └── ReturnRequestRepository.java
+│       │   ├── service/
+│       │   │   ├── OrderDomainService.java
+│       │   │   └── OrderStateMachine.java
+│       │   └── event/
+│       │       ├── OrderPlacedEvent.java
+│       │       ├── OrderConfirmedEvent.java
+│       │       ├── OrderShippedEvent.java
+│       │       ├── OrderDeliveredEvent.java
+│       │       ├── OrderCancelledEvent.java
+│       │       └── ReturnRequestedEvent.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── OrderService.java
+│       │   │   ├── OrderFulfillmentService.java
+│       │   │   ├── ReturnService.java
+│       │   │   └── OrderQueryService.java
+│       │   ├── saga/
+│       │   │   ├── PlaceOrderSaga.java
+│       │   │   └── CancelOrderSaga.java
+│       │   ├── dto/
+│       │   │   ├── PlaceOrderRequest.java
+│       │   │   ├── OrderResponse.java
+│       │   │   ├── SubOrderResponse.java
+│       │   │   ├── OrderTrackingResponse.java
+│       │   │   ├── ReturnRequestDTO.java
+│       │   │   └── OrderStatusUpdateRequest.java
+│       │   └── mapper/
+│       │       └── OrderMapper.java
+│       ├── api/
+│       │   ├── OrderController.java
+│       │   ├── VendorOrderController.java
+│       │   └── AdminOrderController.java
+│       └── integration/
+│           └── OrderModuleApi.java
+│
+├── payment-module/                        # Payment Processing
+│   ├── pom.xml
+│   └── src/main/java/com/platform/payment/
+│       ├── PaymentModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Payment.java
+│       │   │   ├── PaymentMethod.java
+│       │   │   ├── PaymentStatus.java
+│       │   │   ├── PaymentGateway.java
+│       │   │   ├── Refund.java
+│       │   │   ├── Transaction.java
+│       │   │   └── Wallet.java
+│       │   ├── repository/
+│       │   │   ├── PaymentRepository.java
+│       │   │   ├── RefundRepository.java
+│       │   │   ├── TransactionRepository.java
+│       │   │   └── WalletRepository.java
+│       │   ├── service/
+│       │   │   └── PaymentDomainService.java
+│       │   └── event/
+│       │       ├── PaymentCompletedEvent.java
+│       │       ├── PaymentFailedEvent.java
+│       │       └── RefundProcessedEvent.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── PaymentService.java
+│       │   │   ├── RefundService.java
+│       │   │   ├── WalletService.java
+│       │   │   └── PaymentReconciliationService.java
+│       │   ├── gateway/
+│       │   │   ├── PaymentGatewayFactory.java
+│       │   │   ├── PaymentGatewayAdapter.java
+│       │   │   ├── StripeGatewayAdapter.java
+│       │   │   ├── CashOnDeliveryAdapter.java
+│       │   │   └── BkashGatewayAdapter.java
+│       │   ├── dto/
+│       │   │   ├── InitiatePaymentRequest.java
+│       │   │   ├── PaymentResponse.java
+│       │   │   ├── PaymentCallbackDTO.java
+│       │   │   ├── RefundRequest.java
+│       │   │   └── WalletResponse.java
+│       │   └── mapper/
+│       │       └── PaymentMapper.java
+│       ├── api/
+│       │   ├── PaymentController.java
+│       │   ├── PaymentCallbackController.java
+│       │   └── WalletController.java
+│       └── integration/
+│           └── PaymentModuleApi.java
+│
+├── shipping-module/                       # Shipping & Logistics
+│   ├── pom.xml
+│   └── src/main/java/com/platform/shipping/
+│       ├── ShippingModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Shipment.java
+│       │   │   ├── ShipmentTracking.java
+│       │   │   ├── ShippingProvider.java
+│       │   │   ├── ShippingRate.java
+│       │   │   ├── DeliveryZone.java
+│       │   │   └── ShipmentStatus.java
+│       │   ├── repository/
+│       │   │   ├── ShipmentRepository.java
+│       │   │   └── ShippingRateRepository.java
+│       │   └── event/
+│       │       ├── ShipmentCreatedEvent.java
+│       │       ├── ShipmentPickedUpEvent.java
+│       │       └── ShipmentDeliveredEvent.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── ShippingService.java
+│       │   │   ├── ShippingRateCalculator.java
+│       │   │   └── TrackingService.java
+│       │   ├── provider/
+│       │   │   ├── ShippingProviderFactory.java
+│       │   │   ├── ShippingProviderAdapter.java
+│       │   │   └── DefaultShippingProvider.java
+│       │   └── dto/
+│       │       ├── ShippingRateRequest.java
+│       │       ├── ShippingRateResponse.java
+│       │       ├── CreateShipmentRequest.java
+│       │       └── TrackingResponse.java
+│       ├── api/
+│       │   ├── ShippingController.java
+│       │   └── TrackingController.java
+│       └── integration/
+│           └── ShippingModuleApi.java
+│
+├── promotion-module/                      # Promotions & Coupons
+│   ├── pom.xml
+│   └── src/main/java/com/platform/promotion/
+│       ├── PromotionModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Promotion.java
+│       │   │   ├── Coupon.java
+│       │   │   ├── CouponUsage.java
+│       │   │   ├── DiscountRule.java
+│       │   │   ├── DiscountType.java
+│       │   │   ├── FlashSale.java
+│       │   │   ├── FlashSaleItem.java
+│       │   │   ├── Campaign.java
+│       │   │   ├── BundleDeal.java
+│       │   │   └── VoucherType.java
+│       │   ├── repository/
+│       │   │   ├── PromotionRepository.java
+│       │   │   ├── CouponRepository.java
+│       │   │   ├── FlashSaleRepository.java
+│       │   │   └── CampaignRepository.java
+│       │   ├── service/
+│       │   │   ├── DiscountCalculationService.java
+│       │   │   └── CouponValidationService.java
+│       │   └── event/
+│       │       ├── FlashSaleStartedEvent.java
+│       │       └── CouponAppliedEvent.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── PromotionService.java
+│       │   │   ├── CouponService.java
+│       │   │   ├── FlashSaleService.java
+│       │   │   └── CampaignService.java
+│       │   └── dto/
+│       │       ├── CreatePromotionRequest.java
+│       │       ├── CouponRequest.java
+│       │       ├── CouponValidationResponse.java
+│       │       ├── FlashSaleRequest.java
+│       │       └── PromotionResponse.java
+│       ├── api/
+│       │   ├── PromotionController.java
+│       │   ├── CouponController.java
+│       │   ├── FlashSaleController.java
+│       │   └── VendorPromotionController.java
+│       └── integration/
+│           └── PromotionModuleApi.java
+│
+├── notification-module/                   # Notifications
+│   ├── pom.xml
+│   └── src/main/java/com/platform/notification/
+│       ├── NotificationModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Notification.java
+│       │   │   ├── NotificationTemplate.java
+│       │   │   ├── NotificationChannel.java
+│       │   │   ├── NotificationPreference.java
+│       │   │   └── NotificationStatus.java
+│       │   └── repository/
+│       │       ├── NotificationRepository.java
+│       │       └── NotificationTemplateRepository.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── NotificationService.java
+│       │   │   └── TemplateService.java
+│       │   ├── channel/
+│       │   │   ├── NotificationChannelFactory.java
+│       │   │   ├── EmailChannel.java
+│       │   │   ├── SmsChannel.java
+│       │   │   ├── PushNotificationChannel.java
+│       │   │   └── InAppChannel.java
+│       │   ├── listener/
+│       │   │   ├── OrderEventListener.java
+│       │   │   ├── PaymentEventListener.java
+│       │   │   ├── ShipmentEventListener.java
+│       │   │   └── UserEventListener.java
+│       │   └── dto/
+│       │       ├── SendNotificationRequest.java
+│       │       └── NotificationResponse.java
+│       ├── infrastructure/
+│       │   ├── email/
+│       │   │   └── SesEmailService.java
+│       │   ├── sms/
+│       │   │   └── SnsSmsSender.java
+│       │   └── push/
+│       │       └── FcmPushService.java
+│       ├── api/
+│       │   └── NotificationController.java
+│       └── integration/
+│           └── NotificationModuleApi.java
+│
+├── settlement-module/                     # Vendor Settlement & Commission
+│   ├── pom.xml
+│   └── src/main/java/com/platform/settlement/
+│       ├── SettlementModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Settlement.java
+│       │   │   ├── SettlementItem.java
+│       │   │   ├── CommissionRule.java
+│       │   │   ├── CommissionTier.java
+│       │   │   ├── VendorAccount.java
+│       │   │   ├── PayoutRequest.java
+│       │   │   └── SettlementStatus.java
+│       │   ├── repository/
+│       │   │   ├── SettlementRepository.java
+│       │   │   ├── CommissionRuleRepository.java
+│       │   │   └── VendorAccountRepository.java
+│       │   └── service/
+│       │       └── CommissionCalculationService.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── SettlementService.java
+│       │   │   ├── CommissionService.java
+│       │   │   └── PayoutService.java
+│       │   └── dto/
+│       │       ├── SettlementResponse.java
+│       │       ├── CommissionRuleRequest.java
+│       │       └── PayoutResponse.java
+│       ├── api/
+│       │   ├── SettlementController.java
+│       │   └── AdminSettlementController.java
+│       └── integration/
+│           └── SettlementModuleApi.java
+│
+├── analytics-module/                      # Analytics & Reporting
+│   ├── pom.xml
+│   └── src/main/java/com/platform/analytics/
+│       ├── AnalyticsModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── SalesMetric.java
+│       │   │   ├── VendorMetric.java
+│       │   │   ├── ProductMetric.java
+│       │   │   ├── CustomerMetric.java
+│       │   │   └── DashboardWidget.java
+│       │   └── repository/
+│       │       ├── SalesMetricRepository.java
+│       │       └── VendorMetricRepository.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── AnalyticsService.java
+│       │   │   ├── ReportGenerationService.java
+│       │   │   ├── VendorAnalyticsService.java
+│       │   │   └── DashboardService.java
+│       │   ├── collector/
+│       │   │   ├── OrderMetricCollector.java
+│       │   │   ├── ProductMetricCollector.java
+│       │   │   └── RevenueMetricCollector.java
+│       │   └── dto/
+│       │       ├── DashboardResponse.java
+│       │       ├── SalesReportResponse.java
+│       │       └── VendorPerformanceResponse.java
+│       ├── api/
+│       │   ├── AnalyticsController.java
+│       │   ├── VendorAnalyticsController.java
+│       │   └── AdminDashboardController.java
+│       └── integration/
+│           └── AnalyticsModuleApi.java
+│
+├── cms-module/                            # Content Management
+│   ├── pom.xml
+│   └── src/main/java/com/platform/cms/
+│       ├── CmsModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Banner.java
+│       │   │   ├── Page.java
+│       │   │   ├── HomepageSection.java
+│       │   │   ├── FAQ.java
+│       │   │   └── ContentBlock.java
+│       │   └── repository/
+│       │       ├── BannerRepository.java
+│       │       └── PageRepository.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── BannerService.java
+│       │   │   ├── PageService.java
+│       │   │   └── HomepageService.java
+│       │   └── dto/
+│       │       ├── BannerRequest.java
+│       │       └── BannerResponse.java
+│       └── api/
+│           ├── BannerController.java
+│           ├── PageController.java
+│           └── AdminCmsController.java
+│
+├── support-module/                        # Customer Support
+│   ├── pom.xml
+│   └── src/main/java/com/platform/support/
+│       ├── SupportModuleConfig.java
+│       ├── domain/
+│       │   ├── model/
+│       │   │   ├── Ticket.java
+│       │   │   ├── TicketMessage.java
+│       │   │   ├── TicketCategory.java
+│       │   │   ├── TicketStatus.java
+│       │   │   ├── Dispute.java
+│       │   │   └── DisputeResolution.java
+│       │   └── repository/
+│       │       ├── TicketRepository.java
+│       │       └── DisputeRepository.java
+│       ├── application/
+│       │   ├── service/
+│       │   │   ├── TicketService.java
+│       │   │   ├── DisputeService.java
+│       │   │   └── ChatService.java
+│       │   └── dto/
+│       │       ├── CreateTicketRequest.java
+│       │       ├── TicketResponse.java
+│       │       └── DisputeRequest.java
+│       └── api/
+│           ├── TicketController.java
+│           ├── DisputeController.java
+│           └── AdminSupportController.java
+│
+└── platform-app/                          # Main Application (Bootstrapper)
+    ├── pom.xml
+    └── src/
+        ├── main/
+        │   ├── java/com/platform/
+        │   │   ├── PlatformApplication.java
+        │   │   └── config/
+        │   │       ├── WebConfig.java
+        │   │       ├── SwaggerConfig.java
+        │   │       ├── RateLimitConfig.java
+        │   │       └── ModuleWiringConfig.java
+        │   └── resources/
+        │       ├── application.yml
+        │       ├── application-dev.yml
+        │       ├── application-staging.yml
+        │       ├── application-prod.yml
+        │       ├── db/migration/          # Flyway migrations
+        │       │   ├── V1__iam_schema.sql
+        │       │   ├── V2__catalog_schema.sql
+        │       │   ├── V3__inventory_schema.sql
+        │       │   ├── V4__order_schema.sql
+        │       │   ├── V5__payment_schema.sql
+        │       │   ├── V6__shipping_schema.sql
+        │       │   ├── V7__promotion_schema.sql
+        │       │   ├── V8__notification_schema.sql
+        │       │   ├── V9__settlement_schema.sql
+        │       │   ├── V10__analytics_schema.sql
+        │       │   ├── V11__cms_schema.sql
+        │       │   └── V12__support_schema.sql
+        │       └── logback-spring.xml
+        └── test/

@@ -1,0 +1,16 @@
+version = '1.0.0-SNAPSHOT'
+
+dependencies {
+    // 1. Inherit JPA, Security, Validation, Jackson, and MapStruct Core from shared-core
+    implementation project(':shared-core')
+
+    // 2. Add only what is UNIQUE to this module's logic
+    // If these DTOs need to be signed or parsed via JWT:
+
+
+    implementation libs.jjwt.api
+    runtimeOnly libs.jjwt.impl
+    runtimeOnly libs.jjwt.jackson
+    // 3. Web dependencies (if these objects are used in REST Controllers)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}

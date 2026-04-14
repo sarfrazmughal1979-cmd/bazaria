@@ -1,0 +1,65 @@
+[versions]
+# Frameworks
+springBoot = "4.0.5"
+springCloud = "2025.0.1"
+awsSdk = "2.25.30"
+springCloudCircuitBreaker = '5.0.1'
+# Core Utilities
+lombok = "1.18.44"
+javaMail = "2.1.5"
+javamessaging = "6.3.0"
+mapstruct = "1.6.0"
+swagger = "2.1.13"
+jackson = "2.17.0"
+querydsl = "5.1.0" # Updated for better Java 21+ support
+bucket4j = "8.14.0"
+jjwt = "0.12.5"
+
+# Third Party
+firebase = "9.2.0"
+awspring = "3.3.0"
+stripe = "32.0.0"
+poi = "5.2.5"
+itext = "5.5.13.3"
+redisson = "3.30.0"
+flyway = "10.10.0"
+
+[libraries]
+# Spring Boot BOM (Imported in build.gradle)
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+spring-cloud-bom = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "springCloud" }
+aws-bom = { module = "software.amazon.awssdk:bom", version.ref = "awsSdk" }
+spring-cloud-circuitbreaker = { module = 'org.springframework.cloud:spring-cloud-circuitbreaker-resilience4j', version.ref= 'springCloudCircuitBreaker'}
+# Common Managed Libs (No version needed as they come from BOMs)
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+spring-boot-starter-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+aws-s3 = { module = "software.amazon.awssdk:s3" }
+swagger-annotation = { module = "io.swagger.core.v3:swagger-annotations", version.ref="swagger" }
+swagger-models = { module = "io.swagger.core.v3:swagger-models", version.ref="swagger" }
+
+# Specialized Libs (Version required)
+firebase-admin = { module = "com.google.firebase:firebase-admin", version.ref = "firebase" }
+awspring-sns = { module = "io.awspring.cloud:spring-cloud-aws-starter-sns", version.ref = "awspring" }
+awsdk-ses = { module = "software.amazon.awssdk:ses", version.ref = "awsSdk" }
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+stripe-java = { module = "com.stripe:stripe-java", version.ref = "stripe" }
+poi-ooxml = { module = "org.apache.poi:poi-ooxml", version.ref = "poi" }
+poi-core = { module = "org.apache.poi:poi", version.ref = "poi" }
+itextpdf = { module = "com.itextpdf:itextpdf", version.ref = "itext" }
+redisson-starter = { module = "org.redisson:redisson-spring-boot-starter", version.ref = "redisson" }
+bucket4j-core = { module = "com.bucket4j:bucket4j_jdk17-core", version.ref = "bucket4j" }
+
+# Individual Libraries
+mapstruct-core = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+java-mail = { module = "jakarta.mail:jakarta.mail-api", version.ref = "javaMail" }
+# Add to gradle/libs.versions.toml
+resilience4j = { module = "io.github.resilience4j:resilience4j-all", version = "2.2.0" }
+java-message = { module = "org.springframework.security:spring-security-messaging", version.ref = "javamessaging" }
+jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+spring-web-socket = { module = "org.springframework:spring-websocket", version = "5.3.39" }

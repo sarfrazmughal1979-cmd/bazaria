@@ -1,0 +1,37 @@
+┌─────────────────────────────────────────────────────────────────┐
+│                    ARCHITECTURE PRINCIPLES                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  1. MODULE BOUNDARIES                                           │
+│     • Each module has its own domain, application, API layers   │
+│     • Inter-module communication ONLY via Integration APIs      │
+│     • No direct entity/repository access across modules         │
+│                                                                  │
+│  2. SHARED CORE                                                 │
+│     • Base entities, value objects, events                      │
+│     • Common DTOs, exceptions, security                        │
+│     • Cloud service abstractions (S3, SES, SNS)                │
+│     • NO business logic in shared core                          │
+│                                                                  │
+│  3. DATA ISOLATION                                               │
+│     • Each module owns its tables (schema-per-module possible)  │
+│     • Foreign keys only within module boundaries                │
+│     • Cross-module references via UUID (no JPA relations)       │
+│                                                                  │
+│  4. EVENT-DRIVEN COMMUNICATION                                   │
+│     • Domain events for async cross-module workflows            │
+│     • Event store for audit trail                               │
+│     • Eventual consistency where appropriate                     │
+│                                                                  │
+│  5. CLOUD-NATIVE                                                 │
+│     • Stateless design (sessions in Redis)                      │
+│     • S3 for file storage                                       │
+│     • SES/SNS for notifications                                 │
+│     • Ready for containerization (Docker/K8s)                   │
+│                                                                  │
+│  6. FUTURE EXTRACTION                                            │
+│     • Each module can become a microservice                     │
+│     • Integration APIs become REST/gRPC clients                 │
+│     • Domain events become Kafka/RabbitMQ messages              │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘

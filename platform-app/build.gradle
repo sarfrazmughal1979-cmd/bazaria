@@ -1,0 +1,27 @@
+plugins{
+    id 'org.springframework.boot' version '4.0.5'
+}
+version = '1.0.0-SNAPSHOT'
+springBoot {
+    mainClass = 'com.platform.PlatformApplication' // Replace with your actual package and class name
+}
+dependencies {
+    implementation project(':analytics-module')
+    implementation project(':cart-module')
+    implementation project(':catalog-module')
+    implementation project(':cms-module')
+    implementation project(':iam-module')
+    implementation project(':inventory-module')
+    implementation project(':notification-module')
+    implementation project(':order-module')
+    implementation project(':payment-module')
+    implementation project(':promotion-module')
+    implementation project(':settlement-module')
+    implementation project(':shared-core')
+    implementation project(':shared-objects')
+    implementation project(':shipping-module')
+    implementation project(':support-module')
+
+
+
+}

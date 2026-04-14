@@ -1,0 +1,51 @@
+plugins {
+    id 'java-library'
+}
+version = '1.0.0-SNAPSHOT'
+
+dependencies {
+    // API: Exported to all modules that depend on shared-core
+    // These are required for Entities, Security context, and Validation to work project-wide
+    api libs.spring.boot.starter.jpa
+    api libs.spring.boot.starter.security
+    api libs.spring.boot.starter.webflux
+    api libs.spring.boot.starter.web
+    api libs.swagger.annotation
+    api libs.swagger.models
+    api libs.redisson.starter
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    // api libs.mapstruct.core // (Note: Already provided globally in Root, but safe to keep)
+    // IMPLEMENTATION: Internal to shared-core (not leaked to other modules)
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+//    // Cloud & AWS (Versions managed by Root BOM)
+//    implementation 'org.springframework.cloud:spring-cloud-circuitbreaker-resilience4j'
+//    implementation 'software.amazon.awssdk:s3'
+//    implementation 'software.amazon.awssdk:ses'
+//    implementation 'software.amazon.awssdk:sns'
+//    implementation 'software.amazon.awssdk:sqs'
+
+    // Utilities & Third-Party (Using Version Catalog)
+    implementation libs.bucket4j.core
+    implementation libs.resilience4j
+    implementation libs.spring.cloud.bom
+    implementation libs.spring.cloud.circuitbreaker
+    implementation libs.awsdk.ses
+    implementation libs.firebase.admin
+
+
+
+    implementation libs.redisson.starter
+    implementation libs.aws.s3
+    implementation libs.aws.bom
+    implementation libs.awspring.sns
+    implementation libs.jjwt.api
+    implementation libs.jjwt.impl
+    implementation libs.jjwt.jackson
+
+    // MapStruct processor is already provided by Root build.gradle!
+
+}

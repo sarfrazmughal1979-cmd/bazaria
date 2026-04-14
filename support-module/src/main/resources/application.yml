@@ -1,0 +1,24 @@
+server:
+  port: 8080  # same port for monolith; change when splitting
+
+spring:
+  application:
+    name: support-module
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/ecommerce
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  websocket:
+    message:
+      max-size: 65536 # Default is 64KB
+module:
+  iam:
+    url: ${IAM_MODULE_URL:http://localhost:8080}
+  order:
+    url: ${ORDER_MODULE_URL:http://localhost:8080}

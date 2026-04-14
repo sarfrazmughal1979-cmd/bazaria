@@ -1,0 +1,9 @@
+package com.platform.payment.domain.model;
+
+public enum RefundStatus {
+    PENDING,
+    PROCESSING,
+    COMPLETED,
+    FAILED,
+    CANCELLED
+}

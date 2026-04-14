@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+allprojects {
+    group = 'com.platform'
+//    version = '1.0.0-SNAPSHOT'
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        google()
+    }
+}
+subprojects {
+    // Apply plugins to every child module automatically
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    java {
+        // Ensure your Gradle Wrapper is version 8.10 or 9.x
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
+    }
+
+
+
+    // Global Dependencies (Every module gets these without asking)
+
+    dependencies {
+        implementation platform(libs.spring.boot.bom)
+        implementation platform(libs.spring.cloud.bom)
+        implementation platform(libs.aws.bom)
+
+        // Lombok: Essential for almost every Java module
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+        testAnnotationProcessor libs.lombok
+
+        // MapStruct: Common for DTO mapping across modules
+        implementation libs.mapstruct.core
+        annotationProcessor libs.mapstruct.processor
+        // Allows MapStruct and Lombok to work together
+        annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+        // Testing: Every module should have a test suite
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+}

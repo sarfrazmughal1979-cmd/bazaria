@@ -1,0 +1,262 @@
+#!/bin/bash
+# ============================================
+# REMAINING MODULE POMS
+# ============================================
+
+# Create Catalog Module POM
+cat > catalog-module/pom.xml << 'CATALOG_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>catalog-module</artifactId>
+    <name>Catalog Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>iam-module</artifactId></dependency>
+    </dependencies>
+</project>
+CATALOG_POM
+
+# Inventory Module POM
+cat > inventory-module/pom.xml << 'INV_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>inventory-module</artifactId>
+    <name>Inventory Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+    </dependencies>
+</project>
+INV_POM
+
+# Cart Module POM
+cat > cart-module/pom.xml << 'CART_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>cart-module</artifactId>
+    <name>Cart Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>catalog-module</artifactId></dependency>
+    </dependencies>
+</project>
+CART_POM
+
+# Order Module POM
+cat > order-module/pom.xml << 'ORD_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>order-module</artifactId>
+    <name>Order Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>iam-module</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>catalog-module</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>inventory-module</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>cart-module</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>promotion-module</artifactId></dependency>
+    </dependencies>
+</project>
+ORD_POM
+
+# Payment Module POM
+cat > payment-module/pom.xml << 'PAY_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>payment-module</artifactId>
+    <name>Payment Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>order-module</artifactId></dependency>
+    </dependencies>
+</project>
+PAY_POM
+
+# Shipping Module POM
+cat > shipping-module/pom.xml << 'SHIP_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>shipping-module</artifactId>
+    <name>Shipping Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>order-module</artifactId></dependency>
+    </dependencies>
+</project>
+SHIP_POM
+
+# Promotion Module POM
+cat > promotion-module/pom.xml << 'PROMO_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>promotion-module</artifactId>
+    <name>Promotion Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+    </dependencies>
+</project>
+PROMO_POM
+
+# Notification Module POM
+cat > notification-module/pom.xml << 'NOTIF_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>notification-module</artifactId>
+    <name>Notification Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>iam-module</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>order-module</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>payment-module</artifactId></dependency>
+    </dependencies>
+</project>
+NOTIF_POM
+
+# Settlement Module POM
+cat > settlement-module/pom.xml << 'SETTLE_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>settlement-module</artifactId>
+    <name>Settlement Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>order-module</artifactId></dependency>
+    </dependencies>
+</project>
+SETTLE_POM
+
+# Analytics Module POM
+cat > analytics-module/pom.xml << 'ANAL_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>analytics-module</artifactId>
+    <name>Analytics Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>order-module</artifactId></dependency>
+    </dependencies>
+</project>
+ANAL_POM
+
+# CMS Module POM
+cat > cms-module/pom.xml << 'CMS_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>cms-module</artifactId>
+    <name>CMS Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+    </dependencies>
+</project>
+CMS_POM
+
+# Support Module POM
+cat > support-module/pom.xml << 'SUP_POM'
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.platform</groupId>
+        <artifactId>ecommerce-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>support-module</artifactId>
+    <name>Support Module</name>
+    <dependencies>
+        <dependency><groupId>com.platform</groupId><artifactId>shared-core</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>iam-module</artifactId></dependency>
+        <dependency><groupId>com.platform</groupId><artifactId>order-module</artifactId></dependency>
+    </dependencies>
+</project>
+SUP_POM
+
+echo "✅ All module POMs created!"

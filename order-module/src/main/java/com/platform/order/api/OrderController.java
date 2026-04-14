@@ -1,0 +1,124 @@
+package com.platform.order.api;
+
+import com.platform.core.dto.ApiResponse;
+import com.platform.order.application.service.OrderService;
+import com.platform.order.domain.model.Order;
+import com.platform.order.domain.model.OrderStatus;
+import com.platform.order.domain.model.SubOrder;
+import com.platform.order.domain.model.SubOrderStatus;
+import com.platform.order.domain.repository.OrderRepository;
+import com.platform.core.exception.ResourceNotFoundException;
+import com.platform.order.domain.repository.SubOrderRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/api/v1/orders")
+@RequiredArgsConstructor
+public class OrderController {
+
+    private final OrderRepository orderRepository;
+    private final SubOrderRepository subOrderRepository;
+
+    private final OrderService orderService;
+
+    @GetMapping("/{orderId}/info-mini")
+    public ResponseEntity<OrderInfoMini> getOrderInfoMini(@PathVariable UUID orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order", "id", orderId));
+        return ResponseEntity.ok(new OrderInfoMini(
+                order.getId(),
+                order.getOrderNumber(),
+                order.getCustomerId(),
+                order.getTotalAmount().getAmount(),
+                order.getTotalAmount().getCurrencyCode(),
+                order.getStatus().name()
+        ));
+    }
+
+    public record OrderInfoMini(UUID orderId, String orderNumber, UUID customerId,
+                                BigDecimal totalAmount, String currency, String status) {}
+
+    // In OrderController or a separate internal controller
+
+    @GetMapping("/sub-orders/{subOrderId}/info-mini")
+    public ResponseEntity<SubOrderInfo> getSubOrderInfoMini(@PathVariable UUID subOrderId) {
+        SubOrder subOrder = subOrderRepository.findById(subOrderId)
+            .orElseThrow(() -> new ResourceNotFoundException("SubOrder", "id", subOrderId));
+        return ResponseEntity.ok(new SubOrderInfo(
+                subOrder.getId(), subOrder.getOrder().getId(), subOrder.getVendorId(),
+            subOrder.getStatus().name(),
+            subOrder.getSubtotal().getAmount()
+    ));
+    }
+
+    @PostMapping("/{orderId}/confirm")
+    public ResponseEntity<ApiResponse<Void>> confirmOrder(
+            @PathVariable UUID orderId,
+            @RequestParam UUID paymentId) {
+        orderService.confirmOrder(orderId, paymentId);
+        return ResponseEntity.ok(ApiResponse.success("Order confirmed"));
+    }
+    @GetMapping("/sub-orders/delivered")
+    public ResponseEntity<List<SubOrderInfo>> getDeliveredSubOrdersBetween(
+            @RequestParam Instant start,
+            @RequestParam Instant end) {
+
+        List<SubOrder> subOrders = subOrderRepository.findByStatusAndDeliveredAtBetween(
+                SubOrderStatus.DELIVERED, start, end);
+
+        List<SubOrderInfo> result = subOrders.stream()
+                .map(so -> new SubOrderInfo(
+                        so.getId(),
+                        so.getOrder().getId(),
+                        so.getVendorId(),
+                        so.getCategory(), // adjust if category is on sub-order
+                        so.getSubtotal().getAmount()))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/sub-orders/{subOrderId}/assign-shipment")
+    public ResponseEntity<Void> assignShipmentToSubOrder(
+            @PathVariable UUID subOrderId,
+            @RequestBody AssignShipmentRequest request) {
+        SubOrder subOrder = subOrderRepository.findById(subOrderId)
+                .orElseThrow(() -> new ResourceNotFoundException("SubOrder", "id", subOrderId));
+        subOrder.setShipmentId(request.shipmentId());
+        subOrder.setTrackingNumber(request.trackingNumber());
+        subOrder.setStatus(SubOrderStatus.SHIPPED);
+        subOrderRepository.save(subOrder);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/sub-orders/{subOrderId}/mark-delivered")
+    public ResponseEntity<Void> markSubOrderDelivered(@PathVariable UUID subOrderId) {
+        SubOrder subOrder = subOrderRepository.findById(subOrderId)
+                .orElseThrow(() -> new ResourceNotFoundException("SubOrder", "id", subOrderId));
+        subOrder.markAsDelivered();
+        subOrderRepository.save(subOrder);
+        // Check if all sub-orders are delivered to update main order status
+        Order order = subOrder.getOrder();
+        boolean allDelivered = order.getSubOrders().stream()
+                .allMatch(so -> so.getStatus() == SubOrderStatus.DELIVERED);
+        if (allDelivered) {
+            order.setStatus(OrderStatus.DELIVERED);
+            orderRepository.save(order);
+        }
+        return ResponseEntity.ok().build();
+    }
+
+    public record OrderInfo(UUID orderId, String orderNumber, UUID customerId, UUID vendorId,
+                            BigDecimal totalAmount, String currency, String status) {}
+    public record SubOrderInfo(UUID subOrderId, UUID orderId, UUID vendorId, String status,
+                               BigDecimal subtotal) {}
+    public record AssignShipmentRequest(UUID shipmentId, String trackingNumber) {}
+}

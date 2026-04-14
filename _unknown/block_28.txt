@@ -1,0 +1,15 @@
+# 1. Start infrastructure
+docker-compose up -d
+
+# 2. Build the project
+cd ecommerce-platform
+mvn clean install -DskipTests
+
+# 3. Run with dev profile
+cd platform-app
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+
+# 4. Access
+# API: http://localhost:8080
+# Swagger: http://localhost:8080/swagger-ui.html
+# MailHog: http://localhost:8025

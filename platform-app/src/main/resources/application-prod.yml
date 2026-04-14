@@ -1,0 +1,66 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/ecommerce
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.batch_size: 30
+  flyway:
+    enabled: true
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+cloud:
+  aws:
+    region: ${AWS_REGION:ap-southeast-1}
+    s3:
+      bucket-name: ${S3_BUCKET}
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY}
+bkash:
+  app-key: ${BKASH_APP_KEY}
+  app-secret: ${BKASH_APP_SECRET}
+  base-url: ${BKASH_BASE_URL}
+pathao:
+  api-key: ${PATHAO_API_KEY}
+  base-url: ${PATHAO_BASE_URL}
+internal:
+  api:
+    key: ${INTERNAL_API_KEY}
+rate:
+  limit:
+    per-minute: ${RATE_LIMIT_PER_MINUTE:100}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+logging:
+  level:
+    com.platform: INFO
+  pattern:
+    console: ""
