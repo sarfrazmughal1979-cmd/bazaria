@@ -21,14 +21,16 @@ awspring = "3.3.0"
 stripe = "32.0.0"
 poi = "5.2.5"
 itext = "5.5.13.3"
-redisson = "3.30.0"
+redisson = "4.3.0"
 flyway = "10.10.0"
 
 [libraries]
 # Spring Boot BOM (Imported in build.gradle)
 spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+spring-boot-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springBoot" }
 spring-cloud-bom = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "springCloud" }
 aws-bom = { module = "software.amazon.awssdk:bom", version.ref = "awsSdk" }
+spring-data-redis = { module = "org.springframework.data:spring-data-redis", version = "4.0.4" }
 spring-cloud-circuitbreaker = { module = 'org.springframework.cloud:spring-cloud-circuitbreaker-resilience4j', version.ref= 'springCloudCircuitBreaker'}
 # Common Managed Libs (No version needed as they come from BOMs)
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }

@@ -285,6 +285,7 @@ public class PaymentService {
             log.info("Expired pending payment: {}", payment.getId());
         }
     }
+
     /**
      * Process incoming webhook from payment gateway.
      *

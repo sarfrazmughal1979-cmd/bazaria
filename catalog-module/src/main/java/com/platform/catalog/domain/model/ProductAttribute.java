@@ -2,6 +2,7 @@ package com.platform.catalog.domain.model;
 import com.platform.core.domain.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
 @Entity
 @Table(name = "product_attributes", indexes = {
         @Index(name = "idx_product_attr_product", columnList = "product_id")

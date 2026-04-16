@@ -164,6 +164,13 @@ public class ShippingService {
         Page<Shipment> page = shipmentRepository.findByVendorIdAndStatus(vendorId, null, pageable);
         return PagedResponse.from(page.map(shippingMapper::toResponse));
     }
+
+    /**
+     * Process incoming webhook from a shipping carrier.
+     *
+     * @param carrier the carrier name (e.g., "pathao", "redx")
+     * @param payload raw JSON payload from the carrier
+     */
     @Transactional
     public void processWebhook(String carrier, String payload) {
         log.info("Processing webhook from carrier: {}", carrier);
