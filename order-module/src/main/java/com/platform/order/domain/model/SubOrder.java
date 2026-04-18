@@ -5,6 +5,7 @@ import com.platform.core.domain.Money;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,6 +39,9 @@ public class SubOrder extends AuditableEntity {
 
     @Column(name = "category", nullable = false)
     private String category;
+
+    @Column(name= "delivered_at")
+    private Instant deliveredAt;
 
     @Embedded
     @AttributeOverrides({

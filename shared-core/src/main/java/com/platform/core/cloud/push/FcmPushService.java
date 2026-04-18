@@ -19,10 +19,10 @@ import java.util.Map;
 @Service
 public class FcmPushService {
 
-    @Value("${fcm.service-account-file}")
+    @Value("${fcm.service-account-file:}")
     private String serviceAccountFile;
 
-    @PostConstruct
+//    @PostConstruct
     public void initialize() {
         try {
             var options = FirebaseOptions.builder()

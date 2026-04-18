@@ -12,12 +12,12 @@ import java.util.UUID;
 public interface ChatMessageRepository extends JpaRepository<ChatMessage, UUID> {
 
     // Find messages by room ID, ordered by timestamp (descending for latest first)
-    List<ChatMessage> findByRoomIdOrderByTimestampDesc(String roomId);
+//    List<ChatMessage> findByRoomIdOrderByTimestampDesc(String roomId);
 
     // Paginated version
-    Page<ChatMessage> findByRoomIdOrderByTimestampDesc(String roomId, Pageable pageable);
+//    Page<ChatMessage> findByRoomIdOrderByTimestampDesc(String roomId, Pageable pageable);
 
     // Find unread messages for a recipient
-    List<ChatMessage> findByRecipientIdAndIsReadFalse(UUID recipientId);
+    List<ChatMessage> findByRecipientIdAndReadAtIsNull(UUID recipientId);
 
 }

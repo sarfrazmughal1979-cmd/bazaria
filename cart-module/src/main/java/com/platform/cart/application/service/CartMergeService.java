@@ -16,7 +16,6 @@ import java.util.UUID;
 public class CartMergeService {
 
     private final CartRepository cartRepository;
-    private final CartService cartService;
 
     @Transactional
     public void mergeGuestCart(UUID customerId, String sessionId) {

@@ -49,7 +49,9 @@ public class Shipment extends AuditableEntity {
             @AttributeOverride(name = "city", column = @Column(name = "pickup_city")),
             @AttributeOverride(name = "state", column = @Column(name = "pickup_state")),
             @AttributeOverride(name = "postalCode", column = @Column(name = "pickup_postal_code")),
-            @AttributeOverride(name = "country", column = @Column(name = "pickup_country"))
+            @AttributeOverride(name = "country", column = @Column(name = "pickup_country")),
+            @AttributeOverride(name = "latitude", column = @Column(name = "pickup_latitude")),
+            @AttributeOverride(name = "longitude", column = @Column(name = "pickup_longitude"))
     })
     private Address pickupAddress;
 
@@ -60,7 +62,9 @@ public class Shipment extends AuditableEntity {
             @AttributeOverride(name = "city", column = @Column(name = "delivery_city")),
             @AttributeOverride(name = "state", column = @Column(name = "delivery_state")),
             @AttributeOverride(name = "postalCode", column = @Column(name = "delivery_postal_code")),
-            @AttributeOverride(name = "country", column = @Column(name = "delivery_country"))
+            @AttributeOverride(name = "country", column = @Column(name = "delivery_country")),
+            @AttributeOverride(name = "latitude", column = @Column(name = "delivery_latitude")),
+            @AttributeOverride(name = "longitude", column = @Column(name = "delivery_longitude"))
     })
     private Address deliveryAddress;
 

@@ -13,7 +13,7 @@ import java.io.IOException;
 @Component
 public class InternalApiKeyFilter extends OncePerRequestFilter {
 
-    @Value("${internal.api.key}")
+    @Value("${internal.api.key:Mughal12}")
     private String internalApiKey;
 
     @Override

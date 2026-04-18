@@ -136,3 +136,6 @@ CREATE TABLE IF NOT EXISTS product_reviews (
     created_by VARCHAR(255),
     updated_by VARCHAR(255)
 );
+
+CREATE INDEX idx_review_product ON product_reviews(product_id);
+CREATE INDEX idx_review_customer ON product_reviews(customer_id);

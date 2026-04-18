@@ -134,7 +134,7 @@ public class ChatService {
     @Transactional
     public void markMessagesRead(UUID recipientId) {
         UUID readerId = SecurityUtils.getCurrentUserId();
-        List<ChatMessage> unreadMessages = messageRepository.findByRecipientIdAndIsReadFalse(recipientId);
+        List<ChatMessage> unreadMessages = messageRepository.findByRecipientIdAndReadAtIsNull(recipientId);
         List<ChatMessage> toUpdate = unreadMessages.stream()
                 .filter(msg -> msg.getRecipientId().equals(readerId))
                 .peek(msg -> msg.setReadAt(Instant.now()))

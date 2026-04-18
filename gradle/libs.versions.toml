@@ -28,6 +28,7 @@ flyway = "10.10.0"
 # Spring Boot BOM (Imported in build.gradle)
 spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
 spring-boot-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springBoot" }
+spring-boot-mail = {module = "org.springframework.boot:spring-boot-starter-mail", version.ref="springBoot"}
 spring-cloud-bom = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "springCloud" }
 aws-bom = { module = "software.amazon.awssdk:bom", version.ref = "awsSdk" }
 spring-data-redis = { module = "org.springframework.data:spring-data-redis", version = "4.0.4" }
@@ -65,3 +66,4 @@ resilience4j = { module = "io.github.resilience4j:resilience4j-all", version = "
 java-message = { module = "org.springframework.security:spring-security-messaging", version.ref = "javamessaging" }
 jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 spring-web-socket = { module = "org.springframework:spring-websocket", version = "5.3.39" }
+postgresql-driver = { module = "org.postgresql:postgresql", version = "42.7.10" }

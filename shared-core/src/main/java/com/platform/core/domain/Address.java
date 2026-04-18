@@ -14,30 +14,30 @@ import lombok.*;
 public class Address {
 
     @NotBlank
-    @Column(name = "address_line1")
+    //@Column(name = "address_line1")
     private String addressLine1;
 
-    @Column(name = "address_line2")
+    //@Column(name = "address_line2")
     private String addressLine2;
 
     @NotBlank
-    @Column(name = "city")
+    //@Column(name = "city")
     private String city;
 
-    @Column(name = "state")
+    //@Column(name = "state")
     private String state;
 
-    @Column(name = "postal_code")
+    //@Column(name = "postal_code")
     private String postalCode;
 
     @NotBlank
-    @Column(name = "country")
+    //@Column(name = "country")
     private String country;
 
-    @Column(name = "latitude")
+    //@Column(name = "latitude")
     private Double latitude;
 
-    @Column(name = "longitude")
+    //@Column(name = "longitude")
     private Double longitude;
 
     public String getFullAddress() {

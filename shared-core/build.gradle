@@ -15,6 +15,7 @@ dependencies {
     api libs.swagger.models
     api libs.redisson.starter
     api libs.spring.boot.redis
+    api libs.postgresql.driver
     api 'org.springframework.boot:spring-boot-starter-validation'
     api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
     // api libs.mapstruct.core // (Note: Already provided globally in Root, but safe to keep)

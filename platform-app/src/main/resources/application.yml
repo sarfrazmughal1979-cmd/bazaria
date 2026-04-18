@@ -14,7 +14,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -32,9 +32,9 @@ spring:
 
   data:
     redis:
-      host: ${REDIS_HOST:localhost}
-      port: ${REDIS_PORT:6379}
-      password: ${REDIS_PASSWORD:}
+      host: ${REDIS_HOST:redis-11577.crce300.ap-south-1-2.ec2.cloud.redislabs.com}
+      port: ${REDIS_PORT:11577}
+      password: ${REDIS_PASSWORD:1Reasxce7sQwToXJm7FH3YFPclOeYuOq}
       timeout: 5000
 
   cache:
@@ -46,8 +46,8 @@ spring:
       max-request-size: 50MB
 
   jackson:
-    serialization:
-      write-dates-as-timestamps: false
+#    serialization:
+#      write-dates-as-timestamps: false
     default-property-inclusion: non_null
 
 # Security
@@ -107,3 +107,4 @@ springdoc:
     path: /swagger-ui.html
     tags-sorter: alpha
     operations-sorter: alpha
+debug: true

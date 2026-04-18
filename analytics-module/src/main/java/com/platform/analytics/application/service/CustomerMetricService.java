@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerMetricService extends AbstractCrudService<CustomerMetric, CustomerMetricRepository> {
-    protected CustomerMetricService(CustomerMetricRepository repository, String entityName) {
-        super(repository, entityName);
+    protected CustomerMetricService(CustomerMetricRepository repository) {
+        super(repository, CustomerMetric.class.getSimpleName());
     }
 }

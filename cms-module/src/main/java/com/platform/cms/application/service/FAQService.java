@@ -71,7 +71,7 @@ public class FAQService {
 
     @Cacheable(value = "faq", key = "'category:' + #categoryId")
     public List<FAQResponse> getFAQsByCategory(UUID categoryId) {
-        return faqRepository.findByCategoryIdAndVisibleTrueOrderBySortAsc(categoryId).stream()
+        return faqRepository.findByCategoryIdAndVisibleTrueOrderBySortOrderAsc(categoryId).stream()
             .map(mapper::toResponse)
             .collect(Collectors.toList());
     }

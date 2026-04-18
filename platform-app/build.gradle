@@ -1,11 +1,18 @@
 plugins{
     id 'org.springframework.boot' version '4.0.5'
+    id 'org.flywaydb.flyway' version '11.19.0'
 }
 version = '1.0.0-SNAPSHOT'
 springBoot {
     mainClass = 'com.platform.PlatformApplication' // Replace with your actual package and class name
 }
+configurations {
+    flywayMigration
+}
+
 dependencies {
+    implementation("org.flywaydb:flyway-database-postgresql:11.3.4")
+    flywayMigration libs.postgresql.driver
     implementation project(':analytics-module')
     implementation project(':cart-module')
     implementation project(':catalog-module')
@@ -21,7 +28,11 @@ dependencies {
     implementation project(':shared-objects')
     implementation project(':shipping-module')
     implementation project(':support-module')
+}
 
-
-
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/ecommerce'
+    user = 'postgres'
+    password = 'postgres'
+    locations = ['filesystem:src/main/resources/db/migration']
 }

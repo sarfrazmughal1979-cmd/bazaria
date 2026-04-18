@@ -217,7 +217,7 @@ public class OrderService {
         UUID vendorId = SecurityUtils.getCurrentVendorId()
                 .orElseThrow(() -> new BusinessException("NOT_VENDOR", "Not a vendor"));
 
-        SubOrder subOrder = orderRepository.findSubOrderByIdAndVendorId(subOrderId, vendorId)
+        SubOrder subOrder = subOrderRepository.findSubOrderByIdAndVendorId(subOrderId, vendorId)
                 .orElseThrow(() -> new BusinessException("SUBORDER_NOT_FOUND", "Sub-order not found"));
 
         switch (request.getStatus()) {

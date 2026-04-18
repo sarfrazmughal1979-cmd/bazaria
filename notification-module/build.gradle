@@ -6,6 +6,7 @@ dependencies {
 
     implementation libs.awspring.sns
     implementation libs.awsdk.ses
+    implementation libs.spring.boot.mail
     implementation libs.java.mail
     implementation libs.firebase.admin
 

@@ -21,7 +21,7 @@ public interface BannerRepository extends SoftDeleteRepository<Banner> {
            "ORDER BY b.sortOrder ASC")
     List<Banner> findActiveBanners(@Param("now") Instant now);
 
-    List<Banner> findByPositionAndActiveTrueOrderBySortAsc(String position);
+    List<Banner> findByPositionAndActiveTrueOrderBySortOrderAsc(String position);
 
     @Query("SELECT b FROM Banner b WHERE b.position = :position AND b.active = true " +
            "AND (b.startDate IS NULL OR b.startDate <= :now) " +

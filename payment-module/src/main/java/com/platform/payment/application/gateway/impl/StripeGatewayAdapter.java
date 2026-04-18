@@ -16,7 +16,7 @@ import java.util.UUID;
 @Component("stripeGatewayAdapter")
 public class StripeGatewayAdapter implements PaymentGatewayAdapter {
 
-    @Value("${stripe.secret-key}")
+    @Value("${stripe.secret-key:test}")
     private String stripeSecretKey;
 
     @Override

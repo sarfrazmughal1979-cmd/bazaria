@@ -16,11 +16,11 @@ import java.util.UUID;
 public class ChatMessage extends AuditableEntity {
 
     @ManyToOne
-    @JoinColumn(name = "session_id")
+    @JoinColumn(name = "session_id", nullable = false, insertable = false,updatable = false)
     private ChatSession session;
 
 
-    @Column(name = "session_id", nullable = false)
+    @Column(name = "session_id", nullable = false, insertable = false,updatable = false)
     private UUID sessionId;
 
     @Column(name = "sender_id", nullable = false)

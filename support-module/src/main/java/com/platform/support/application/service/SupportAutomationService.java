@@ -22,9 +22,9 @@ public class SupportAutomationService {
     // Escalate tickets that haven't been responded to in 48 hours
     @Scheduled(cron = "0 0 */6 * * *") // every 6 hours
     @Transactional
-    public void escalateStaleTickets(Pageable pageable) {
+    public void escalateStaleTickets() {
         Instant staleThreshold = Instant.now().minus(48, ChronoUnit.HOURS);
-        var staleTickets = ticketRepository.findByStatus(TicketStatus.IN_PROGRESS, pageable);
+        var staleTickets = ticketRepository.findByStatus(TicketStatus.IN_PROGRESS, Pageable.unpaged());
         // In real implementation, query by last_response_at < staleThreshold
         log.info("Checking for stale tickets...");
     }

@@ -45,5 +45,3 @@ build/
 *.log
 logs/
 
-### Environment ###
-.env

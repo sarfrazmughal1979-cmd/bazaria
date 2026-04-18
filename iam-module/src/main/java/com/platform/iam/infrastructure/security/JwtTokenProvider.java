@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -21,7 +20,7 @@ public class JwtTokenProvider {
     private final long refreshTokenExpiration;
 
     public JwtTokenProvider(
-            @Value("${security.jwt.secret}") String secret,
+            @Value("${security.jwt.secret:mysecrect~!@#$%^&*()_+{}12#45}") String secret,
             @Value("${security.jwt.access-token-expiration:3600000}") long accessTokenExpiration,
             @Value("${security.jwt.refresh-token-expiration:604800000}") long refreshTokenExpiration) {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));

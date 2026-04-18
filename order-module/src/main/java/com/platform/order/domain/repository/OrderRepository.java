@@ -18,7 +18,6 @@ import java.util.UUID;
 @Repository
 public interface OrderRepository extends SoftDeleteRepository<Order> {
 
-    Optional<SubOrder> findSubOrderByIdAndVendorId(UUID subOrderId, UUID vendorID);
     Optional<Order> findByOrderNumber(String orderNumber);
 
     Optional<Order> findByIdAndCustomerId(UUID id, UUID customerId);

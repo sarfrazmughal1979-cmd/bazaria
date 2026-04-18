@@ -28,18 +28,20 @@ public interface TicketRepository extends SoftDeleteRepository<Ticket> {
 
     Page<Ticket> findByStatus(TicketStatus status, Pageable pageable);
 
-    @Query("SELECT t FROM SupportTicket t WHERE t.status IN :statuses AND t.priority = :priority")
+    @Query("SELECT t FROM Ticket t WHERE t.status IN :statuses AND t.priority = :priority")
     Page<Ticket> findByStatusesAndPriority(@Param("statuses") List<TicketStatus> statuses,
                                            @Param("priority") TicketPriority priority,
                                            Pageable pageable);
 
-    @Query("SELECT COUNT(t) FROM SupportTicket t WHERE t.status IN :openStatuses")
+    @Query("SELECT COUNT(t) FROM Ticket t WHERE t.status IN :openStatuses")
     long countOpenTickets(@Param("openStatuses") List<TicketStatus> openStatuses);
 
-    @Query("SELECT AVG(EXTRACT(EPOCH FROM (t.firstResponseAt - t.createdAt))) FROM SupportTicket t " +
-           "WHERE t.firstResponseAt IS NOT NULL AND t.createdAt >= :since")
+    @Query(value = "SELECT AVG(EXTRACT(EPOCH FROM (t.first_response_at - t.created_at))) " +
+            "FROM support_tickets t " +
+            "WHERE t.first_response_at IS NOT NULL AND t.created_at >= :since",
+            nativeQuery = true)
     Double getAverageFirstResponseTime(@Param("since") Instant since);
 
-    @Query("SELECT AVG(t.customerRating) FROM SupportTicket t WHERE t.customerRating IS NOT NULL")
+    @Query("SELECT AVG(t.customerRating) FROM Ticket t WHERE t.customerRating IS NOT NULL")
     Double getAverageCustomerRating();
 }

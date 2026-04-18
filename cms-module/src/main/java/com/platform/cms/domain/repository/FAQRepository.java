@@ -15,7 +15,7 @@ import java.util.UUID;
 @Repository
 public interface FAQRepository extends SoftDeleteRepository<FAQ> {
 
-    List<FAQ> findByCategoryIdAndVisibleTrueOrderBySortAsc(UUID categoryId);
+    List<FAQ> findByCategoryIdAndVisibleTrueOrderBySortOrderAsc(UUID categoryId);
 
     Page<FAQ> findByVisibleTrueAndDeletedFalse(Pageable pageable);
 

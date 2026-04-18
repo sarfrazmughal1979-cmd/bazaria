@@ -17,6 +17,8 @@ import java.util.UUID;
 @Repository
 public interface SubOrderRepository extends BaseRepository<SubOrder> {
 
+    Optional<SubOrder> findSubOrderByIdAndVendorId(UUID subOrderId, UUID vendorID);
+
     Optional<SubOrder> findBySubOrderNumber(String subOrderNumber);
 
     Optional<SubOrder> findByIdAndVendorId(UUID id, UUID vendorId);

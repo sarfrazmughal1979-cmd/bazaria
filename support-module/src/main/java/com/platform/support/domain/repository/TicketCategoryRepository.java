@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface TicketCategoryRepository extends BaseRepository<TicketCategory> {
     Optional<TicketCategory> findByName(String name);
-    List<TicketCategory> findByIsActiveTrue();
+    List<TicketCategory> findByActiveTrue();
 }

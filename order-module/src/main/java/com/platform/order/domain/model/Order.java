@@ -80,14 +80,14 @@ public class Order extends AuditableEntity {
 
     @Embedded
     @AttributeOverrides({
-        @AttributeOverride(name = "addressLine1", column = @Column(name = "shipping_address_line1")),
-        @AttributeOverride(name = "addressLine2", column = @Column(name = "shipping_address_line2")),
-        @AttributeOverride(name = "city", column = @Column(name = "shipping_city")),
-        @AttributeOverride(name = "state", column = @Column(name = "shipping_state")),
-        @AttributeOverride(name = "postalCode", column = @Column(name = "shipping_postal_code")),
-        @AttributeOverride(name = "country", column = @Column(name = "shipping_country")),
-        @AttributeOverride(name = "latitude", column = @Column(name = "shipping_latitude")),
-        @AttributeOverride(name = "longitude", column = @Column(name = "shipping_longitude"))
+        @AttributeOverride(name = "addressLine1", column = @Column(name = "shipping_address_line1", insertable=false, updatable=false)),
+        @AttributeOverride(name = "addressLine2", column = @Column(name = "shipping_address_line2", insertable=false, updatable=false)),
+        @AttributeOverride(name = "city", column = @Column(name = "shipping_city", insertable=false, updatable=false)),
+        @AttributeOverride(name = "state", column = @Column(name = "shipping_state", insertable=false, updatable=false)),
+        @AttributeOverride(name = "postalCode", column = @Column(name = "shipping_postal_code", insertable=false, updatable=false)),
+        @AttributeOverride(name = "country", column = @Column(name = "shipping_country", insertable=false, updatable=false)),
+//        @AttributeOverride(name = "latitude", column = @Column(name = "shipping_latitude", insertable=false, updatable=false)),
+        @AttributeOverride(name = "longitude", column = @Column(name = "shipping_longitude", insertable=false, updatable=false))
     })
     private Address shippingAddress;
 

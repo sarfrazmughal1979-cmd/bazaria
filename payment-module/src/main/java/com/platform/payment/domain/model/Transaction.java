@@ -22,7 +22,7 @@ import java.util.UUID;
 public class Transaction extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_id", nullable = false)
+    @JoinColumn (name = "payment_id", insertable = false, updatable = false, nullable = false)
     private Payment payment;
 
     @Column(name = "payment_id", nullable = false)
