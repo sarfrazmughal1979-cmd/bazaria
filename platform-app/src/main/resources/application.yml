@@ -32,10 +32,13 @@ spring:
 
   data:
     redis:
-      host: ${REDIS_HOST:redis-11577.crce300.ap-south-1-2.ec2.cloud.redislabs.com}
-      port: ${REDIS_PORT:11577}
-      password: ${REDIS_PASSWORD:1Reasxce7sQwToXJm7FH3YFPclOeYuOq}
+      host: localhost
+#      host: ${REDIS_HOST:redis-11577.crce300.ap-south-1-2.ec2.cloud.redislabs.com}
+#      port: ${REDIS_PORT:11577}
+#      password: ${REDIS_PASSWORD:1Reasxce7sQwToXJm7FH3YFPclOeYuOq}
       timeout: 5000
+      port: 6379
+
 
   cache:
     type: redis
