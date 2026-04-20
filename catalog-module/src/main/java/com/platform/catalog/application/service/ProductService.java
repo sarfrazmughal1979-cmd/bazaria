@@ -273,4 +273,8 @@ public class ProductService {
     public Optional<Category> findActiveById(UUID categoryId){
         return categoryRepository.findByActiveTrue(categoryId);
     }
+    public PagedResponse<ProductDetailResponse.CategoryInfo> findActiveById(Pageable pageable){
+        Page<Category> categories = categoryRepository.findByActiveTrue(pageable);
+        return PagedResponse.from(categories.map(productMapper::mapCategory));
+    }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/public/banners")
+@RequestMapping("/api/v1/banners")
 @RequiredArgsConstructor
 @Tag(name = "Public Banners")
 public class PublicBannerController {

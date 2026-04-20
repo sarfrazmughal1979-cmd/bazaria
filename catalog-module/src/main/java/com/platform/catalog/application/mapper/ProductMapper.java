@@ -96,7 +96,7 @@ public class ProductMapper {
                 .orElse(images.get(0).getUrl());
     }
 
-    private ProductDetailResponse.CategoryInfo mapCategory(Category category) {
+    public ProductDetailResponse.CategoryInfo mapCategory(Category category) {
         if (category == null) return null;
         return ProductDetailResponse.CategoryInfo.builder()
                 .id(category.getId())
@@ -105,7 +105,7 @@ public class ProductMapper {
                 .build();
     }
 
-    private ProductDetailResponse.BrandInfo mapBrand(Brand brand) {
+    public ProductDetailResponse.BrandInfo mapBrand(Brand brand) {
         if (brand == null) return null;
         return ProductDetailResponse.BrandInfo.builder()
                 .id(brand.getId())
@@ -114,7 +114,7 @@ public class ProductMapper {
                 .build();
     }
 
-    private List<ProductDetailResponse.ProductVariantResponse> mapVariants(List<ProductVariant> variants) {
+    public List<ProductDetailResponse.ProductVariantResponse> mapVariants(List<ProductVariant> variants) {
         if (variants == null) return List.of();
         return variants.stream()
                 .map(v -> ProductDetailResponse.ProductVariantResponse.builder()
