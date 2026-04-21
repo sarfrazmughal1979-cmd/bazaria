@@ -1,0 +1,38 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'corretto'
+
+      - name: Build with Gradle
+        run: ./gradlew :platform-app:bootJar
+
+      - name: Upload JAR to S3
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: aws s3 cp platform-app/build/libs/*.jar s3://codepipeline-us-east-1-5200dc06f684-4251-8fe9-68dfe1a14113/ecommerce-app.jar
+
+      - name: SSH into EC2 and restart service
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            aws s3 cp s3://codepipeline-us-east-1-5200dc06f684-4251-8fe9-68dfe1a14113/ecommerce-app.jar/platform-app/build/libs/platform-app-1.0.0-SNAPSHOT.jar /home/ec2-user/app.jar
+            sudo systemctl restart ecommerce
