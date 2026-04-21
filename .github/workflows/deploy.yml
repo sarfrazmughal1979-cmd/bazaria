@@ -39,5 +39,5 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            aws s3 cp s3://bazaria-artifacts/ecommerce-app.jar/platform-app/build/libs/platform-app-1.0.0-SNAPSHOT.jar /home/ec2-user/app.jar
+            aws s3 cp s3://bazaria-artifacts/ecommerce-app.jar /home/ec2-user/app.jar
             sudo systemctl restart ecommerce
