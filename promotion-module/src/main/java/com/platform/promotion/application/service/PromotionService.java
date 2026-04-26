@@ -5,7 +5,7 @@ import com.platform.promotion.domain.model.Coupon;
 import com.platform.promotion.domain.model.CouponUsage;
 import com.platform.promotion.domain.repository.CouponRepository;
 import com.platform.promotion.domain.repository.CouponUsageRepository;
-import com.platform.promotion.domain.service.CouponValidationService;
+import com.platform.promotion.application.service.CouponValidationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

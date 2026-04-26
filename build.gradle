@@ -26,8 +26,8 @@ subprojects {
 
     java {
         // Ensure your Gradle Wrapper is version 8.10 or 9.x
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        sourceCompatibility = JavaVersion.VERSION_26
+        targetCompatibility = JavaVersion.VERSION_26
     }
 
 
@@ -38,7 +38,7 @@ subprojects {
         implementation platform(libs.spring.boot.bom)
         implementation platform(libs.spring.cloud.bom)
         implementation platform(libs.aws.bom)
-
+		implementation 'org.springframework.boot:spring-boot-devtools'
         // Lombok: Essential for almost every Java module
         compileOnly libs.lombok
         annotationProcessor libs.lombok
