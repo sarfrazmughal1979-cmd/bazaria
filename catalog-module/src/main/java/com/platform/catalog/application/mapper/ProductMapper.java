@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ProductMapper {
 
     // ============================================================
-    // Entity to Response DTOs (manual mapping – no MapStruct errors)
+    // Entity to Response DTOs (manual mapping â€“ no MapStruct errors)
     // ============================================================
 
     public ProductResponse toResponse(Product product) {
@@ -179,12 +179,12 @@ public class ProductMapper {
         if (request.getBasePrice() != null) {
             product.setBasePrice(com.platform.core.domain.Money.of(
                     request.getBasePrice(),
-                    request.getCurrency() != null ? request.getCurrency() : "BDT"));
+                    request.getCurrency() != null ? request.getCurrency() : "PKR"));
         }
         if (request.getSalePrice() != null) {
             product.setSalePrice(com.platform.core.domain.Money.of(
                     request.getSalePrice(),
-                    request.getCurrency() != null ? request.getCurrency() : "BDT"));
+                    request.getCurrency() != null ? request.getCurrency() : "PKR"));
         }
 
         return product;

@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: wishlist-module
+
+module:
+  catalog:
+    url: ${CATALOG_MODULE_URL:http://localhost:8080}

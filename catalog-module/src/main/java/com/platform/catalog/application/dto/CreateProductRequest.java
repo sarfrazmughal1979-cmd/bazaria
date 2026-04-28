@@ -40,8 +40,8 @@ public class CreateProductRequest {
     private BigDecimal salePrice;
 
     @NotNull(message = "Currency is required")
-    @Pattern(regexp = "^[A-Z]{3}$", message = "Currency must be a 3-letter ISO code (e.g., BDT, USD)")
-    private String currency = "BDT";
+    @Pattern(regexp = "^[A-Z]{3}$", message = "Currency must be a 3-letter ISO code (e.g., PKR, USD)")
+    private String currency = "PKR";
 
     private UUID categoryId;
 

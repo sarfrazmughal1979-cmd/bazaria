@@ -26,6 +26,9 @@ public class OrderItem extends BaseEntity {
     @Column(name = "variant_id")
     private UUID variantId;
 
+    @Column(name = "reservation_id")
+    private UUID reservationId;
+
     @Column(name = "product_name", nullable = false, length = 500)
     private String productName;
 
@@ -37,6 +40,7 @@ public class OrderItem extends BaseEntity {
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
+
 
     @Embedded
     @AttributeOverrides({

@@ -12,13 +12,15 @@ public class OrderPlacedEvent extends DomainEvent {
     private final String customerId;
     private final String orderNumber;
     private final BigDecimal totalAmount;
+    private final String customerIp;
 
-    public OrderPlacedEvent(String orderId, String customerId, String orderNumber, BigDecimal totalAmount) {
+    public OrderPlacedEvent(String orderId, String customerId, String orderNumber, BigDecimal totalAmount, String customerIp) {
         super();
         this.orderId = orderId;
         this.customerId = customerId;
         this.orderNumber = orderNumber;
         this.totalAmount = totalAmount;
+        this.customerIp = customerIp;
     }
 
     @Override

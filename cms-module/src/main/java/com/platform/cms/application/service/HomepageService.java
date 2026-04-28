@@ -1,6 +1,6 @@
 package com.platform.cms.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.exception.BusinessException;
 import com.platform.cms.application.dto.HomepageSectionRequest;
@@ -42,8 +42,8 @@ public class HomepageService {
     @Value("${module.promotion.url:http://localhost:8080}")
     private String promotionBaseUrl;
 
-    private RestClient catalogRestClient;
-    private RestClient promotionRestClient;
+    private ResilientRestClient catalogRestClient;
+    private ResilientRestClient promotionRestClient;
 
     @PostConstruct
     public void init() {

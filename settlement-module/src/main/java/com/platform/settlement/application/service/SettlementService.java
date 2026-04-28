@@ -1,6 +1,6 @@
 package com.platform.settlement.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.domain.Money;
 import com.platform.core.exception.ResourceNotFoundException;
@@ -42,7 +42,7 @@ public class SettlementService {
     @Value("${module.order.url:http://localhost:8080}")
     private String orderBaseUrl;
 
-    private RestClient orderRestClient;
+    private ResilientRestClient orderRestClient;
 
     @PostConstruct
     public void init() {
@@ -60,7 +60,7 @@ public class SettlementService {
         // Get all delivered sub-orders from yesterday via REST
         List<SubOrderInfo> deliveredSubOrders = orderRestClient.get(
                 "/api/v1/orders/sub-orders/delivered?start={start}&end={end}",
-                new ParameterizedTypeReference<List<SubOrderInfo>>() {},
+                List.class,
                 yesterday.toString(), today.toString());
 
         // Group by vendor and create settlements
@@ -78,7 +78,7 @@ public class SettlementService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "VendorAccount", "vendorId", vendorId));
 
-        String currency = "BDT";
+        String currency = "PKR";
         Money totalSales = Money.zero(currency);
         Money totalCommission = Money.zero(currency);
 

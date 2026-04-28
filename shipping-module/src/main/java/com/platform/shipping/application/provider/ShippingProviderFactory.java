@@ -1,12 +1,10 @@
 package com.platform.shipping.application.provider;
 
 import com.platform.core.exception.BusinessException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -15,9 +13,6 @@ public class ShippingProviderFactory {
 
     private final Map<String, ShippingProviderAdapter> providerMap;
 
-    public ShippingProviderFactory(){
-        providerMap = new ConcurrentHashMap<>();
-    };
     public ShippingProviderFactory(List<ShippingProviderAdapter> adapters) {
         this.providerMap = adapters.stream()
                 .collect(Collectors.toMap(

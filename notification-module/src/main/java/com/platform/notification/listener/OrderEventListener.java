@@ -1,7 +1,7 @@
 package com.platform.notification.listener;
 
 import com.platform.common.domain.event.OrderPlacedEvent;
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.event.OrderShippedEvent;
 import com.platform.core.event.PaymentCompletedEvent;
@@ -31,11 +31,16 @@ public class OrderEventListener {
     @Value("${module.iam.url:http://localhost:8080}")
     private String iamBaseUrl;
 
-    private RestClient iamRestClient;
+    @Value("${module.order.url:http://localhost:8080}")
+    private String orderBaseUrl;
+
+    private ResilientRestClient iamRestClient;
+    private ResilientRestClient orderRestClient;
 
     @PostConstruct
     public void init() {
         iamRestClient = restClientFactory.create(iamBaseUrl, 10);
+        orderRestClient = restClientFactory.create(orderBaseUrl, 10);
     }
 
     @Async
@@ -90,16 +95,13 @@ public class OrderEventListener {
     @Async
     @EventListener
     public void handlePaymentCompleted(PaymentCompletedEvent event) {
-        Map<String, Object> templateData = Map.of(
-                "orderId", event.getOrderId(),
-                "amount", event.getAmount()
-        );
-
-        notificationService.send(
-                null, // Resolved from order
-                "PAYMENT_CONFIRMED",
-                templateData,
-                NotificationChannel.EMAIL
-        );
+        String orderId = event.getOrderId();
+        UUID customerId = null;
+        try {
+            var orderInfo = orderRestClient.get("/api/v1/orders/{orderId}/info-mini", OrderInfo.class, UUID.fromString(orderId));
+            if (orderInfo != null) customerId = orderInfo.customerId();
+        } catch (Exception e) { log.warn("Order fetch failed"); return; }
+        notificationService.send(customerId, "PAYMENT_CONFIRMED", Map.of("orderId", orderId, "amount", event.getAmount()), NotificationChannel.EMAIL);
     }
+    private record OrderInfo(UUID orderId, String orderNumber, UUID customerId, java.math.BigDecimal totalAmount, String currency, String status) {}
 }

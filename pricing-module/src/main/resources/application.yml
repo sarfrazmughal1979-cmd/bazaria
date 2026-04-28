@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: pricing-module
+
+# Default tax configuration
+platform:
+  tax:
+    default-rate: 15.0          # default VAT/GST percentage
+    include-tax-in-price: false  # true if prices already include tax

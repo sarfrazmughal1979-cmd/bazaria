@@ -1,6 +1,10 @@
 package com.platform.order.api;
 
+import com.platform.common.domain.event.OrderDeliveredEvent;
 import com.platform.core.dto.ApiResponse;
+import com.platform.core.event.DomainEventPublisher;
+import com.platform.order.application.dto.OrderResponse;
+import com.platform.order.application.dto.PlaceOrderRequest;
 import com.platform.order.application.service.OrderService;
 import com.platform.order.domain.model.Order;
 import com.platform.order.domain.model.OrderStatus;
@@ -9,6 +13,9 @@ import com.platform.order.domain.model.SubOrderStatus;
 import com.platform.order.domain.repository.OrderRepository;
 import com.platform.core.exception.ResourceNotFoundException;
 import com.platform.order.domain.repository.SubOrderRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +35,8 @@ public class OrderController {
     private final SubOrderRepository subOrderRepository;
 
     private final OrderService orderService;
+
+    private final DomainEventPublisher eventPublisher;
 
     @GetMapping("/{orderId}/info-mini")
     public ResponseEntity<OrderInfoMini> getOrderInfoMini(@PathVariable UUID orderId) {
@@ -58,7 +67,14 @@ public class OrderController {
             subOrder.getSubtotal().getAmount()
     ));
     }
-
+    @PostMapping("/{orderId}/cancel")
+    @Operation(summary = "Cancel an order")
+    public ResponseEntity<ApiResponse<Void>> cancelOrder(
+            @PathVariable UUID orderId,
+            @RequestParam(required = false) String reason) {
+        orderService.cancelOrder(orderId, reason != null ? reason : "Cancelled by user");
+        return ResponseEntity.ok(ApiResponse.success("Order cancelled"));
+    }
     @PostMapping("/{orderId}/confirm")
     public ResponseEntity<ApiResponse<Void>> confirmOrder(
             @PathVariable UUID orderId,
@@ -80,7 +96,6 @@ public class OrderController {
                         so.getOrder().getId(),
                         so.getVendorId(),
 						so.getStatus().name(),
-                        //so.getCategory(), // adjust if category is on sub-order
                         so.getSubtotal().getAmount()))
                 .collect(Collectors.toList());
 
@@ -112,11 +127,60 @@ public class OrderController {
                 .allMatch(so -> so.getStatus() == SubOrderStatus.DELIVERED);
         if (allDelivered) {
             order.setStatus(OrderStatus.DELIVERED);
+            eventPublisher.publish(new OrderDeliveredEvent(
+                    order.getId().toString(), order.getOrderNumber(), order.getCustomerId().toString()
+            ));
             orderRepository.save(order);
         }
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/{orderId}/detail")
+    public ResponseEntity<OrderDetailResponse> getOrderDetail(@PathVariable UUID orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order", "id", orderId));
+        return ResponseEntity.ok(buildOrderDetail(order));
+    }
+    @PostMapping("/place")
+    @Operation(summary = "Place a new order")
+    public ResponseEntity<ApiResponse<OrderResponse>> placeOrder(
+            @Valid @RequestBody PlaceOrderRequest request,
+            HttpServletRequest httpRequest) {
+        String clientIp = httpRequest.getRemoteAddr();
+        OrderResponse response = orderService.placeOrder(request, clientIp);
+        return ResponseEntity.ok(ApiResponse.success(response));
+    }
+    private OrderDetailResponse buildOrderDetail(Order order) {
+        List<SubOrderDetailResponse> subDetails = order.getSubOrders().stream()
+                .map(so -> new SubOrderDetailResponse(
+                        so.getVendorId(),
+                        so.getItems().stream()
+                                .map(item -> new OrderItemDetailResponse(
+                                        item.getProductId(),
+                                        item.getQuantity(),
+                                        item.getTotalPrice().getAmount()))
+                                .toList()
+                ))
+                .toList();
+        return new OrderDetailResponse(
+                order.getId(),
+                order.getOrderNumber(),
+                order.getCustomerId(),
+                order.getTotalAmount().getAmount(),
+                subDetails
+        );
+    }
 
+    // DTO records (add inside OrderController)
+    public record OrderDetailResponse(
+            UUID orderId,
+            String orderNumber,
+            UUID customerId,
+            BigDecimal totalAmount,
+            List<SubOrderDetailResponse> subOrders
+    ) {}
+
+    public record SubOrderDetailResponse(UUID vendorId, List<OrderItemDetailResponse> items) {}
+    public record OrderItemDetailResponse(UUID productId, int quantity, BigDecimal totalPrice) {}
     public record OrderInfo(UUID orderId, String orderNumber, UUID customerId, UUID vendorId,
                             BigDecimal totalAmount, String currency, String status) {}
     public record SubOrderInfo(UUID subOrderId, UUID orderId, UUID vendorId, String status,

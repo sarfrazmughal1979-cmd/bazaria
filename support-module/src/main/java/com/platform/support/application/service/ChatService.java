@@ -1,6 +1,6 @@
 package com.platform.support.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.dto.PagedResponse;
 import com.platform.core.exception.BusinessException;
@@ -39,7 +39,7 @@ public class ChatService {
     @Value("${module.iam.url:http://localhost:8080}")
     private String iamBaseUrl;
 
-    private RestClient iamRestClient;
+    private ResilientRestClient iamRestClient;
 
     @PostConstruct
     public void init() {
@@ -96,11 +96,17 @@ public class ChatService {
         if (!authorized) {
             throw new BusinessException("ACCESS_DENIED", "Not authorized to send message in this session");
         }
-
+        UUID recipientId;
+        if (session.getCustomerId().equals(senderId)) {
+            recipientId = session.getVendorId() != null ? session.getVendorId() : session.getAgentId();
+        } else {
+            recipientId = session.getCustomerId(); // vendor/agent sends to customer
+        }
         ChatMessage chatMessage = ChatMessage.builder()
             .sessionId(sessionId)
             .senderId(senderId)
             .senderType(senderType)
+            .recipientId(recipientId)
             .message(messageDto.getMessage())
             .sentAt(Instant.now())
             .readAt(messageDto.getSentAt())

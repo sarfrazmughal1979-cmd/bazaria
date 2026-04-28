@@ -1,7 +1,7 @@
 package com.platform.order.application.service;
 
 import com.platform.common.domain.event.OrderPlacedEvent;
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.domain.Money;
 import com.platform.core.event.DomainEventPublisher;
@@ -50,10 +50,10 @@ public class OrderService {
     @Value("${module.payment.url:http://localhost:8080}")
     private String paymentBaseUrl;  // not used in this class, but kept for consistency
 
-    private RestClient cartRestClient;
-    private RestClient catalogRestClient;
-    private RestClient inventoryRestClient;
-    private RestClient promotionRestClient;
+    private ResilientRestClient cartRestClient;
+    private ResilientRestClient catalogRestClient;
+    private ResilientRestClient inventoryRestClient;
+    private ResilientRestClient promotionRestClient;
 
     @PostConstruct
     public void init() {
@@ -73,7 +73,7 @@ public class OrderService {
     private record ReserveStockResponse(UUID reservationId) {}
 
     @Transactional
-    public OrderResponse placeOrder(PlaceOrderRequest request) {
+    public OrderResponse placeOrder(PlaceOrderRequest request, String clientIp) {
         UUID customerId = SecurityUtils.getCurrentUserId();
 
         // 1. Get cart items via REST
@@ -85,6 +85,8 @@ public class OrderService {
 
         // 2. Validate stock and reserve inventory via REST
         List<UUID> reservationIds = new ArrayList<>();
+        Map<Pair<UUID, UUID>, UUID> resMap = new HashMap<>();
+
         try {
             for (CartItem cartItem : cart.items()) {
                 ReserveStockResponse response = inventoryRestClient.post(
@@ -92,6 +94,7 @@ public class OrderService {
                         new ReserveStockRequest(cartItem.productId(), cartItem.variantId(), cartItem.quantity()),
                         ReserveStockResponse.class);
                 reservationIds.add(response.reservationId());
+                resMap.put(Pair.of(cartItem.productId(), cartItem.variantId()), response.reservationId);
             }
         } catch (Exception e) {
             reservationIds.forEach(id -> inventoryRestClient.post(
@@ -100,7 +103,7 @@ public class OrderService {
         }
 
         // 3. Calculate totals and group by vendor
-        String currency = "BDT";
+        String currency = "PKR";
         Money subtotal = Money.zero(currency);
         Map<UUID, List<OrderItemInfo>> vendorItems = new HashMap<>();
 
@@ -145,6 +148,7 @@ public class OrderService {
                 .paymentMethod(request.getPaymentMethod())
                 .shippingAddress(orderMapper.toAddress(request.getShippingAddress()))
                 .customerNote(request.getNote())
+                .customerIp(clientIp)
                 .build();
         order.addTimelineEntry("PENDING", "Order placed successfully");
 
@@ -175,6 +179,7 @@ public class OrderService {
                         .quantity(itemInfo.cartItem.quantity())
                         .unitPrice(Money.of(itemInfo.productInfo.effectivePrice(), currency))
                         .totalPrice(itemInfo.itemTotal)
+                        .reservationId(resMap.get(Pair.of(itemInfo.cartItem.productId(), itemInfo.cartItem.variantId())))
                         .build();
                 subOrder.addItem(orderItem);
             }
@@ -198,12 +203,12 @@ public class OrderService {
                 savedOrder.getId().toString(),
                 customerId.toString(),
                 savedOrder.getOrderNumber(),
-                savedOrder.getTotalAmount().getAmount()
+                savedOrder.getTotalAmount().getAmount(),
+                clientIp
         ));
 
         return orderMapper.toResponse(savedOrder);
     }
-
     @Transactional(readOnly = true)
     public OrderResponse getOrder(UUID orderId) {
         UUID customerId = SecurityUtils.getCurrentUserId();
@@ -244,7 +249,7 @@ public class OrderService {
 
     private Money calculateShipping(PlaceOrderRequest request,
                                     Map<UUID, List<OrderItemInfo>> vendorItems) {
-        return Money.bdt(BigDecimal.valueOf(vendorItems.size() * 60));
+        return Money.PKR(BigDecimal.valueOf(vendorItems.size() * 60));
     }
 
 
@@ -260,6 +265,27 @@ public class OrderService {
         order.addTimelineEntry("CONFIRMED", "Payment received, order confirmed");
         orderRepository.save(order);
     }
+    public void cancelOrder(UUID orderId, String reason) {
+        UUID userId = SecurityUtils.getCurrentUserId();
+        Order order = orderRepository.findByIdAndCustomerId(orderId, userId)
+                .orElseThrow(() -> new BusinessException("ORDER_NOT_FOUND", "Order not found"));
+
+        if (order.getStatus() != OrderStatus.PENDING && order.getStatus() != OrderStatus.CONFIRMED) {
+            throw new BusinessException("INVALID_STATUS", "Order cannot be cancelled in current state");
+        }
+        order.cancel(reason);
+        orderRepository.save(order);
+        // Release all reservations
+        for (SubOrder subOrder : order.getSubOrders()) {
+            for (OrderItem item : subOrder.getItems()) {
+                // Assuming each order item had a reservationId; store it in OrderItem entity
+                if (item.getReservationId() != null) {
+                    inventoryRestClient.post("/api/internal/inventory/release/{reservationId}", null, Void.class, item.getReservationId());
+                }
+            }
+        }
+        log.info("Order {} cancelled by user {}. Reason: {}", orderId, userId, reason);
+    }
 
     // Helper record
     private record OrderItemInfo(CartItem cartItem, CatalogProductInfo productInfo, Money itemTotal) {}
@@ -268,4 +294,7 @@ public class OrderService {
     private record ReserveStockRequest(UUID productId, UUID variantId, int quantity) {}
     private record DiscountRequest(String couponCode, BigDecimal subtotal, UUID customerId) {}
     private record ApplyCouponRequest(String couponCode, UUID customerId, UUID orderId) {}
+    private record Pair<A, B>(A first, B second) {
+        static <A, B> Pair<A, B> of(A a, B b) { return new Pair<>(a, b); }
+    }
 }

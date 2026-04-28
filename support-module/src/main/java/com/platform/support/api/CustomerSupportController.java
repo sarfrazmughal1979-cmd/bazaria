@@ -47,9 +47,11 @@ public class CustomerSupportController {
 
     @GetMapping("/tickets/{ticketId}")
     @Operation(summary = "Get ticket details")
-    public ResponseEntity<ApiResponse<TicketResponse>> getTicket(@PathVariable UUID ticketId) {
-        // Implementation would fetch single ticket with messages
-        throw new UnsupportedOperationException("Implement fetch by ID");
+    public ResponseEntity<ApiResponse<TicketResponse>> getTicket(
+            @PathVariable UUID ticketId,
+            @CurrentUser UserContext user) {
+        TicketResponse response = ticketService.getTicketDetails(ticketId, user.getUserId());
+        return ResponseEntity.ok(ApiResponse.success(response));
     }
 
     @PostMapping("/tickets/{ticketId}/messages")

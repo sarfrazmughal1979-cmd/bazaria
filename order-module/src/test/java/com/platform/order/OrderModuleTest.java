@@ -1,4 +1,4 @@
-﻿package com.platform.order;
+package com.platform.order;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

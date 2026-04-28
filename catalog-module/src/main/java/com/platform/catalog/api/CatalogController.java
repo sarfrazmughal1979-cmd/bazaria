@@ -37,7 +37,6 @@ public class CatalogController {
         ProductSearchRequest request = ProductSearchRequest.builder().categoryId(category).build();
         return ResponseEntity.ok(ApiResponse.success(catalogService.searchProducts(request, pageable)));
     }
-
     @GetMapping("/categories/all")
     public ResponseEntity<ApiResponse<PagedResponse<ProductDetailResponse.CategoryInfo>>> getAllCategories(
             @PageableDefault(size = 8) Pageable pageable) {

@@ -1,0 +1,7 @@
+version = '1.0.0-SNAPSHOT'
+
+dependencies {
+    implementation project(':shared-core')
+    implementation project(':shared-objects')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}

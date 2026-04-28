@@ -52,4 +52,8 @@ subprojects {
         // Testing: Every module should have a test suite
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
+    test {
+        useJUnitPlatform()
+        failOnNoDiscoveredTests = false
+    }
 }

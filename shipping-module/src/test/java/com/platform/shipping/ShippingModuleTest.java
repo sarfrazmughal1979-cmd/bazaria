@@ -1,4 +1,4 @@
-﻿package com.platform.shipping;
+package com.platform.shipping;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

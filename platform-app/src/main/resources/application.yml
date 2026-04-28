@@ -73,7 +73,7 @@ cloud:
 
 # Platform Settings
 platform:
-  default-currency: BDT
+  default-currency: PKR
   default-commission-rate: 10
   max-products-per-vendor: 10000
   order-auto-cancel-hours: 24
@@ -111,3 +111,34 @@ springdoc:
     tags-sorter: alpha
     operations-sorter: alpha
 debug: true
+# === Pakistan Courier API Credentials (configure per environment) ===
+tcs:
+  api-key: ${TCS_API_KEY:}
+  api-password: ${TCS_API_PASSWORD:}
+  api-base-url: ${TCS_API_BASE_URL:https://apis.tcs.com.pk/ecod}
+  test-mode: ${TCS_TEST_MODE:true}
+
+leopard:
+  api-key: ${LEOPARD_API_KEY:}
+  api-password: ${LEOPARD_API_PASSWORD:}
+  api-base-url: ${LEOPARD_API_BASE_URL:https://api.leopardscourier.com}
+  test-mode: ${LEOPARD_TEST_MODE:true}
+
+callcourier:
+  api-key: ${CALLCourier_API_KEY:}
+  api-password: ${CALLCourier_API_PASSWORD:}
+  api-base-url: ${CALLCourier_API_BASE_URL:https://api.callcourier.com.pk}
+  test-mode: ${CALLCourier_TEST_MODE:true}
+
+# === JazzCash Payment Gateway ===
+jazzcash:
+  merchant-id: ${JAZZCASH_MERCHANT_ID:}
+  password: ${JAZZCASH_PASSWORD:}
+  integrity-salt: ${JAZZCASH_INTEGRITY_SALT:}
+  api-base-url: ${JAZZCASH_API_BASE_URL:https://sandbox.jazzcash.com.pk}
+  return-url: ${JAZZCASH_RETURN_URL:http://localhost:8080/api/v1/payments/jazzcash/callback}
+
+# === Stripe ===
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY:sk_test_placeholder}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}

@@ -1,6 +1,6 @@
 package com.platform.support.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.dto.PagedResponse;
 import com.platform.core.event.DomainEventPublisher;
@@ -48,8 +48,8 @@ public class TicketService {
     @Value("${module.order.url:http://localhost:8080}")
     private String orderBaseUrl;
 
-    private RestClient iamRestClient;
-    private RestClient orderRestClient;
+    private ResilientRestClient iamRestClient;
+    private ResilientRestClient orderRestClient;
 
     @PostConstruct
     public void init() {
@@ -272,5 +272,24 @@ public class TicketService {
             }
         }
         return response;
+    }
+    public Page<Ticket> findByStatus(Pageable pageable){
+      return ticketRepository.findByStatus(TicketStatus.OPEN, pageable);
+    }
+    public long countOpenTickets(){
+        return ticketRepository.countOpenTickets(List.of(TicketStatus.OPEN, TicketStatus.IN_PROGRESS));
+    }
+    @Transactional(readOnly = true)
+    public TicketResponse getTicketDetails(UUID ticketId, UUID userId) {
+        Ticket ticket = ticketRepository.findById(ticketId)
+                .orElseThrow(() -> new ResourceNotFoundException("Ticket", "id", ticketId));
+        // Verify access
+        boolean isCustomer = ticket.getCustomerId().equals(userId);
+        boolean isVendor = ticket.getVendorId() != null && ticket.getVendorId().equals(userId);
+        boolean isAgent = SecurityUtils.hasRole("SUPPORT") || SecurityUtils.hasRole("ADMIN");
+        if (!isCustomer && !isVendor && !isAgent) {
+            throw new BusinessException("ACCESS_DENIED", "You don't have access to this ticket");
+        }
+        return enrichResponse(mapper.toResponse(ticket));
     }
 }

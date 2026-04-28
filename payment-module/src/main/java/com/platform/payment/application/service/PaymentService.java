@@ -1,6 +1,6 @@
 package com.platform.payment.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.domain.Money;
 import com.platform.core.event.DomainEventPublisher;
@@ -43,7 +43,7 @@ public class PaymentService {
     @Value("${module.order.url:http://localhost:8080}")
     private String orderBaseUrl;
 
-    private RestClient orderRestClient;
+    private ResilientRestClient orderRestClient;
 
     @PostConstruct
     public void init() {

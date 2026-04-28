@@ -1,6 +1,6 @@
 package com.platform.support.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class ChatPresenceService {
     private final RestClientFactory restClientFactory;
     @Value("${module.iam.url:http://localhost:8080}")
     private String iamBaseUrl;
-    private RestClient iamRestClient;
+    private ResilientRestClient iamRestClient;
 
     @PostConstruct
     public void init() {

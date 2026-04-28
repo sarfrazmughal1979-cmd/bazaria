@@ -28,11 +28,18 @@ dependencies {
     implementation project(':shared-objects')
     implementation project(':shipping-module')
     implementation project(':support-module')
+    implementation project(':review-module')
+    implementation project(':search-module')
+    implementation project(':wishlist-module')
+    implementation project(':pricing-module')
+    implementation project(':media-module')
+    implementation project(':loyalty-module')
+    implementation project(':fraud-module')
 }
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/ecommerce'
-    user = 'postgres'
-    password = 'postgres'
+    url = System.getenv("FLYWAY_URL") ?: 'jdbc:postgresql://localhost:5432/ecommerce'
+    user = System.getenv("FLYWAY_USER") ?: 'postgres'
+    password = System.getenv("FLYWAY_PASSWORD") ?: 'postgres'
     locations = ['filesystem:src/main/resources/db/migration']
 }

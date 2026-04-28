@@ -7,7 +7,8 @@ import com.platform.cart.domain.model.Cart;
 import com.platform.cart.domain.model.CartItem;
 import com.platform.cart.domain.model.CartStatus;
 import com.platform.cart.domain.repository.CartRepository;
-import com.platform.core.client.RestClient;
+import com.platform.common.domain.event.ProductAddedToCartEvent;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.event.DomainEventPublisher;
 import com.platform.core.exception.BusinessException;
@@ -49,11 +50,17 @@ public class CartService {
     @Value("${module.promotion.url:http://localhost:8080}")
     private String promotionBaseUrl;
 
-    private RestClient promotionRestClient;
+    @Value("${module.catalog.url:http://localhost:8080}")
+    private String catalogBaseUrl;
+
+    private ResilientRestClient promotionRestClient;
+    private ResilientRestClient catalogRestClient;
 
     @PostConstruct
     public void init() {
         promotionRestClient = restClientFactory.create(promotionBaseUrl, 10);
+        catalogRestClient = restClientFactory.create(catalogBaseUrl, 10);
+
     }
 
     private static final int GUEST_CART_TTL_DAYS = 7;
@@ -104,7 +111,7 @@ public class CartService {
                     .orElseGet(() -> createEmptyCart(customerId, sessionId));
 
             // Validate product and price
-            BigDecimal unitPrice = validationService.validateAndGetPrice(
+            CartValidationService.ProductValResult valResult = validationService.validateAndGetPrice(
                     request.getProductId(), request.getVariantId(), request.getQuantity());
 
             // Find existing item or create new
@@ -117,13 +124,13 @@ public class CartService {
 
             if (existing != null) {
                 existing.setQuantity(existing.getQuantity() + request.getQuantity());
-                existing.setUnitPrice(unitPrice); // update price in case it changed
+                existing.setUnitPrice(valResult.price()); // update price in case it changed
             } else {
                 CartItem newItem = CartItem.builder()
                         .productId(request.getProductId())
                         .variantId(request.getVariantId())
                         .quantity(request.getQuantity())
-                        .unitPrice(unitPrice)
+                        .unitPrice(valResult.price())
                         .build();
                 cart.addItem(newItem);
             }
@@ -138,7 +145,12 @@ public class CartService {
 
             cartRepository.save(cart);
             eventPublisher.publishAsync(new CartUpdatedEvent(cart.getId().toString(), "ADD_ITEM"));
-
+            eventPublisher.publishAsync(new ProductAddedToCartEvent(
+                    request.getProductId().toString(),
+                    request.getVariantId() != null ? request.getVariantId().toString() : null,
+                    valResult.vendorId().toString(),
+                    request.getQuantity()
+            ));
             return cartMapper.toResponse(cart);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -280,10 +292,21 @@ public class CartService {
     }
 
     private void enrichWithProductDetails(Cart cart) {
-        // This would call Catalog module via REST to fill product names, images, etc.
-        // Implementation can be added later using RestClient to catalog module.
+        if (cart == null || cart.getItems().isEmpty()) return;
+        try {
+            for (var item : cart.getItems()) {
+                var productInfo = catalogRestClient.get(
+                    "/api/v1/products/{productId}/info-mini", CatalogProductInfo.class, item.getProductId());
+                if (productInfo != null) {
+                    item.setProductName(productInfo.name());
+                    item.setProductImage(productInfo.imageUrl());
+                }
+            }
+        } catch (Exception e) {
+            log.warn("Failed to enrich cart items", e);
+        }
     }
-
+    private record CatalogProductInfo(UUID productId, String name, String slug, String imageUrl) {}
     @Scheduled(cron = "0 0 3 * * *") // daily at 3 AM
     @Transactional
     public void expireOldCarts() {

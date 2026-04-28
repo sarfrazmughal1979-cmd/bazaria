@@ -102,7 +102,7 @@ public class OrderMapper {
     }
 
     private String getCurrency(Money money) {
-        return money != null ? money.getCurrencyCode() : "BDT";
+        return money != null ? money.getCurrencyCode() : "PKR";
     }
 
     // ============================================================

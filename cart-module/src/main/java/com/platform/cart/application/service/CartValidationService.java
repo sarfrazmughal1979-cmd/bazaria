@@ -1,6 +1,6 @@
 package com.platform.cart.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.exception.BusinessException;
 import jakarta.annotation.PostConstruct;
@@ -25,8 +25,8 @@ public class CartValidationService {
     @Value("${module.inventory.url:http://localhost:8080}")
     private String inventoryBaseUrl;
 
-    private RestClient catalogRestClient;
-    private RestClient inventoryRestClient;
+    private ResilientRestClient catalogRestClient;
+    private ResilientRestClient inventoryRestClient;
 
     @PostConstruct
     public void init() {
@@ -37,8 +37,9 @@ public class CartValidationService {
     // DTOs for REST responses
     private record CatalogProductInfo(UUID productId, String name, BigDecimal effectivePrice,
                                       UUID vendorId, boolean active, String imageUrl, String sku) {}
+    public record ProductValResult(UUID vendorId, BigDecimal price) {}
 
-    public BigDecimal validateAndGetPrice(UUID productId, UUID variantId, int quantity) {
+    public ProductValResult validateAndGetPrice(UUID productId, UUID variantId, int quantity) {
         // 1. Get product info from Catalog module
         CatalogProductInfo productInfo = catalogRestClient.get(
                 "/api/v1/products/{productId}/info", CatalogProductInfo.class, productId);
@@ -63,8 +64,8 @@ public class CartValidationService {
             BigDecimal variantPrice = catalogRestClient.get(
                     "/api/v1/products/{productId}/variants/{variantId}/price",
                     BigDecimal.class, productId, variantId);
-            return variantPrice;
+            return new ProductValResult(productInfo.vendorId(), variantPrice);
         }
-        return productInfo.effectivePrice();
+        return new ProductValResult(productInfo.vendorId(),productInfo.effectivePrice());
     }
 }
