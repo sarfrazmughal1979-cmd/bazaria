@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,24 +15,34 @@ jobs:
         with:
           java-version: '25'
           distribution: 'corretto'
+          
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '9.1.0'
 
       - name: Build with Gradle
-        run: ./gradlew :platform-app:bootJar
+        run: gradle :platform-app:bootJar
 
-      - name: Upload JAR to S3
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Upload JAR as artifact
+        uses: actions/upload-artifact@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - run: aws s3 cp platform-app/build/libs/*.jar s3://codepipeline-us-east-1-5200dc06f684-4251-8fe9-68dfe1a14113/ecommerce-app.jar
+          name: app-jar
+          path: platform-app/build/libs/*.jar
+          retention-days: 1
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-jar
+          path: /home/ec2-user/
 
-      - name: SSH into EC2 and restart service
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            aws s3 cp s3://codepipeline-us-east-1-5200dc06f684-4251-8fe9-68dfe1a14113/ecommerce-app.jar/platform-app/build/libs/platform-app-1.0.0-SNAPSHOT.jar /home/ec2-user/app.jar
-            sudo systemctl restart ecommerce
+      - name: Move JAR to final location and restart service
+        run: |
+          # The artifact is downloaded as a file with a versioned name (e.g., platform-app-1.0.0-SNAPSHOT.jar)
+          # We rename it to app.jar for the service
+          mv /home/ec2-user/platform-app-*.jar /home/ec2-user/app.jar
+          sudo systemctl restart ecommerce
