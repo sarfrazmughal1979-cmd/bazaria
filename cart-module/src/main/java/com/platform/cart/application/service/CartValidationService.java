@@ -1,6 +1,6 @@
 package com.platform.cart.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.exception.BusinessException;
 import jakarta.annotation.PostConstruct;
@@ -25,8 +25,8 @@ public class CartValidationService {
     @Value("${module.inventory.url:http://localhost:8080}")
     private String inventoryBaseUrl;
 
-    private RestClient catalogRestClient;
-    private RestClient inventoryRestClient;
+    private ResilientRestClient catalogRestClient;
+    private ResilientRestClient inventoryRestClient;
 
     @PostConstruct
     public void init() {

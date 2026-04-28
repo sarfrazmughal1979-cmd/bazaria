@@ -1,6 +1,6 @@
 package com.platform.support.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.dto.PagedResponse;
 import com.platform.core.exception.BusinessException;
@@ -39,7 +39,7 @@ public class ChatService {
     @Value("${module.iam.url:http://localhost:8080}")
     private String iamBaseUrl;
 
-    private RestClient iamRestClient;
+    private ResilientRestClient iamRestClient;
 
     @PostConstruct
     public void init() {

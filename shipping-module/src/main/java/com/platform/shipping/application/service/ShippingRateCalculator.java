@@ -2,16 +2,14 @@ package com.platform.shipping.application.service;
 
 import com.platform.shipping.application.dto.ShippingRateRequest;
 import com.platform.shipping.application.dto.ShippingRateResponse;
+import com.platform.shipping.application.provider.ShippingProviderAdapter;
 import com.platform.shipping.application.provider.ShippingProviderFactory;
-import com.platform.shipping.domain.model.DeliveryZone;
-import com.platform.shipping.domain.repository.DeliveryZoneRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -19,19 +17,16 @@ import java.util.Optional;
 public class ShippingRateCalculator {
 
     private final ShippingProviderFactory providerFactory;
-    private final DeliveryZoneRepository deliveryZoneRepository;
 
     public List<ShippingRateResponse> calculateRates(ShippingRateRequest request) {
-        // First try to get rates from all active providers
-        List<ShippingRateResponse> allRates = providerFactory.getAdapter("DUMMY").getRates(request);
-
-        // Enrich with delivery zone info if needed
-        Optional<DeliveryZone> zone = deliveryZoneRepository
-                .findByCountryAndCityAndActiveTrue(request.getCountry(), request.getCity());
-        if (zone.isPresent()) {
-            BigDecimal zoneRate = zone.get().getBaseRate();
-            // adjust rates based on zone
-            allRates.forEach(rate -> rate.setCost(rate.getCost().add(zoneRate)));
+        List<ShippingRateResponse> allRates = new ArrayList<>();
+        for (String provider : new String[]{"TCS", "LEOPARD", "CALLCourier"}) {
+            try {
+                ShippingProviderAdapter adapter = providerFactory.getAdapter(provider);
+                allRates.addAll(adapter.getRates(request));
+            } catch (Exception e) {
+                log.warn("Could not get rates from {}: {}", provider, e.getMessage());
+            }
         }
         return allRates;
     }

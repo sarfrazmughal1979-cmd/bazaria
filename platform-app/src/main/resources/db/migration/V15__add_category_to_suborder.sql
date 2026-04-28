@@ -1,0 +1,1 @@
+﻿ALTER TABLE sub_orders ADD COLUMN IF NOT EXISTS category_id UUID;

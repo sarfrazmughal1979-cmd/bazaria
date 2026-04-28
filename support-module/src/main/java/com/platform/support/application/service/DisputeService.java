@@ -1,6 +1,6 @@
 package com.platform.support.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.dto.PagedResponse;
 import com.platform.core.event.DomainEventPublisher;
@@ -49,9 +49,9 @@ public class DisputeService {
     @Value("${module.payment.url:http://localhost:8080}")
     private String paymentBaseUrl;
 
-    private RestClient iamRestClient;
-    private RestClient orderRestClient;
-    private RestClient paymentRestClient;
+    private ResilientRestClient iamRestClient;
+    private ResilientRestClient orderRestClient;
+    private ResilientRestClient paymentRestClient;
 
     @PostConstruct
     public void init() {

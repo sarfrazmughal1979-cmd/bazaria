@@ -79,7 +79,7 @@ public class OrderController {
                         so.getId(),
                         so.getOrder().getId(),
                         so.getVendorId(),
-                        so.getCategory(), // adjust if category is on sub-order
+						so.getStatus().name(),
                         so.getSubtotal().getAmount()))
                 .collect(Collectors.toList());
 

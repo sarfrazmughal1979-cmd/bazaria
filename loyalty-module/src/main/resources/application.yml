@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: loyalty-module
+
+platform:
+  loyalty:
+    points-per-currency: 1        # 1 point per PKR spent
+    redemption-rate: 100          # 100 points = 1 PKR discount
+    expiration-months: 12         # points expire after 12 months
+    max-redemption-percent: 50    # max 50% of order can be paid with points

@@ -1,0 +1,3400 @@
+Folder PATH listing
+Volume serial number is 848F-7A34
+D:.
+|   .classpath
+|   .env
+|   .env.example
+|   .factorypath
+|   .gitignore
+|   .project
+|   bom2.ps1
+|   build.gradle
+|   directory_structure.txt
+|   docker-compose-app.yml
+|   docker-compose.yml
+|   Dockerfile
+|   ECommercePlatform.code-workspace
+|   generate-project.sh
+|   gradlew
+|   gradlew.bat
+|   README-PRODUCTION.md
+|   settings.gradle
+|   V1__iam_schema.sql
+|   V2__catalog_schema.sql
+|   V4__order_schema.sql
+|   V5__cart_schema.sql
+|   V6__shipping_schema.sql
+|   V7__analytics_schema.sql
+|   V8__cms_schema.sql
+|   V9__support_schema.sql
+|   
++---.apt_generated
++---.github
+|   \---workflows
+|           deploy.yml
+|           
++---.gradle
+|   |   file-system.probe
+|   |   
+|   +---8.1.1
+|   |   |   gc.properties
+|   |   |   
+|   |   +---checksums
+|   |   |       checksums.lock
+|   |   |       
+|   |   +---fileChanges
+|   |   |       last-build.bin
+|   |   |       
+|   |   \---fileHashes
+|   |           fileHashes.lock
+|   |           
+|   +---8.14
+|   |   |   gc.properties
+|   |   |   
+|   |   +---fileChanges
+|   |   |       last-build.bin
+|   |   |       
+|   |   \---fileHashes
+|   |           fileHashes.lock
+|   |           
+|   +---9.4.1
+|   |   |   gc.properties
+|   |   |   
+|   |   +---checksums
+|   |   |       checksums.lock
+|   |   |       md5-checksums.bin
+|   |   |       sha1-checksums.bin
+|   |   |       
+|   |   +---executionHistory
+|   |   |       executionHistory.bin
+|   |   |       executionHistory.lock
+|   |   |       
+|   |   +---expanded
+|   |   +---fileChanges
+|   |   |       last-build.bin
+|   |   |       
+|   |   +---fileHashes
+|   |   |       fileHashes.bin
+|   |   |       fileHashes.lock
+|   |   |       resourceHashesCache.bin
+|   |   |       
+|   |   \---vcsMetadata
+|   +---buildOutputCleanup
+|   |       buildOutputCleanup.lock
+|   |       cache.properties
+|   |       outputFiles.bin
+|   |       
+|   \---vcs-1
+|           gc.properties
+|           
++---.idea
+|   |   .gitignore
+|   |   compiler.xml
+|   |   dataSources.local.xml
+|   |   dataSources.xml
+|   |   diff-generator.xml
+|   |   gradle.xml
+|   |   misc.xml
+|   |   modules.xml
+|   |   sqldialects.xml
+|   |   vcs.xml
+|   |   workspace.xml
+|   |   
+|   +---dataSources
+|   |   |   6250bf71-2dca-4768-a86e-fab509748b0e.xml
+|   |   |   data_sources_history.xml
+|   |   |   
+|   |   \---6250bf71-2dca-4768-a86e-fab509748b0e
+|   |       \---storage_v2
+|   |           \---_src_
+|   |               \---database
+|   |                   |   ecommerce.QLYXWw.meta
+|   |                   |   
+|   |                   \---ecommerce.QLYXWw
+|   |                       \---schema
+|   |                               information_schema.FNRwLQ.meta
+|   |                               pg_catalog.0S1ZNQ.meta
+|   |                               public.abK9xQ.meta
+|   |                               
+|   \---modules
+|       +---analytics-module
+|       |       ECommercePlatform.analytics-module.main.iml
+|       |       
+|       +---cart-module
+|       |       ECommercePlatform.cart-module.main.iml
+|       |       
+|       +---catalog-module
+|       |       ECommercePlatform.catalog-module.main.iml
+|       |       
+|       +---cms-module
+|       |       ECommercePlatform.cms-module.main.iml
+|       |       
+|       +---iam-module
+|       |       ECommercePlatform.iam-module.main.iml
+|       |       
+|       +---inventory-module
+|       |       ECommercePlatform.inventory-module.main.iml
+|       |       
+|       +---notification-module
+|       |       ECommercePlatform.notification-module.main.iml
+|       |       
+|       +---order-module
+|       |       ECommercePlatform.order-module.main.iml
+|       |       
+|       +---payment-module
+|       |       ECommercePlatform.payment-module.main.iml
+|       |       
+|       +---platform-app
+|       |       ECommercePlatform.platform-app.main.iml
+|       |       
+|       +---promotion-module
+|       |       ECommercePlatform.promotion-module.main.iml
+|       |       
+|       +---settlement-module
+|       |       ECommercePlatform.settlement-module.main.iml
+|       |       
+|       +---shared-core
+|       |       ECommercePlatform.shared-core.main.iml
+|       |       
+|       +---shared-objects
+|       |       ECommercePlatform.shared-objects.main.iml
+|       |       
+|       +---shipping-module
+|       |       ECommercePlatform.shipping-module.main.iml
+|       |       
+|       \---support-module
+|               ECommercePlatform.support-module.main.iml
+|               
++---.settings
+|       org.eclipse.buildship.core.prefs
+|       org.eclipse.jdt.apt.core.prefs
+|       org.eclipse.jdt.core.prefs
+|       org.eclipse.jdt.launching.prefs
+|       
++---.vscode
+|       settings.json
+|       tasks.json
+|       
++---analytics-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   +---main
+|   |   |   |   application.yml
+|   |   |   |   
+|   |   |   \---com
+|   |   |       \---platform
+|   |   |           \---analytics
+|   |   |               +---api
+|   |   |               |       AdminDashboardController.class
+|   |   |               |       CustomerMatricController.class
+|   |   |               |       VendorAnalyticsController.class
+|   |   |               |       
+|   |   |               +---application
+|   |   |               |   +---collector
+|   |   |               |   |       CustomerMetricCollector.class
+|   |   |               |   |       OrderMetricCollector.class
+|   |   |               |   |       ProductMetricCollector.class
+|   |   |               |   |       VendorMetricCollector.class
+|   |   |               |   |       
+|   |   |               |   +---dto
+|   |   |               |   |       DashboardResponse$DailySales.class
+|   |   |               |   |       DashboardResponse$SummaryMetrics.class
+|   |   |               |   |       DashboardResponse$TopProduct.class
+|   |   |               |   |       DashboardResponse$TopVendor.class
+|   |   |               |   |       DashboardResponse.class
+|   |   |               |   |       ProductPerformance.class
+|   |   |               |   |       SalesReportResponse$DailyBreakdown.class
+|   |   |               |   |       SalesReportResponse.class
+|   |   |               |   |       TimeRangeRequest.class
+|   |   |               |   |       VendorPerformanceResponse.class
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           AnalyticsService.class
+|   |   |               |           CustomerMetricService.class
+|   |   |               |           ReportGenerationService.class
+|   |   |               |           VendorAnalyticsService$VendorInfo.class
+|   |   |               |           VendorAnalyticsService.class
+|   |   |               |           
+|   |   |               +---config
+|   |   |               |       AnalyticsModuleConfig.class
+|   |   |               |       
+|   |   |               \---domain
+|   |   |                   +---model
+|   |   |                   |       CustomerMetric.class
+|   |   |                   |       DailyAggregation.class
+|   |   |                   |       DashboardWidget.class
+|   |   |                   |       ProductMetric.class
+|   |   |                   |       SalesMetric.class
+|   |   |                   |       VendorMetric.class
+|   |   |                   |       
+|   |   |                   \---repository
+|   |   |                           CustomerMetricRepository.class
+|   |   |                           ProductMetricRepository.class
+|   |   |                           SalesMetricRepository.class
+|   |   |                           VendorMetricRepository.class
+|   |   |                           
+|   |   \---test
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---analytics
+|   |   |                       +---api
+|   |   |                       |       AdminDashboardController.class
+|   |   |                       |       CustomerMatricController.class
+|   |   |                       |       VendorAnalyticsController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---collector
+|   |   |                       |   |       CustomerMetricCollector.class
+|   |   |                       |   |       OrderMetricCollector.class
+|   |   |                       |   |       ProductMetricCollector.class
+|   |   |                       |   |       VendorMetricCollector.class
+|   |   |                       |   |       
+|   |   |                       |   +---dto
+|   |   |                       |   |       DashboardResponse$DailySales$DailySalesBuilder.class
+|   |   |                       |   |       DashboardResponse$DailySales.class
+|   |   |                       |   |       DashboardResponse$DashboardResponseBuilder.class
+|   |   |                       |   |       DashboardResponse$SummaryMetrics$SummaryMetricsBuilder.class
+|   |   |                       |   |       DashboardResponse$SummaryMetrics.class
+|   |   |                       |   |       DashboardResponse$TopProduct$TopProductBuilder.class
+|   |   |                       |   |       DashboardResponse$TopProduct.class
+|   |   |                       |   |       DashboardResponse$TopVendor$TopVendorBuilder.class
+|   |   |                       |   |       DashboardResponse$TopVendor.class
+|   |   |                       |   |       DashboardResponse.class
+|   |   |                       |   |       ProductPerformance$ProductPerformanceBuilder.class
+|   |   |                       |   |       ProductPerformance.class
+|   |   |                       |   |       SalesReportResponse$DailyBreakdown$DailyBreakdownBuilder.class
+|   |   |                       |   |       SalesReportResponse$DailyBreakdown.class
+|   |   |                       |   |       SalesReportResponse$SalesReportResponseBuilder.class
+|   |   |                       |   |       SalesReportResponse.class
+|   |   |                       |   |       TimeRangeRequest$TimeRangeRequestBuilder.class
+|   |   |                       |   |       TimeRangeRequest.class
+|   |   |                       |   |       VendorPerformanceResponse$VendorPerformanceResponseBuilder.class
+|   |   |                       |   |       VendorPerformanceResponse.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           AnalyticsService.class
+|   |   |                       |           CustomerMetricService.class
+|   |   |                       |           ReportGenerationService.class
+|   |   |                       |           VendorAnalyticsService$VendorInfo.class
+|   |   |                       |           VendorAnalyticsService.class
+|   |   |                       |           
+|   |   |                       +---config
+|   |   |                       |       AnalyticsModuleConfig.class
+|   |   |                       |       
+|   |   |                       \---domain
+|   |   |                           +---model
+|   |   |                           |       CustomerMetric$CustomerMetricBuilder.class
+|   |   |                           |       CustomerMetric.class
+|   |   |                           |       DailyAggregation$DailyAggregationBuilder.class
+|   |   |                           |       DailyAggregation.class
+|   |   |                           |       DashboardWidget$DashboardWidgetBuilder.class
+|   |   |                           |       DashboardWidget.class
+|   |   |                           |       ProductMetric$ProductMetricBuilder.class
+|   |   |                           |       ProductMetric.class
+|   |   |                           |       SalesMetric$SalesMetricBuilder.class
+|   |   |                           |       SalesMetric.class
+|   |   |                           |       VendorMetric$VendorMetricBuilder.class
+|   |   |                           |       VendorMetric.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   CustomerMetricRepository.class
+|   |   |                                   ProductMetricRepository.class
+|   |   |                                   SalesMetricRepository.class
+|   |   |                                   VendorMetricRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       analytics-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       +---main
+|       |   +---java
+|       |   |   \---com
+|       |   |       \---platform
+|       |   |           \---analytics
+|       |   |               +---api
+|       |   |               |       AdminDashboardController.java
+|       |   |               |       CustomerMatricController.java
+|       |   |               |       VendorAnalyticsController.java
+|       |   |               |       
+|       |   |               +---application
+|       |   |               |   +---collector
+|       |   |               |   |       CustomerMetricCollector.java
+|       |   |               |   |       OrderMetricCollector.java
+|       |   |               |   |       ProductMetricCollector.java
+|       |   |               |   |       VendorMetricCollector.java
+|       |   |               |   |       
+|       |   |               |   +---dto
+|       |   |               |   |       DashboardResponse.java
+|       |   |               |   |       ProductPerformance.java
+|       |   |               |   |       SalesReportResponse.java
+|       |   |               |   |       TimeRangeRequest.java
+|       |   |               |   |       VendorPerformanceResponse.java
+|       |   |               |   |       
+|       |   |               |   \---service
+|       |   |               |           AnalyticsService.java
+|       |   |               |           CustomerMetricService.java
+|       |   |               |           ReportGenerationService.java
+|       |   |               |           VendorAnalyticsService.java
+|       |   |               |           
+|       |   |               +---config
+|       |   |               |       AnalyticsModuleConfig.java
+|       |   |               |       
+|       |   |               \---domain
+|       |   |                   +---model
+|       |   |                   |       CustomerMetric.java
+|       |   |                   |       DailyAggregation.java
+|       |   |                   |       DashboardWidget.java
+|       |   |                   |       ProductMetric.java
+|       |   |                   |       SalesMetric.java
+|       |   |                   |       VendorMetric.java
+|       |   |                   |       
+|       |   |                   \---repository
+|       |   |                           CustomerMetricRepository.java
+|       |   |                           ProductMetricRepository.java
+|       |   |                           SalesMetricRepository.java
+|       |   |                           VendorMetricRepository.java
+|       |   |                           
+|       |   \---resources
+|       |           application.yml
+|       |           
+|       \---test
+|           +---java
+|           \---resources
++---bin
+|   \---default
++---build
+|   +---libs
+|   |       ECommercePlatform.jar
+|   |       
+|   +---reports
+|   |   \---problems
+|   |           problems-report.html
+|   |           
+|   \---tmp
+|       \---jar
+|               MANIFEST.MF
+|               
++---cart-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   +---main
+|   |   |   |   application.yml
+|   |   |   |   
+|   |   |   \---com
+|   |   |       \---platform
+|   |   |           \---cart
+|   |   |               +---api
+|   |   |               |       CartController.class
+|   |   |               |       
+|   |   |               +---application
+|   |   |               |   +---dto
+|   |   |               |   |       AddToCartRequest.class
+|   |   |               |   |       CartItemResponse.class
+|   |   |               |   |       CartResponse.class
+|   |   |               |   |       UpdateCartItemRequest.class
+|   |   |               |   |       
+|   |   |               |   +---mapper
+|   |   |               |   |       CartMapper$ProductInfo.class
+|   |   |               |   |       CartMapper.class
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           CartMergeService.class
+|   |   |               |           CartService$CartItemInfo.class
+|   |   |               |           CartService$DiscountRequest.class
+|   |   |               |           CartService.class
+|   |   |               |           CartValidationService$CatalogProductInfo.class
+|   |   |               |           CartValidationService.class
+|   |   |               |           
+|   |   |               +---config
+|   |   |               |       CartCacheConfig.class
+|   |   |               |       
+|   |   |               \---domain
+|   |   |                   +---event
+|   |   |                   |       CartUpdatedEvent.class
+|   |   |                   |       
+|   |   |                   +---model
+|   |   |                   |       Cart.class
+|   |   |                   |       CartItem.class
+|   |   |                   |       CartStatus.class
+|   |   |                   |       
+|   |   |                   \---repository
+|   |   |                           CartRepository.class
+|   |   |                           
+|   |   \---test
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---cart
+|   |   |                       +---api
+|   |   |                       |       CartController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       AddToCartRequest$AddToCartRequestBuilder.class
+|   |   |                       |   |       AddToCartRequest.class
+|   |   |                       |   |       CartItemResponse$CartItemResponseBuilder.class
+|   |   |                       |   |       CartItemResponse.class
+|   |   |                       |   |       CartResponse$CartResponseBuilder.class
+|   |   |                       |   |       CartResponse.class
+|   |   |                       |   |       UpdateCartItemRequest$UpdateCartItemRequestBuilder.class
+|   |   |                       |   |       UpdateCartItemRequest.class
+|   |   |                       |   |       
+|   |   |                       |   +---mapper
+|   |   |                       |   |       CartMapper$ProductInfo.class
+|   |   |                       |   |       CartMapper.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           CartMergeService.class
+|   |   |                       |           CartService$CartItemInfo.class
+|   |   |                       |           CartService$DiscountRequest.class
+|   |   |                       |           CartService.class
+|   |   |                       |           CartValidationService$CatalogProductInfo.class
+|   |   |                       |           CartValidationService.class
+|   |   |                       |           
+|   |   |                       +---config
+|   |   |                       |       CartCacheConfig.class
+|   |   |                       |       
+|   |   |                       \---domain
+|   |   |                           +---event
+|   |   |                           |       CartUpdatedEvent.class
+|   |   |                           |       
+|   |   |                           +---model
+|   |   |                           |       Cart$CartBuilder.class
+|   |   |                           |       Cart.class
+|   |   |                           |       CartItem$CartItemBuilder.class
+|   |   |                           |       CartItem.class
+|   |   |                           |       CartStatus.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   CartRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       cart-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       +---main
+|       |   +---java
+|       |   |   \---com
+|       |   |       \---platform
+|       |   |           \---cart
+|       |   |               +---api
+|       |   |               |       CartController.java
+|       |   |               |       
+|       |   |               +---application
+|       |   |               |   +---dto
+|       |   |               |   |       AddToCartRequest.java
+|       |   |               |   |       CartItemResponse.java
+|       |   |               |   |       CartResponse.java
+|       |   |               |   |       UpdateCartItemRequest.java
+|       |   |               |   |       
+|       |   |               |   +---mapper
+|       |   |               |   |       CartMapper.java
+|       |   |               |   |       
+|       |   |               |   \---service
+|       |   |               |           CartMergeService.java
+|       |   |               |           CartService.java
+|       |   |               |           CartValidationService.java
+|       |   |               |           
+|       |   |               +---config
+|       |   |               |       CartCacheConfig.java
+|       |   |               |       
+|       |   |               \---domain
+|       |   |                   +---event
+|       |   |                   |       CartUpdatedEvent.java
+|       |   |                   |       
+|       |   |                   +---model
+|       |   |                   |       Cart.java
+|       |   |                   |       CartItem.java
+|       |   |                   |       CartStatus.java
+|       |   |                   |       
+|       |   |                   \---repository
+|       |   |                           CartRepository.java
+|       |   |                           
+|       |   \---resources
+|       |           application.yml
+|       |           
+|       \---test
+|           \---java
++---catalog-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   \---main
+|   |       |   application.yml
+|   |       |   
+|   |       \---com
+|   |           \---platform
+|   |               \---catalog
+|   |                   +---api
+|   |                   |       CatalogController$CatalogCategoryInfo.class
+|   |                   |       CatalogController$CatalogProductInfo.class
+|   |                   |       CatalogController$ProductInfoMini.class
+|   |                   |       CatalogController.class
+|   |                   |       CategoryController.class
+|   |                   |       
+|   |                   +---application
+|   |                   |   +---dto
+|   |                   |   |       CreateProductRequest$ProductAttributeDto.class
+|   |                   |   |       CreateProductRequest$ProductImageDto.class
+|   |                   |   |       CreateProductRequest$ProductVariantDto.class
+|   |                   |   |       CreateProductRequest$SEOMetadataDto.class
+|   |                   |   |       CreateProductRequest.class
+|   |                   |   |       ProductDetailResponse$BrandInfo.class
+|   |                   |   |       ProductDetailResponse$CategoryInfo.class
+|   |                   |   |       ProductDetailResponse$ProductAttributeResponse.class
+|   |                   |   |       ProductDetailResponse$ProductImageResponse.class
+|   |                   |   |       ProductDetailResponse$ProductVariantResponse.class
+|   |                   |   |       ProductDetailResponse.class
+|   |                   |   |       ProductResponse.class
+|   |                   |   |       ProductSearchRequest.class
+|   |                   |   |       UpdateProductRequest.class
+|   |                   |   |       
+|   |                   |   +---mapper
+|   |                   |   |       ProductMapper.class
+|   |                   |   |       
+|   |                   |   \---service
+|   |                   |           CategoryService.class
+|   |                   |           ProductAttributeCrudService.class
+|   |                   |           ProductImageCrudService.class
+|   |                   |           ProductService.class
+|   |                   |           ProductVariantCrudService.class
+|   |                   |           
+|   |                   \---domain
+|   |                       +---event
+|   |                       |       ProductApprovedEvent.class
+|   |                       |       ProductCreatedEvent.class
+|   |                       |       
+|   |                       +---model
+|   |                       |       Brand.class
+|   |                       |       Category.class
+|   |                       |       Product.class
+|   |                       |       ProductAttribute.class
+|   |                       |       ProductImage.class
+|   |                       |       ProductStatus.class
+|   |                       |       ProductVariant.class
+|   |                       |       SEOMetadata.class
+|   |                       |       
+|   |                       \---repository
+|   |                               CategoryRepository.class
+|   |                               ProductAttributeRepository.class
+|   |                               ProductImageRepository.class
+|   |                               ProductRepository.class
+|   |                               ProductVariantRepository.class
+|   |                               
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---catalog
+|   |   |                       +---api
+|   |   |                       |       CatalogController$CatalogCategoryInfo.class
+|   |   |                       |       CatalogController$CatalogProductInfo.class
+|   |   |                       |       CatalogController$ProductInfoMini.class
+|   |   |                       |       CatalogController.class
+|   |   |                       |       CategoryController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       CreateProductRequest$CreateProductRequestBuilder.class
+|   |   |                       |   |       CreateProductRequest$ProductAttributeDto$ProductAttributeDtoBuilder.class
+|   |   |                       |   |       CreateProductRequest$ProductAttributeDto.class
+|   |   |                       |   |       CreateProductRequest$ProductImageDto$ProductImageDtoBuilder.class
+|   |   |                       |   |       CreateProductRequest$ProductImageDto.class
+|   |   |                       |   |       CreateProductRequest$ProductVariantDto$ProductVariantDtoBuilder.class
+|   |   |                       |   |       CreateProductRequest$ProductVariantDto.class
+|   |   |                       |   |       CreateProductRequest$SEOMetadataDto$SEOMetadataDtoBuilder.class
+|   |   |                       |   |       CreateProductRequest$SEOMetadataDto.class
+|   |   |                       |   |       CreateProductRequest.class
+|   |   |                       |   |       ProductDetailResponse$BrandInfo$BrandInfoBuilder.class
+|   |   |                       |   |       ProductDetailResponse$BrandInfo.class
+|   |   |                       |   |       ProductDetailResponse$CategoryInfo$CategoryInfoBuilder.class
+|   |   |                       |   |       ProductDetailResponse$CategoryInfo.class
+|   |   |                       |   |       ProductDetailResponse$ProductAttributeResponse$ProductAttributeResponseBuilder.class
+|   |   |                       |   |       ProductDetailResponse$ProductAttributeResponse.class
+|   |   |                       |   |       ProductDetailResponse$ProductDetailResponseBuilder.class
+|   |   |                       |   |       ProductDetailResponse$ProductImageResponse$ProductImageResponseBuilder.class
+|   |   |                       |   |       ProductDetailResponse$ProductImageResponse.class
+|   |   |                       |   |       ProductDetailResponse$ProductVariantResponse$ProductVariantResponseBuilder.class
+|   |   |                       |   |       ProductDetailResponse$ProductVariantResponse.class
+|   |   |                       |   |       ProductDetailResponse.class
+|   |   |                       |   |       ProductResponse$ProductResponseBuilder.class
+|   |   |                       |   |       ProductResponse.class
+|   |   |                       |   |       ProductSearchRequest$ProductSearchRequestBuilder.class
+|   |   |                       |   |       ProductSearchRequest.class
+|   |   |                       |   |       UpdateProductRequest$UpdateProductRequestBuilder.class
+|   |   |                       |   |       UpdateProductRequest.class
+|   |   |                       |   |       
+|   |   |                       |   +---mapper
+|   |   |                       |   |       ProductMapper.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           CategoryService.class
+|   |   |                       |           ProductAttributeCrudService.class
+|   |   |                       |           ProductImageCrudService.class
+|   |   |                       |           ProductService.class
+|   |   |                       |           ProductVariantCrudService.class
+|   |   |                       |           
+|   |   |                       \---domain
+|   |   |                           +---event
+|   |   |                           |       ProductApprovedEvent.class
+|   |   |                           |       ProductCreatedEvent.class
+|   |   |                           |       
+|   |   |                           +---model
+|   |   |                           |       Brand$BrandBuilder.class
+|   |   |                           |       Brand.class
+|   |   |                           |       Category$CategoryBuilder.class
+|   |   |                           |       Category.class
+|   |   |                           |       Product$ProductBuilder.class
+|   |   |                           |       Product.class
+|   |   |                           |       ProductAttribute$ProductAttributeBuilder.class
+|   |   |                           |       ProductAttribute.class
+|   |   |                           |       ProductImage$ProductImageBuilder.class
+|   |   |                           |       ProductImage.class
+|   |   |                           |       ProductStatus.class
+|   |   |                           |       ProductVariant$ProductVariantBuilder.class
+|   |   |                           |       ProductVariant.class
+|   |   |                           |       SEOMetadata$SEOMetadataBuilder.class
+|   |   |                           |       SEOMetadata.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   CategoryRepository.class
+|   |   |                                   ProductAttributeRepository.class
+|   |   |                                   ProductImageRepository.class
+|   |   |                                   ProductRepository.class
+|   |   |                                   ProductVariantRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       catalog-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       |               CatalogController$CatalogCategoryInfo.class.uniqueId2
+|   |       |               CatalogController$CatalogProductInfo.class.uniqueId0
+|   |       |               CatalogController$ProductInfoMini.class.uniqueId1
+|   |       |               CatalogController.class.uniqueId3
+|   |       |               
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |           \---catalog
+|           |               +---api
+|           |               |       CatalogController.java
+|           |               |       CategoryController.java
+|           |               |       
+|           |               +---application
+|           |               |   +---dto
+|           |               |   |       CreateProductRequest.java
+|           |               |   |       ProductDetailResponse.java
+|           |               |   |       ProductResponse.java
+|           |               |   |       ProductSearchRequest.java
+|           |               |   |       UpdateProductRequest.java
+|           |               |   |       
+|           |               |   +---mapper
+|           |               |   |       ProductMapper.java
+|           |               |   |       
+|           |               |   \---service
+|           |               |           CategoryService.java
+|           |               |           ProductAttributeCrudService.java
+|           |               |           ProductImageCrudService.java
+|           |               |           ProductService.java
+|           |               |           ProductVariantCrudService.java
+|           |               |           
+|           |               \---domain
+|           |                   +---event
+|           |                   |       ProductApprovedEvent.java
+|           |                   |       ProductCreatedEvent.java
+|           |                   |       
+|           |                   +---model
+|           |                   |       Brand.java
+|           |                   |       Category.java
+|           |                   |       Product.java
+|           |                   |       ProductAttribute.java
+|           |                   |       ProductImage.java
+|           |                   |       ProductStatus.java
+|           |                   |       ProductVariant.java
+|           |                   |       SEOMetadata.java
+|           |                   |       
+|           |                   \---repository
+|           |                           CategoryRepository.java
+|           |                           ProductAttributeRepository.java
+|           |                           ProductImageRepository.java
+|           |                           ProductRepository.java
+|           |                           ProductVariantRepository.java
+|           |                           
+|           \---resources
+|                   application.yml
+|                   
++---cms-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   +---main
+|   |   |   \---com
+|   |   |       \---platform
+|   |   |           \---cms
+|   |   |               +---api
+|   |   |               |   |   PublicAnnouncementController.class
+|   |   |               |   |   PublicBannerController.class
+|   |   |               |   |   PublicFAQController.class
+|   |   |               |   |   PublicMenuController.class
+|   |   |               |   |   PublicPageController.class
+|   |   |               |   |   
+|   |   |               |   \---admin
+|   |   |               |           AdminBannerController.class
+|   |   |               |           AdminHomepageController.class
+|   |   |               |           AdminPageController.class
+|   |   |               |           
+|   |   |               +---application
+|   |   |               |   +---dto
+|   |   |               |   |       AnnouncementRequest.class
+|   |   |               |   |       AnnouncementResponse.class
+|   |   |               |   |       BannerRequest.class
+|   |   |               |   |       BannerResponse.class
+|   |   |               |   |       FAQRequest.class
+|   |   |               |   |       FAQResponse.class
+|   |   |               |   |       HomepageSectionRequest$SectionItemRequest.class
+|   |   |               |   |       HomepageSectionRequest.class
+|   |   |               |   |       HomepageSectionResponse$HomepageSectionItemResponse.class
+|   |   |               |   |       HomepageSectionResponse.class
+|   |   |               |   |       PageRequest.class
+|   |   |               |   |       PageResponse.class
+|   |   |               |   |       
+|   |   |               |   +---mapper
+|   |   |               |   |       CmsMapper.class
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           AnnouncementService.class
+|   |   |               |           BannerService.class
+|   |   |               |           FAQService.class
+|   |   |               |           HomepageService$CatalogCategoryInfo.class
+|   |   |               |           HomepageService$CatalogProductInfo.class
+|   |   |               |           HomepageService$PromotionFlashSaleInfo.class
+|   |   |               |           HomepageService.class
+|   |   |               |           PageCrudService.class
+|   |   |               |           PageService.class
+|   |   |               |           
+|   |   |               +---config
+|   |   |               |       CmsModuleConfig.class
+|   |   |               |       
+|   |   |               \---domain
+|   |   |                   +---event
+|   |   |                   |       AnnouncementCreatedEvent.class
+|   |   |                   |       BannerPublishedEvent.class
+|   |   |                   |       PageUpdatedEvent.class
+|   |   |                   |       
+|   |   |                   +---model
+|   |   |                   |       Announcement.class
+|   |   |                   |       Banner.class
+|   |   |                   |       ContentBlock.class
+|   |   |                   |       FAQ.class
+|   |   |                   |       FAQCategory.class
+|   |   |                   |       HomepageSection.class
+|   |   |                   |       HomepageSectionItem.class
+|   |   |                   |       MenuItem.class
+|   |   |                   |       Page.class
+|   |   |                   |       SEOMetadata.class
+|   |   |                   |       
+|   |   |                   \---repository
+|   |   |                           AnnouncementRepository.class
+|   |   |                           BannerRepository.class
+|   |   |                           ContentBlockRepository.class
+|   |   |                           FAQCategoryRepository.class
+|   |   |                           FAQRepository.class
+|   |   |                           HomepageSectionRepository.class
+|   |   |                           MenuItemRepository.class
+|   |   |                           PageRepository.class
+|   |   |                           
+|   |   \---test
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---cms
+|   |   |                       +---api
+|   |   |                       |   |   PublicAnnouncementController.class
+|   |   |                       |   |   PublicBannerController.class
+|   |   |                       |   |   PublicFAQController.class
+|   |   |                       |   |   PublicMenuController.class
+|   |   |                       |   |   PublicPageController.class
+|   |   |                       |   |   
+|   |   |                       |   \---admin
+|   |   |                       |           AdminBannerController.class
+|   |   |                       |           AdminHomepageController.class
+|   |   |                       |           AdminPageController.class
+|   |   |                       |           
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       AnnouncementRequest$AnnouncementRequestBuilder.class
+|   |   |                       |   |       AnnouncementRequest.class
+|   |   |                       |   |       AnnouncementResponse$AnnouncementResponseBuilder.class
+|   |   |                       |   |       AnnouncementResponse.class
+|   |   |                       |   |       BannerRequest$BannerRequestBuilder.class
+|   |   |                       |   |       BannerRequest.class
+|   |   |                       |   |       BannerResponse$BannerResponseBuilder.class
+|   |   |                       |   |       BannerResponse.class
+|   |   |                       |   |       FAQRequest$FAQRequestBuilder.class
+|   |   |                       |   |       FAQRequest.class
+|   |   |                       |   |       FAQResponse$FAQResponseBuilder.class
+|   |   |                       |   |       FAQResponse.class
+|   |   |                       |   |       HomepageSectionRequest$HomepageSectionRequestBuilder.class
+|   |   |                       |   |       HomepageSectionRequest$SectionItemRequest$SectionItemRequestBuilder.class
+|   |   |                       |   |       HomepageSectionRequest$SectionItemRequest.class
+|   |   |                       |   |       HomepageSectionRequest.class
+|   |   |                       |   |       HomepageSectionResponse$HomepageSectionItemResponse$HomepageSectionItemResponseBuilder.class
+|   |   |                       |   |       HomepageSectionResponse$HomepageSectionItemResponse.class
+|   |   |                       |   |       HomepageSectionResponse$HomepageSectionResponseBuilder.class
+|   |   |                       |   |       HomepageSectionResponse.class
+|   |   |                       |   |       PageRequest$PageRequestBuilder.class
+|   |   |                       |   |       PageRequest.class
+|   |   |                       |   |       PageResponse$PageResponseBuilder.class
+|   |   |                       |   |       PageResponse.class
+|   |   |                       |   |       
+|   |   |                       |   +---mapper
+|   |   |                       |   |       CmsMapper.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           AnnouncementService.class
+|   |   |                       |           BannerService.class
+|   |   |                       |           FAQService.class
+|   |   |                       |           HomepageService$CatalogCategoryInfo.class
+|   |   |                       |           HomepageService$CatalogProductInfo.class
+|   |   |                       |           HomepageService$PromotionFlashSaleInfo.class
+|   |   |                       |           HomepageService.class
+|   |   |                       |           PageCrudService.class
+|   |   |                       |           PageService.class
+|   |   |                       |           
+|   |   |                       +---config
+|   |   |                       |       CmsModuleConfig.class
+|   |   |                       |       
+|   |   |                       \---domain
+|   |   |                           +---event
+|   |   |                           |       AnnouncementCreatedEvent.class
+|   |   |                           |       BannerPublishedEvent.class
+|   |   |                           |       PageUpdatedEvent.class
+|   |   |                           |       
+|   |   |                           +---model
+|   |   |                           |       Announcement$AnnouncementBuilder.class
+|   |   |                           |       Announcement.class
+|   |   |                           |       Banner$BannerBuilder.class
+|   |   |                           |       Banner.class
+|   |   |                           |       ContentBlock$ContentBlockBuilder.class
+|   |   |                           |       ContentBlock.class
+|   |   |                           |       FAQ$FAQBuilder.class
+|   |   |                           |       FAQ.class
+|   |   |                           |       FAQCategory$FAQCategoryBuilder.class
+|   |   |                           |       FAQCategory.class
+|   |   |                           |       HomepageSection$HomepageSectionBuilder.class
+|   |   |                           |       HomepageSection.class
+|   |   |                           |       HomepageSectionItem$HomepageSectionItemBuilder.class
+|   |   |                           |       HomepageSectionItem.class
+|   |   |                           |       MenuItem$MenuItemBuilder.class
+|   |   |                           |       MenuItem.class
+|   |   |                           |       Page$PageBuilder.class
+|   |   |                           |       Page.class
+|   |   |                           |       SEOMetadata$SEOMetadataBuilder.class
+|   |   |                           |       SEOMetadata.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   AnnouncementRepository.class
+|   |   |                                   BannerRepository.class
+|   |   |                                   ContentBlockRepository.class
+|   |   |                                   FAQCategoryRepository.class
+|   |   |                                   FAQRepository.class
+|   |   |                                   HomepageSectionRepository.class
+|   |   |                                   MenuItemRepository.class
+|   |   |                                   PageRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       cms-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       +---main
+|       |   +---java
+|       |   |   \---com
+|       |   |       \---platform
+|       |   |           \---cms
+|       |   |               +---api
+|       |   |               |   |   PublicAnnouncementController.java
+|       |   |               |   |   PublicBannerController.java
+|       |   |               |   |   PublicFAQController.java
+|       |   |               |   |   PublicMenuController.java
+|       |   |               |   |   PublicPageController.java
+|       |   |               |   |   
+|       |   |               |   \---admin
+|       |   |               |           AdminBannerController.java
+|       |   |               |           AdminHomepageController.java
+|       |   |               |           AdminPageController.java
+|       |   |               |           
+|       |   |               +---application
+|       |   |               |   +---dto
+|       |   |               |   |       AnnouncementRequest.java
+|       |   |               |   |       AnnouncementResponse.java
+|       |   |               |   |       BannerRequest.java
+|       |   |               |   |       BannerResponse.java
+|       |   |               |   |       FAQRequest.java
+|       |   |               |   |       FAQResponse.java
+|       |   |               |   |       HomepageSectionRequest.java
+|       |   |               |   |       HomepageSectionResponse.java
+|       |   |               |   |       PageRequest.java
+|       |   |               |   |       PageResponse.java
+|       |   |               |   |       
+|       |   |               |   +---mapper
+|       |   |               |   |       CmsMapper.java
+|       |   |               |   |       
+|       |   |               |   \---service
+|       |   |               |           AnnouncementService.java
+|       |   |               |           BannerService.java
+|       |   |               |           FAQService.java
+|       |   |               |           HomepageService.java
+|       |   |               |           PageCrudService.java
+|       |   |               |           PageService.java
+|       |   |               |           
+|       |   |               +---config
+|       |   |               |       CmsModuleConfig.java
+|       |   |               |       
+|       |   |               \---domain
+|       |   |                   +---event
+|       |   |                   |       AnnouncementCreatedEvent.java
+|       |   |                   |       BannerPublishedEvent.java
+|       |   |                   |       PageUpdatedEvent.java
+|       |   |                   |       
+|       |   |                   +---model
+|       |   |                   |       Announcement.java
+|       |   |                   |       Banner.java
+|       |   |                   |       ContentBlock.java
+|       |   |                   |       FAQ.java
+|       |   |                   |       FAQCategory.java
+|       |   |                   |       HomepageSection.java
+|       |   |                   |       HomepageSectionItem.java
+|       |   |                   |       MenuItem.java
+|       |   |                   |       Page.java
+|       |   |                   |       SEOMetadata.java
+|       |   |                   |       
+|       |   |                   \---repository
+|       |   |                           AnnouncementRepository.java
+|       |   |                           BannerRepository.java
+|       |   |                           ContentBlockRepository.java
+|       |   |                           FAQCategoryRepository.java
+|       |   |                           FAQRepository.java
+|       |   |                           HomepageSectionRepository.java
+|       |   |                           MenuItemRepository.java
+|       |   |                           PageRepository.java
+|       |   |                           
+|       |   \---resources
+|       \---test
+|           +---java
+|           \---resources
++---flyway
+|       V13__add_audit_columns_to_all_tables.sql
+|       
++---gradle
+|   |   libs.versions.toml
+|   |   
+|   \---wrapper
+|           gradle-wrapper.jar
+|           gradle-wrapper.properties
+|           
++---iam-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   \---main
+|   |       \---com
+|   |           \---platform
+|   |               \---iam
+|   |                   +---api
+|   |                   |       AuthController.class
+|   |                   |       UserController$UserInfo.class
+|   |                   |       UserController.class
+|   |                   |       VendorController.class
+|   |                   |       
+|   |                   +---application
+|   |                   |   +---dto
+|   |                   |   |       LoginRequest.class
+|   |                   |   |       RegisterRequest.class
+|   |                   |   |       TokenResponse.class
+|   |                   |   |       UserResponse.class
+|   |                   |   |       VendorApprovalRequest.class
+|   |                   |   |       VendorRegistrationRequest.class
+|   |                   |   |       VendorResponse.class
+|   |                   |   |       
+|   |                   |   \---service
+|   |                   |           AuthService.class
+|   |                   |           IAMService.class
+|   |                   |           PermissionCrudService.class
+|   |                   |           RoleCrudService.class
+|   |                   |           VendorService.class
+|   |                   |           
+|   |                   +---domain
+|   |                   |   +---event
+|   |                   |   +---model
+|   |                   |   |       OtpToken.class
+|   |                   |   |       Permission.class
+|   |                   |   |       Role.class
+|   |                   |   |       User.class
+|   |                   |   |       UserStatus.class
+|   |                   |   |       Vendor.class
+|   |                   |   |       VendorStatus.class
+|   |                   |   |       
+|   |                   |   \---repository
+|   |                   |           PermissionRepository.class
+|   |                   |           RoleRepository.class
+|   |                   |           UserRepository.class
+|   |                   |           VendorRepository.class
+|   |                   |           
+|   |                   \---infrastructure
+|   |                       \---security
+|   |                               JwtAuthenticationFilter.class
+|   |                               JwtTokenProvider.class
+|   |                               SecurityConfig.class
+|   |                               
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---iam
+|   |   |                       +---api
+|   |   |                       |       AuthController.class
+|   |   |                       |       UserController$UserInfo.class
+|   |   |                       |       UserController.class
+|   |   |                       |       VendorController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       LoginRequest$LoginRequestBuilder.class
+|   |   |                       |   |       LoginRequest.class
+|   |   |                       |   |       RegisterRequest$RegisterRequestBuilder.class
+|   |   |                       |   |       RegisterRequest.class
+|   |   |                       |   |       TokenResponse$TokenResponseBuilder.class
+|   |   |                       |   |       TokenResponse.class
+|   |   |                       |   |       UserResponse$UserResponseBuilder.class
+|   |   |                       |   |       UserResponse.class
+|   |   |                       |   |       VendorApprovalRequest$VendorApprovalRequestBuilder.class
+|   |   |                       |   |       VendorApprovalRequest.class
+|   |   |                       |   |       VendorRegistrationRequest$VendorRegistrationRequestBuilder.class
+|   |   |                       |   |       VendorRegistrationRequest.class
+|   |   |                       |   |       VendorResponse$VendorResponseBuilder.class
+|   |   |                       |   |       VendorResponse.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           AuthService.class
+|   |   |                       |           IAMService.class
+|   |   |                       |           PermissionCrudService.class
+|   |   |                       |           RoleCrudService.class
+|   |   |                       |           VendorService.class
+|   |   |                       |           
+|   |   |                       +---domain
+|   |   |                       |   +---model
+|   |   |                       |   |       OtpToken$OtpTokenBuilder.class
+|   |   |                       |   |       OtpToken.class
+|   |   |                       |   |       Permission$PermissionBuilder.class
+|   |   |                       |   |       Permission.class
+|   |   |                       |   |       Role$RoleBuilder.class
+|   |   |                       |   |       Role.class
+|   |   |                       |   |       User$UserBuilder.class
+|   |   |                       |   |       User.class
+|   |   |                       |   |       UserStatus.class
+|   |   |                       |   |       Vendor$VendorBuilder.class
+|   |   |                       |   |       Vendor.class
+|   |   |                       |   |       VendorStatus.class
+|   |   |                       |   |       
+|   |   |                       |   \---repository
+|   |   |                       |           PermissionRepository.class
+|   |   |                       |           RoleRepository.class
+|   |   |                       |           UserRepository.class
+|   |   |                       |           VendorRepository.class
+|   |   |                       |           
+|   |   |                       \---infrastructure
+|   |   |                           \---security
+|   |   |                                   JwtAuthenticationFilter.class
+|   |   |                                   JwtTokenProvider.class
+|   |   |                                   SecurityConfig.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       iam-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           \---java
+|               \---com
+|                   \---platform
+|                       \---iam
+|                           +---api
+|                           |       AuthController.java
+|                           |       UserController.java
+|                           |       VendorController.java
+|                           |       
+|                           +---application
+|                           |   +---dto
+|                           |   |       LoginRequest.java
+|                           |   |       RegisterRequest.java
+|                           |   |       TokenResponse.java
+|                           |   |       UserResponse.java
+|                           |   |       VendorApprovalRequest.java
+|                           |   |       VendorRegistrationRequest.java
+|                           |   |       VendorResponse.java
+|                           |   |       
+|                           |   \---service
+|                           |           AuthService.java
+|                           |           IAMService.java
+|                           |           PermissionCrudService.java
+|                           |           RoleCrudService.java
+|                           |           VendorService.java
+|                           |           
+|                           +---domain
+|                           |   +---event
+|                           |   +---model
+|                           |   |       OtpToken.java
+|                           |   |       Permission.java
+|                           |   |       Role.java
+|                           |   |       User.java
+|                           |   |       UserStatus.java
+|                           |   |       Vendor.java
+|                           |   |       VendorStatus.java
+|                           |   |       
+|                           |   \---repository
+|                           |           PermissionRepository.java
+|                           |           RoleRepository.java
+|                           |           UserRepository.java
+|                           |           VendorRepository.java
+|                           |           
+|                           \---infrastructure
+|                               \---security
+|                                       JwtAuthenticationFilter.java
+|                                       JwtTokenProvider.java
+|                                       SecurityConfig.java
+|                                       
++---inventory-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   \---main
+|   |       \---com
+|   |           \---platform
+|   |               \---inventory
+|   |                   +---api
+|   |                   |       InventoryController$ReserveStockRequest.class
+|   |                   |       InventoryController$ReserveStockResponse.class
+|   |                   |       InventoryController.class
+|   |                   |       
+|   |                   +---application
+|   |                   |   +---dto
+|   |                   |   |       StockUpdateRequest.class
+|   |                   |   |       
+|   |                   |   \---service
+|   |                   |           InventoryService.class
+|   |                   |           
+|   |                   +---domain
+|   |                   |   +---event
+|   |                   |   |       StockDepletedEvent.class
+|   |                   |   |       StockReservedEvent.class
+|   |                   |   |       
+|   |                   |   +---model
+|   |                   |   |       InventoryItem.class
+|   |                   |   |       MovementType.class
+|   |                   |   |       StockMovement.class
+|   |                   |   |       StockReservation.class
+|   |                   |   |       
+|   |                   |   \---repository
+|   |                   |           InventoryRepository.class
+|   |                   |           StockMovementRepository.class
+|   |                   |           StockReservationRepository.class
+|   |                   |           
+|   |                   \---infrastructure
+|   |                       \---scheduler
+|   |                               InventoryScheduler.class
+|   |                               
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---inventory
+|   |   |                       +---api
+|   |   |                       |       InventoryController$ReserveStockRequest.class
+|   |   |                       |       InventoryController$ReserveStockResponse.class
+|   |   |                       |       InventoryController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       StockUpdateRequest$StockUpdateRequestBuilder.class
+|   |   |                       |   |       StockUpdateRequest.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           InventoryService.class
+|   |   |                       |           
+|   |   |                       +---domain
+|   |   |                       |   +---event
+|   |   |                       |   |       StockDepletedEvent.class
+|   |   |                       |   |       StockReservedEvent.class
+|   |   |                       |   |       
+|   |   |                       |   +---model
+|   |   |                       |   |       InventoryItem$InventoryItemBuilder.class
+|   |   |                       |   |       InventoryItem.class
+|   |   |                       |   |       MovementType.class
+|   |   |                       |   |       StockMovement$StockMovementBuilder.class
+|   |   |                       |   |       StockMovement.class
+|   |   |                       |   |       StockReservation$StockReservationBuilder.class
+|   |   |                       |   |       StockReservation.class
+|   |   |                       |   |       
+|   |   |                       |   \---repository
+|   |   |                       |           InventoryRepository.class
+|   |   |                       |           StockMovementRepository.class
+|   |   |                       |           StockReservationRepository.class
+|   |   |                       |           
+|   |   |                       \---infrastructure
+|   |   |                           \---scheduler
+|   |   |                                   InventoryScheduler.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       inventory-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |           \---inventory
+|           |               +---api
+|           |               |       InventoryController.java
+|           |               |       
+|           |               +---application
+|           |               |   +---dto
+|           |               |   |       StockUpdateRequest.java
+|           |               |   |       
+|           |               |   \---service
+|           |               |           InventoryService.java
+|           |               |           
+|           |               +---domain
+|           |               |   +---event
+|           |               |   |       StockDepletedEvent.java
+|           |               |   |       StockReservedEvent.java
+|           |               |   |       
+|           |               |   +---model
+|           |               |   |       InventoryItem.java
+|           |               |   |       MovementType.java
+|           |               |   |       StockMovement.java
+|           |               |   |       StockReservation.java
+|           |               |   |       
+|           |               |   \---repository
+|           |               |           InventoryRepository.java
+|           |               |           StockMovementRepository.java
+|           |               |           StockReservationRepository.java
+|           |               |           
+|           |               \---infrastructure
+|           |                   \---scheduler
+|           |                           InventoryScheduler.java
+|           |                           
+|           \---resources
++---kubernetes
+|       configmap.yaml
+|       deployment.yaml
+|       secret.yaml
+|       
++---notification-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   \---main
+|   |       |   application.yml
+|   |       |   
+|   |       \---com
+|   |           \---platform
+|   |               \---notification
+|   |                   |   EmailConfig.class
+|   |                   |   
+|   |                   +---application
+|   |                   |   +---channel
+|   |                   |   |       EmailChannel.class
+|   |                   |   |       InAppChannel.class
+|   |                   |   |       NotificationChannelAdapter.class
+|   |                   |   |       NotificationChannelFactory.class
+|   |                   |   |       PushNotificationChannel.class
+|   |                   |   |       SmsChannel.class
+|   |                   |   |       
+|   |                   |   \---service
+|   |                   |           NotificationService.class
+|   |                   |           TemplateService.class
+|   |                   |           
+|   |                   +---config
+|   |                   +---domain
+|   |                   |   +---model
+|   |                   |   |       Notification.class
+|   |                   |   |       NotificationChannel.class
+|   |                   |   |       NotificationStatus.class
+|   |                   |   |       NotificationTemplate.class
+|   |                   |   |       
+|   |                   |   \---repository
+|   |                   |           InAppNotificationRepository.class
+|   |                   |           NotificationRepository.class
+|   |                   |           NotificationTemplateRepository.class
+|   |                   |           
+|   |                   +---infrastructure
+|   |                   |   +---email
+|   |                   |   |       SesEmailService.class
+|   |                   |   |       
+|   |                   |   +---push
+|   |                   |   |       FirebasePushService.class
+|   |                   |   |       
+|   |                   |   \---sms
+|   |                   |           AwsSnsSmsSender.class
+|   |                   |           
+|   |                   \---listener
+|   |                           OrderEventListener.class
+|   |                           
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---notification
+|   |   |                       |   EmailConfig.class
+|   |   |                       |   
+|   |   |                       +---application
+|   |   |                       |   +---channel
+|   |   |                       |   |       EmailChannel.class
+|   |   |                       |   |       InAppChannel.class
+|   |   |                       |   |       NotificationChannelAdapter.class
+|   |   |                       |   |       NotificationChannelFactory.class
+|   |   |                       |   |       PushNotificationChannel.class
+|   |   |                       |   |       SmsChannel.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           NotificationService.class
+|   |   |                       |           TemplateService.class
+|   |   |                       |           
+|   |   |                       +---domain
+|   |   |                       |   +---model
+|   |   |                       |   |       Notification$NotificationBuilder.class
+|   |   |                       |   |       Notification.class
+|   |   |                       |   |       NotificationChannel.class
+|   |   |                       |   |       NotificationStatus.class
+|   |   |                       |   |       NotificationTemplate$NotificationTemplateBuilder.class
+|   |   |                       |   |       NotificationTemplate.class
+|   |   |                       |   |       
+|   |   |                       |   \---repository
+|   |   |                       |           InAppNotificationRepository.class
+|   |   |                       |           NotificationRepository.class
+|   |   |                       |           NotificationTemplateRepository.class
+|   |   |                       |           
+|   |   |                       +---infrastructure
+|   |   |                       |   +---email
+|   |   |                       |   |       SesEmailService.class
+|   |   |                       |   |       
+|   |   |                       |   +---push
+|   |   |                       |   |       FirebasePushService.class
+|   |   |                       |   |       
+|   |   |                       |   \---sms
+|   |   |                       |           AwsSnsSmsSender.class
+|   |   |                       |           
+|   |   |                       \---listener
+|   |   |                               OrderEventListener.class
+|   |   |                               
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       notification-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |           \---notification
+|           |               |   EmailConfig.java
+|           |               |   
+|           |               +---application
+|           |               |   +---channel
+|           |               |   |       EmailChannel.java
+|           |               |   |       InAppChannel.java
+|           |               |   |       NotificationChannelAdapter.java
+|           |               |   |       NotificationChannelFactory.java
+|           |               |   |       PushNotificationChannel.java
+|           |               |   |       SmsChannel.java
+|           |               |   |       
+|           |               |   \---service
+|           |               |           NotificationService.java
+|           |               |           TemplateService.java
+|           |               |           
+|           |               +---config
+|           |               +---domain
+|           |               |   +---model
+|           |               |   |       Notification.java
+|           |               |   |       NotificationChannel.java
+|           |               |   |       NotificationStatus.java
+|           |               |   |       NotificationTemplate.java
+|           |               |   |       
+|           |               |   \---repository
+|           |               |           InAppNotificationRepository.java
+|           |               |           NotificationRepository.java
+|           |               |           NotificationTemplateRepository.java
+|           |               |           
+|           |               +---infrastructure
+|           |               |   +---email
+|           |               |   |       SesEmailService.java
+|           |               |   |       
+|           |               |   +---push
+|           |               |   |       FirebasePushService.java
+|           |               |   |       
+|           |               |   \---sms
+|           |               |           AwsSnsSmsSender.java
+|           |               |           
+|           |               \---listener
+|           |                       OrderEventListener.java
+|           |                       
+|           \---resources
+|                   application.yml
+|                   
++---order-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   \---main
+|   |       |   application.yml
+|   |       |   
+|   |       \---com
+|   |           \---platform
+|   |               \---order
+|   |                   +---api
+|   |                   |       OrderController$AssignShipmentRequest.class
+|   |                   |       OrderController$OrderInfo.class
+|   |                   |       OrderController$OrderInfoMini.class
+|   |                   |       OrderController$SubOrderInfo.class
+|   |                   |       OrderController.class
+|   |                   |       
+|   |                   +---application
+|   |                   |   +---dto
+|   |                   |   |       OrderResponse$OrderItemResponse.class
+|   |                   |   |       OrderResponse$OrderTimelineResponse.class
+|   |                   |   |       OrderResponse.class
+|   |                   |   |       OrderStatusUpdateRequest.class
+|   |                   |   |       PlaceOrderRequest$ShippingAddressRequest.class
+|   |                   |   |       PlaceOrderRequest.class
+|   |                   |   |       ReturnRequestDTO.class
+|   |                   |   |       SubOrderResponse.class
+|   |                   |   |       
+|   |                   |   +---mapper
+|   |                   |   |       OrderMapper.class
+|   |                   |   |       
+|   |                   |   \---service
+|   |                   |           OrderService$ApplyCouponRequest.class
+|   |                   |           OrderService$CartItem.class
+|   |                   |           OrderService$CartResponse.class
+|   |                   |           OrderService$CatalogProductInfo.class
+|   |                   |           OrderService$DiscountRequest.class
+|   |                   |           OrderService$OrderItemInfo.class
+|   |                   |           OrderService$ReserveStockRequest.class
+|   |                   |           OrderService$ReserveStockResponse.class
+|   |                   |           OrderService.class
+|   |                   |           ReturnRequestCrudService.class
+|   |                   |           ReturnService.class
+|   |                   |           
+|   |                   \---domain
+|   |                       +---event
+|   |                       +---model
+|   |                       |       Order.class
+|   |                       |       OrderItem.class
+|   |                       |       OrderStatus.class
+|   |                       |       OrderTimeline.class
+|   |                       |       ReturnRequest.class
+|   |                       |       ReturnStatus.class
+|   |                       |       SubOrder.class
+|   |                       |       SubOrderStatus.class
+|   |                       |       
+|   |                       \---repository
+|   |                               OrderRepository.class
+|   |                               ReturnRequestRepository.class
+|   |                               SubOrderRepository.class
+|   |                               
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---order
+|   |   |                       +---api
+|   |   |                       |       OrderController$AssignShipmentRequest.class
+|   |   |                       |       OrderController$OrderInfo.class
+|   |   |                       |       OrderController$OrderInfoMini.class
+|   |   |                       |       OrderController$SubOrderInfo.class
+|   |   |                       |       OrderController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       OrderResponse$OrderItemResponse$OrderItemResponseBuilder.class
+|   |   |                       |   |       OrderResponse$OrderItemResponse.class
+|   |   |                       |   |       OrderResponse$OrderResponseBuilder.class
+|   |   |                       |   |       OrderResponse$OrderTimelineResponse$OrderTimelineResponseBuilder.class
+|   |   |                       |   |       OrderResponse$OrderTimelineResponse.class
+|   |   |                       |   |       OrderResponse.class
+|   |   |                       |   |       OrderStatusUpdateRequest$OrderStatusUpdateRequestBuilder.class
+|   |   |                       |   |       OrderStatusUpdateRequest.class
+|   |   |                       |   |       PlaceOrderRequest$PlaceOrderRequestBuilder.class
+|   |   |                       |   |       PlaceOrderRequest$ShippingAddressRequest$ShippingAddressRequestBuilder.class
+|   |   |                       |   |       PlaceOrderRequest$ShippingAddressRequest.class
+|   |   |                       |   |       PlaceOrderRequest.class
+|   |   |                       |   |       ReturnRequestDTO$ReturnRequestDTOBuilder.class
+|   |   |                       |   |       ReturnRequestDTO.class
+|   |   |                       |   |       SubOrderResponse$SubOrderResponseBuilder.class
+|   |   |                       |   |       SubOrderResponse.class
+|   |   |                       |   |       
+|   |   |                       |   +---mapper
+|   |   |                       |   |       OrderMapper.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           OrderService$ApplyCouponRequest.class
+|   |   |                       |           OrderService$CartItem.class
+|   |   |                       |           OrderService$CartResponse.class
+|   |   |                       |           OrderService$CatalogProductInfo.class
+|   |   |                       |           OrderService$DiscountRequest.class
+|   |   |                       |           OrderService$OrderItemInfo.class
+|   |   |                       |           OrderService$ReserveStockRequest.class
+|   |   |                       |           OrderService$ReserveStockResponse.class
+|   |   |                       |           OrderService.class
+|   |   |                       |           ReturnRequestCrudService.class
+|   |   |                       |           ReturnService.class
+|   |   |                       |           
+|   |   |                       \---domain
+|   |   |                           +---model
+|   |   |                           |       Order$OrderBuilder.class
+|   |   |                           |       Order.class
+|   |   |                           |       OrderItem$OrderItemBuilder.class
+|   |   |                           |       OrderItem.class
+|   |   |                           |       OrderStatus.class
+|   |   |                           |       OrderTimeline$OrderTimelineBuilder.class
+|   |   |                           |       OrderTimeline.class
+|   |   |                           |       ReturnRequest$ReturnRequestBuilder.class
+|   |   |                           |       ReturnRequest.class
+|   |   |                           |       ReturnStatus.class
+|   |   |                           |       SubOrder$SubOrderBuilder.class
+|   |   |                           |       SubOrder.class
+|   |   |                           |       SubOrderStatus.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   OrderRepository.class
+|   |   |                                   ReturnRequestRepository.class
+|   |   |                                   SubOrderRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       order-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |           \---order
+|           |               +---api
+|           |               |       OrderController.java
+|           |               |       
+|           |               +---application
+|           |               |   +---dto
+|           |               |   |       OrderResponse.java
+|           |               |   |       OrderStatusUpdateRequest.java
+|           |               |   |       PlaceOrderRequest.java
+|           |               |   |       ReturnRequestDTO.java
+|           |               |   |       SubOrderResponse.java
+|           |               |   |       
+|           |               |   +---mapper
+|           |               |   |       OrderMapper.java
+|           |               |   |       
+|           |               |   \---service
+|           |               |           OrderService.java
+|           |               |           ReturnRequestCrudService.java
+|           |               |           ReturnService.java
+|           |               |           
+|           |               \---domain
+|           |                   +---event
+|           |                   +---model
+|           |                   |       Order.java
+|           |                   |       OrderItem.java
+|           |                   |       OrderStatus.java
+|           |                   |       OrderTimeline.java
+|           |                   |       ReturnRequest.java
+|           |                   |       ReturnStatus.java
+|           |                   |       SubOrder.java
+|           |                   |       SubOrderStatus.java
+|           |                   |       
+|           |                   \---repository
+|           |                           OrderRepository.java
+|           |                           ReturnRequestRepository.java
+|           |                           SubOrderRepository.java
+|           |                           
+|           \---resources
+|                   application.yml
+|                   
++---out
+|   \---production
+|       \---main
+|           \---generated
++---payment-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   \---main
+|   |       |   application.yml
+|   |       |   
+|   |       \---com
+|   |           \---platform
+|   |               \---payment
+|   |                   +---api
+|   |                   |       PaymentWebhookController.class
+|   |                   |       
+|   |                   +---application
+|   |                   |   +---api
+|   |                   |   |       PaymentController$RefundRequest.class
+|   |                   |   |       PaymentController.class
+|   |                   |   |       
+|   |                   |   +---dto
+|   |                   |   |       InitiatePaymentRequest.class
+|   |                   |   |       InitiatePaymentResponse.class
+|   |                   |   |       PaymentCallbackDTO.class
+|   |                   |   |       PaymentResponse.class
+|   |                   |   |       
+|   |                   |   +---gateway
+|   |                   |   |   |   PaymentGatewayAdapter.class
+|   |                   |   |   |   PaymentGatewayFactory.class
+|   |                   |   |   |   
+|   |                   |   |   \---impl
+|   |                   |   |           BkashGatewayAdapter.class
+|   |                   |   |           StripeGatewayAdapter.class
+|   |                   |   |           
+|   |                   |   \---service
+|   |                   |           PaymentService$OrderInfo.class
+|   |                   |           PaymentService.class
+|   |                   |           
+|   |                   \---domain
+|   |                       +---model
+|   |                       |       Payment.class
+|   |                       |       PaymentGateway.class
+|   |                       |       PaymentMethod.class
+|   |                       |       PaymentStatus.class
+|   |                       |       Refund.class
+|   |                       |       RefundStatus.class
+|   |                       |       Transaction.class
+|   |                       |       
+|   |                       \---repository
+|   |                               PaymentRepository.class
+|   |                               RefundRepository.class
+|   |                               TransactionRepository.class
+|   |                               
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---payment
+|   |   |                       +---api
+|   |   |                       |       PaymentWebhookController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---api
+|   |   |                       |   |       PaymentController$RefundRequest.class
+|   |   |                       |   |       PaymentController.class
+|   |   |                       |   |       
+|   |   |                       |   +---dto
+|   |   |                       |   |       InitiatePaymentRequest$InitiatePaymentRequestBuilder.class
+|   |   |                       |   |       InitiatePaymentRequest.class
+|   |   |                       |   |       InitiatePaymentResponse$InitiatePaymentResponseBuilder.class
+|   |   |                       |   |       InitiatePaymentResponse.class
+|   |   |                       |   |       PaymentCallbackDTO$PaymentCallbackDTOBuilder.class
+|   |   |                       |   |       PaymentCallbackDTO.class
+|   |   |                       |   |       PaymentResponse$PaymentResponseBuilder.class
+|   |   |                       |   |       PaymentResponse.class
+|   |   |                       |   |       
+|   |   |                       |   +---gateway
+|   |   |                       |   |   |   PaymentGatewayAdapter.class
+|   |   |                       |   |   |   PaymentGatewayFactory.class
+|   |   |                       |   |   |   
+|   |   |                       |   |   \---impl
+|   |   |                       |   |           BkashGatewayAdapter.class
+|   |   |                       |   |           StripeGatewayAdapter.class
+|   |   |                       |   |           
+|   |   |                       |   \---service
+|   |   |                       |           PaymentService$OrderInfo.class
+|   |   |                       |           PaymentService.class
+|   |   |                       |           
+|   |   |                       \---domain
+|   |   |                           +---model
+|   |   |                           |       Payment$PaymentBuilder.class
+|   |   |                           |       Payment.class
+|   |   |                           |       PaymentGateway.class
+|   |   |                           |       PaymentMethod.class
+|   |   |                           |       PaymentStatus.class
+|   |   |                           |       Refund$RefundBuilder.class
+|   |   |                           |       Refund.class
+|   |   |                           |       RefundStatus.class
+|   |   |                           |       Transaction$TransactionBuilder.class
+|   |   |                           |       Transaction.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   PaymentRepository.class
+|   |   |                                   RefundRepository.class
+|   |   |                                   TransactionRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       payment-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |           \---payment
+|           |               +---api
+|           |               |       PaymentWebhookController.java
+|           |               |       
+|           |               +---application
+|           |               |   +---api
+|           |               |   |       PaymentController.java
+|           |               |   |       
+|           |               |   +---dto
+|           |               |   |       InitiatePaymentRequest.java
+|           |               |   |       InitiatePaymentResponse.java
+|           |               |   |       PaymentCallbackDTO.java
+|           |               |   |       PaymentResponse.java
+|           |               |   |       
+|           |               |   +---gateway
+|           |               |   |   |   PaymentGatewayAdapter.java
+|           |               |   |   |   PaymentGatewayFactory.java
+|           |               |   |   |   
+|           |               |   |   \---impl
+|           |               |   |           BkashGatewayAdapter.java
+|           |               |   |           StripeGatewayAdapter.java
+|           |               |   |           
+|           |               |   \---service
+|           |               |           PaymentService.java
+|           |               |           
+|           |               \---domain
+|           |                   +---model
+|           |                   |       Payment.java
+|           |                   |       PaymentGateway.java
+|           |                   |       PaymentMethod.java
+|           |                   |       PaymentStatus.java
+|           |                   |       Refund.java
+|           |                   |       RefundStatus.java
+|           |                   |       Transaction.java
+|           |                   |       
+|           |                   \---repository
+|           |                           PaymentRepository.java
+|           |                           RefundRepository.java
+|           |                           TransactionRepository.java
+|           |                           
+|           \---resources
+|                   application.yml
+|                   
++---platform-app
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   \---main
+|   |       |   application-dev.yml
+|   |       |   application-prod.yml
+|   |       |   application.yml
+|   |       |   
+|   |       +---com
+|   |       |   \---platform
+|   |       |           PlatformApplication.class
+|   |       |           
+|   |       \---db
+|   |           \---migration
+|   |                   V14__seed_notification_templates.sql
+|   |                   V1__init_schema.sql
+|   |                   V2__iam_schema.sql
+|   |                   V3__catalog_schema.sql
+|   |                   V3__order_payment_schema.sql
+|   |                   V4__order_schema.sql
+|   |                   V5__cart_schema.sql
+|   |                   V6__shipping_schema.sql
+|   |                   V7__analytics_schema.sql
+|   |                   V8__cms_schema.sql
+|   |                   V9__support_schema.sql
+|   |                   
+|   +---build
+|   |   |   resolvedMainClassName
+|   |   |   
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                       PlatformApplication.class
+|   |   |                       
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       platform-app-1.0.0-SNAPSHOT-plain.jar
+|   |   |       platform-app-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |       |   application-dev.yml
+|   |   |       |   application-prod.yml
+|   |   |       |   application.yml
+|   |   |       |   
+|   |   |       \---db
+|   |   |           \---migration
+|   |   |                   V14__seed_notification_templates.sql
+|   |   |                   V1__init_schema.sql
+|   |   |                   V2__iam_schema.sql
+|   |   |                   V3__catalog_schema.sql
+|   |   |                   V3__order_payment_schema.sql
+|   |   |                   V4__order_schema.sql
+|   |   |                   V5__cart_schema.sql
+|   |   |                   V6__shipping_schema.sql
+|   |   |                   V7__analytics_schema.sql
+|   |   |                   V8__cms_schema.sql
+|   |   |                   V9__support_schema.sql
+|   |   |                   
+|   |   \---tmp
+|   |       +---bootJar
+|   |       |       MANIFEST.MF
+|   |       |       
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |               PlatformApplication.java
+|           |               
+|           \---resources
+|               |   application-dev.yml
+|               |   application-prod.yml
+|               |   application.yml
+|               |   
+|               \---db
+|                   \---migration
+|                           V14__seed_notification_templates.sql
+|                           V1__init_schema.sql
+|                           V2__iam_schema.sql
+|                           V3__catalog_schema.sql
+|                           V3__order_payment_schema.sql
+|                           V4__order_schema.sql
+|                           V5__cart_schema.sql
+|                           V6__shipping_schema.sql
+|                           V7__analytics_schema.sql
+|                           V8__cms_schema.sql
+|                           V9__support_schema.sql
+|                           
++---promotion-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   \---main
+|   |       \---com
+|   |           \---platform
+|   |               \---promotion
+|   |                   +---api
+|   |                   |       PromotionController$ApplyCouponRequest.class
+|   |                   |       PromotionController$DiscountRequest.class
+|   |                   |       PromotionController$FlashSaleInfo.class
+|   |                   |       PromotionController$FlashSaleInfoMini.class
+|   |                   |       PromotionController.class
+|   |                   |       
+|   |                   +---application
+|   |                   |   +---dto
+|   |                   |   |       FlashSaleRequest$FlashSaleItemRequest.class
+|   |                   |   |       FlashSaleRequest.class
+|   |                   |   |       
+|   |                   |   \---service
+|   |                   |           CouponValidationService.class
+|   |                   |           FlashSaleService.class
+|   |                   |           PromotionService.class
+|   |                   |           
+|   |                   \---domain
+|   |                       +---event
+|   |                       |       FlashSaleStartedEvent.class
+|   |                       |       
+|   |                       +---model
+|   |                       |       Coupon.class
+|   |                       |       CouponUsage.class
+|   |                       |       DiscountType.class
+|   |                       |       FlashSale.class
+|   |                       |       FlashSaleItem.class
+|   |                       |       
+|   |                       \---repository
+|   |                               CouponRepository.class
+|   |                               CouponUsageRepository.class
+|   |                               FlashSaleRepository.class
+|   |                               
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---promotion
+|   |   |                       +---api
+|   |   |                       |       PromotionController$ApplyCouponRequest.class
+|   |   |                       |       PromotionController$DiscountRequest.class
+|   |   |                       |       PromotionController$FlashSaleInfo.class
+|   |   |                       |       PromotionController$FlashSaleInfoMini.class
+|   |   |                       |       PromotionController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       FlashSaleRequest$FlashSaleItemRequest$FlashSaleItemRequestBuilder.class
+|   |   |                       |   |       FlashSaleRequest$FlashSaleItemRequest.class
+|   |   |                       |   |       FlashSaleRequest$FlashSaleRequestBuilder.class
+|   |   |                       |   |       FlashSaleRequest.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           FlashSaleService.class
+|   |   |                       |           PromotionService.class
+|   |   |                       |           
+|   |   |                       \---domain
+|   |   |                           +---event
+|   |   |                           |       FlashSaleStartedEvent.class
+|   |   |                           |       
+|   |   |                           +---model
+|   |   |                           |       Coupon$CouponBuilder.class
+|   |   |                           |       Coupon.class
+|   |   |                           |       CouponUsage$CouponUsageBuilder.class
+|   |   |                           |       CouponUsage.class
+|   |   |                           |       DiscountType.class
+|   |   |                           |       FlashSale$FlashSaleBuilder.class
+|   |   |                           |       FlashSale.class
+|   |   |                           |       FlashSaleItem$FlashSaleItemBuilder.class
+|   |   |                           |       FlashSaleItem.class
+|   |   |                           |       
+|   |   |                           +---repository
+|   |   |                           |       CouponRepository.class
+|   |   |                           |       CouponUsageRepository.class
+|   |   |                           |       FlashSaleRepository.class
+|   |   |                           |       
+|   |   |                           \---service
+|   |   |                                   CouponValidationService.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       promotion-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           \---java
+|               \---com
+|                   \---platform
+|                       \---promotion
+|                           +---api
+|                           |       PromotionController.java
+|                           |       
+|                           +---application
+|                           |   +---dto
+|                           |   |       FlashSaleRequest.java
+|                           |   |       
+|                           |   \---service
+|                           |           CouponValidationService.java
+|                           |           FlashSaleService.java
+|                           |           PromotionService.java
+|                           |           
+|                           \---domain
+|                               +---event
+|                               |       FlashSaleStartedEvent.java
+|                               |       
+|                               +---model
+|                               |       Coupon.java
+|                               |       CouponUsage.java
+|                               |       DiscountType.java
+|                               |       FlashSale.java
+|                               |       FlashSaleItem.java
+|                               |       
+|                               \---repository
+|                                       CouponRepository.java
+|                                       CouponUsageRepository.java
+|                                       FlashSaleRepository.java
+|                                       
++---settlement-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   \---main
+|   |       |   application.yml
+|   |       |   
+|   |       \---com
+|   |           \---platform
+|   |               \---settlement
+|   |                   +---application
+|   |                   |   +---dto
+|   |                   |   |       SubOrderInfo.class
+|   |                   |   |       
+|   |                   |   \---service
+|   |                   |           CommissionCalculationService.class
+|   |                   |           SettlementService.class
+|   |                   |           
+|   |                   \---domain
+|   |                       +---model
+|   |                       |       CommissionRule.class
+|   |                       |       Settlement.class
+|   |                       |       SettlementItem.class
+|   |                       |       SettlementStatus.class
+|   |                       |       VendorAccount.class
+|   |                       |       
+|   |                       \---repository
+|   |                               CommissionRuleRepository.class
+|   |                               SettlementItemRepository.class
+|   |                               SettlementRepository.class
+|   |                               VendorAccountRepository.class
+|   |                               
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---settlement
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       SubOrderInfo.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           CommissionCalculationService.class
+|   |   |                       |           SettlementService$1.class
+|   |   |                       |           SettlementService.class
+|   |   |                       |           
+|   |   |                       \---domain
+|   |   |                           +---model
+|   |   |                           |       CommissionRule$CommissionRuleBuilder.class
+|   |   |                           |       CommissionRule.class
+|   |   |                           |       Settlement$SettlementBuilder.class
+|   |   |                           |       Settlement.class
+|   |   |                           |       SettlementItem$SettlementItemBuilder.class
+|   |   |                           |       SettlementItem.class
+|   |   |                           |       SettlementStatus.class
+|   |   |                           |       VendorAccount$VendorAccountBuilder.class
+|   |   |                           |       VendorAccount.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   CommissionRuleRepository.class
+|   |   |                                   SettlementItemRepository.class
+|   |   |                                   SettlementRepository.class
+|   |   |                                   VendorAccountRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       settlement-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |           \---settlement
+|           |               +---application
+|           |               |   +---dto
+|           |               |   |       SubOrderInfo.java
+|           |               |   |       
+|           |               |   \---service
+|           |               |           CommissionCalculationService.java
+|           |               |           SettlementService.java
+|           |               |           
+|           |               \---domain
+|           |                   +---model
+|           |                   |       CommissionRule.java
+|           |                   |       Settlement.java
+|           |                   |       SettlementItem.java
+|           |                   |       SettlementStatus.java
+|           |                   |       VendorAccount.java
+|           |                   |       
+|           |                   \---repository
+|           |                           CommissionRuleRepository.java
+|           |                           SettlementItemRepository.java
+|           |                           SettlementRepository.java
+|           |                           VendorAccountRepository.java
+|           |                           
+|           \---resources
+|                   application.yml
+|                   
++---shared-core
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   shared-code.zip
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   +---default
+|   |   \---main
+|   |       |   logback-spring.xml
+|   |       |   
+|   |       \---com
+|   |           \---platform
+|   |               \---core
+|   |                   +---api
+|   |                   |       AbstractBaseController.class
+|   |                   |       AbstractCrudController.class
+|   |                   |       
+|   |                   +---client
+|   |                   |       ResilientRestClient.class
+|   |                   |       RestClient.class
+|   |                   |       RestClientFactory.class
+|   |                   |       
+|   |                   +---cloud
+|   |                   |   +---messaging
+|   |                   |   |       SnsSmsSender.class
+|   |                   |   |       
+|   |                   |   +---push
+|   |                   |   |       FcmPushService.class
+|   |                   |   |       
+|   |                   |   \---storage
+|   |                   |           S3StorageService.class
+|   |                   |           StorageProperties.class
+|   |                   |           StorageService.class
+|   |                   |           
+|   |                   +---config
+|   |                   |       CacheConfig.class
+|   |                   |       CloudConfig.class
+|   |                   |       CoreAutoConfiguration.class
+|   |                   |       Resilience4jConfig.class
+|   |                   |       SwaggerConfig.class
+|   |                   |       
+|   |                   +---domain
+|   |                   |       Address.class
+|   |                   |       AuditableEntity.class
+|   |                   |       BaseEntity.class
+|   |                   |       Money.class
+|   |                   |       PhoneNumber.class
+|   |                   |       SlugGenerator.class
+|   |                   |       TenantAwareEntity.class
+|   |                   |       
+|   |                   +---dto
+|   |                   |       ApiResponse$ErrorInfo.class
+|   |                   |       ApiResponse.class
+|   |                   |       PagedResponse.class
+|   |                   |       SearchCriteria.class
+|   |                   |       
+|   |                   +---event
+|   |                   |       DisputeOpenedEvent.class
+|   |                   |       DisputeResolvedEvent.class
+|   |                   |       DomainEvent.class
+|   |                   |       DomainEventPublisher.class
+|   |                   |       EventStore.class
+|   |                   |       IntegrationEvent.class
+|   |                   |       OrderShippedEvent.class
+|   |                   |       PaymentCompletedEvent.class
+|   |                   |       PaymentFailedEvent.class
+|   |                   |       ShipmentCreatedEvent.class
+|   |                   |       ShipmentDeliveredEvent.class
+|   |                   |       ShipmentInTransitEvent.class
+|   |                   |       ShipmentOutForDeliveryEvent.class
+|   |                   |       ShipmentPickedUpEvent.class
+|   |                   |       SpringDomainEventPublisher.class
+|   |                   |       StoredEvent.class
+|   |                   |       StoredEventRepository.class
+|   |                   |       
+|   |                   +---exception
+|   |                   |       BusinessException.class
+|   |                   |       ConflictException.class
+|   |                   |       GlobalExceptionHandler.class
+|   |                   |       ResourceNotFoundException.class
+|   |                   |       UnauthorizedException.class
+|   |                   |       ValidationException.class
+|   |                   |       
+|   |                   +---filter
+|   |                   |       CorrelationIdFilter.class
+|   |                   |       
+|   |                   +---idempotency
+|   |                   |       IdempotencyKeyFilter.class
+|   |                   |       IdempotencyService.class
+|   |                   |       
+|   |                   +---repository
+|   |                   |       BaseRepository.class
+|   |                   |       SoftDeleteRepository.class
+|   |                   |       
+|   |                   +---security
+|   |                   |       CurrentUser.class
+|   |                   |       InternalApiKeyFilter.class
+|   |                   |       RateLimitFilter.class
+|   |                   |       SecurityUtils.class
+|   |                   |       TenantContext.class
+|   |                   |       UserContext.class
+|   |                   |       
+|   |                   +---service
+|   |                   |       AbstractCrudService.class
+|   |                   |       
+|   |                   \---util
+|   |                           JsonUtils.class
+|   |                           
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---core
+|   |   |                       +---api
+|   |   |                       |       AbstractBaseController.class
+|   |   |                       |       AbstractCrudController.class
+|   |   |                       |       
+|   |   |                       +---client
+|   |   |                       |       ResilientRestClient.class
+|   |   |                       |       RestClient.class
+|   |   |                       |       RestClientFactory.class
+|   |   |                       |       
+|   |   |                       +---cloud
+|   |   |                       |   +---messaging
+|   |   |                       |   |       SnsSmsSender.class
+|   |   |                       |   |       
+|   |   |                       |   +---push
+|   |   |                       |   |       FcmPushService.class
+|   |   |                       |   |       
+|   |   |                       |   \---storage
+|   |   |                       |           S3StorageService.class
+|   |   |                       |           StorageProperties.class
+|   |   |                       |           StorageService.class
+|   |   |                       |           
+|   |   |                       +---config
+|   |   |                       |       CacheConfig.class
+|   |   |                       |       CloudConfig.class
+|   |   |                       |       CoreAutoConfiguration.class
+|   |   |                       |       Resilience4jConfig.class
+|   |   |                       |       SwaggerConfig.class
+|   |   |                       |       
+|   |   |                       +---domain
+|   |   |                       |       Address$AddressBuilder.class
+|   |   |                       |       Address.class
+|   |   |                       |       AuditableEntity.class
+|   |   |                       |       BaseEntity.class
+|   |   |                       |       Money.class
+|   |   |                       |       PhoneNumber$PhoneNumberBuilder.class
+|   |   |                       |       PhoneNumber.class
+|   |   |                       |       SlugGenerator.class
+|   |   |                       |       TenantAwareEntity.class
+|   |   |                       |       
+|   |   |                       +---dto
+|   |   |                       |       ApiResponse$ApiResponseBuilder.class
+|   |   |                       |       ApiResponse$ErrorInfo.class
+|   |   |                       |       ApiResponse.class
+|   |   |                       |       PagedResponse$PagedResponseBuilder.class
+|   |   |                       |       PagedResponse.class
+|   |   |                       |       SearchCriteria$SearchCriteriaBuilder.class
+|   |   |                       |       SearchCriteria.class
+|   |   |                       |       
+|   |   |                       +---event
+|   |   |                       |       DisputeOpenedEvent.class
+|   |   |                       |       DisputeResolvedEvent.class
+|   |   |                       |       DomainEvent.class
+|   |   |                       |       DomainEventPublisher.class
+|   |   |                       |       EventStore.class
+|   |   |                       |       IntegrationEvent.class
+|   |   |                       |       OrderShippedEvent.class
+|   |   |                       |       PaymentCompletedEvent.class
+|   |   |                       |       PaymentFailedEvent.class
+|   |   |                       |       ShipmentCreatedEvent.class
+|   |   |                       |       ShipmentDeliveredEvent.class
+|   |   |                       |       ShipmentInTransitEvent.class
+|   |   |                       |       ShipmentOutForDeliveryEvent.class
+|   |   |                       |       ShipmentPickedUpEvent.class
+|   |   |                       |       SpringDomainEventPublisher.class
+|   |   |                       |       StoredEvent$StoredEventBuilder.class
+|   |   |                       |       StoredEvent.class
+|   |   |                       |       StoredEventRepository.class
+|   |   |                       |       
+|   |   |                       +---exception
+|   |   |                       |       BusinessException.class
+|   |   |                       |       ConflictException.class
+|   |   |                       |       GlobalExceptionHandler.class
+|   |   |                       |       ResourceNotFoundException.class
+|   |   |                       |       UnauthorizedException.class
+|   |   |                       |       ValidationException.class
+|   |   |                       |       
+|   |   |                       +---filter
+|   |   |                       |       CorrelationIdFilter.class
+|   |   |                       |       
+|   |   |                       +---idempotency
+|   |   |                       |       IdempotencyKeyFilter.class
+|   |   |                       |       IdempotencyService.class
+|   |   |                       |       
+|   |   |                       +---repository
+|   |   |                       |       BaseRepository.class
+|   |   |                       |       SoftDeleteRepository.class
+|   |   |                       |       
+|   |   |                       +---security
+|   |   |                       |       CurrentUser.class
+|   |   |                       |       InternalApiKeyFilter.class
+|   |   |                       |       RateLimitFilter.class
+|   |   |                       |       SecurityUtils.class
+|   |   |                       |       TenantContext.class
+|   |   |                       |       UserContext$UserContextBuilder.class
+|   |   |                       |       UserContext.class
+|   |   |                       |       
+|   |   |                       +---service
+|   |   |                       |       AbstractCrudService.class
+|   |   |                       |       
+|   |   |                       \---util
+|   |   |                               JsonUtils.class
+|   |   |                               
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       shared-core-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           logback-spring.xml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       \---main
+|           +---java
+|           |   \---com
+|           |       \---platform
+|           |           \---core
+|           |               +---api
+|           |               |       AbstractBaseController.java
+|           |               |       AbstractCrudController.java
+|           |               |       
+|           |               +---client
+|           |               |       ResilientRestClient.java
+|           |               |       RestClient.java
+|           |               |       RestClientFactory.java
+|           |               |       
+|           |               +---cloud
+|           |               |   +---messaging
+|           |               |   |       SnsSmsSender.java
+|           |               |   |       
+|           |               |   +---push
+|           |               |   |       FcmPushService.java
+|           |               |   |       
+|           |               |   \---storage
+|           |               |           S3StorageService.java
+|           |               |           StorageProperties.java
+|           |               |           StorageService.java
+|           |               |           
+|           |               +---config
+|           |               |       CacheConfig.java
+|           |               |       CloudConfig.java
+|           |               |       CoreAutoConfiguration.java
+|           |               |       Resilience4jConfig.java
+|           |               |       SwaggerConfig.java
+|           |               |       
+|           |               +---domain
+|           |               |       Address.java
+|           |               |       AuditableEntity.java
+|           |               |       BaseEntity.java
+|           |               |       Money.java
+|           |               |       PhoneNumber.java
+|           |               |       SlugGenerator.java
+|           |               |       TenantAwareEntity.java
+|           |               |       
+|           |               +---dto
+|           |               |       ApiResponse.java
+|           |               |       PagedResponse.java
+|           |               |       SearchCriteria.java
+|           |               |       
+|           |               +---event
+|           |               |       DisputeOpenedEvent.java
+|           |               |       DisputeResolvedEvent.java
+|           |               |       DomainEvent.java
+|           |               |       DomainEventPublisher.java
+|           |               |       EventStore.java
+|           |               |       IntegrationEvent.java
+|           |               |       OrderShippedEvent.java
+|           |               |       PaymentCompletedEvent.java
+|           |               |       PaymentFailedEvent.java
+|           |               |       ShipmentCreatedEvent.java
+|           |               |       ShipmentDeliveredEvent.java
+|           |               |       ShipmentInTransitEvent.java
+|           |               |       ShipmentOutForDeliveryEvent.java
+|           |               |       ShipmentPickedUpEvent.java
+|           |               |       SpringDomainEventPublisher.java
+|           |               |       StoredEvent.java
+|           |               |       StoredEventRepository.java
+|           |               |       
+|           |               +---exception
+|           |               |       BusinessException.java
+|           |               |       ConflictException.java
+|           |               |       GlobalExceptionHandler.java
+|           |               |       ResourceNotFoundException.java
+|           |               |       UnauthorizedException.java
+|           |               |       ValidationException.java
+|           |               |       
+|           |               +---filter
+|           |               |       CorrelationIdFilter.java
+|           |               |       
+|           |               +---idempotency
+|           |               |       IdempotencyKeyFilter.java
+|           |               |       IdempotencyService.java
+|           |               |       
+|           |               +---repository
+|           |               |       BaseRepository.java
+|           |               |       SoftDeleteRepository.java
+|           |               |       
+|           |               +---security
+|           |               |       CurrentUser.java
+|           |               |       InternalApiKeyFilter.java
+|           |               |       RateLimitFilter.java
+|           |               |       SecurityUtils.java
+|           |               |       TenantContext.java
+|           |               |       UserContext.java
+|           |               |       
+|           |               +---service
+|           |               |       AbstractCrudService.java
+|           |               |       
+|           |               \---util
+|           |                       JsonUtils.java
+|           |                       
+|           \---resources
+|                   logback-spring.xml
+|                   
++---shared-objects
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   |   .gitignore
+|   |   |   
+|   |   +---main
+|   |   |   \---com
+|   |   |       \---platform
+|   |   |           \---common
+|   |   |               \---domain
+|   |   |                   \---event
+|   |   |                           OrderDeliveredEvent.class
+|   |   |                           OrderPlacedEvent.class
+|   |   |                           ProductAddedToCartEvent.class
+|   |   |                           ProductApprovedEvent.class
+|   |   |                           ProductViewedEvent.class
+|   |   |                           UserRegisteredEvent.class
+|   |   |                           VendorApprovedEvent.class
+|   |   |                           
+|   |   \---test
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---common
+|   |   |                       \---domain
+|   |   |                           \---event
+|   |   |                                   OrderDeliveredEvent.class
+|   |   |                                   OrderPlacedEvent.class
+|   |   |                                   ProductAddedToCartEvent.class
+|   |   |                                   ProductApprovedEvent.class
+|   |   |                                   ProductViewedEvent.class
+|   |   |                                   UserRegisteredEvent.class
+|   |   |                                   VendorApprovedEvent.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       shared-objects-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       +---main
+|       |   +---java
+|       |   |   \---com
+|       |   |       \---platform
+|       |   |           \---common
+|       |   |               \---domain
+|       |   |                   \---event
+|       |   |                           OrderDeliveredEvent.java
+|       |   |                           OrderPlacedEvent.java
+|       |   |                           ProductAddedToCartEvent.java
+|       |   |                           ProductApprovedEvent.java
+|       |   |                           ProductViewedEvent.java
+|       |   |                           UserRegisteredEvent.java
+|       |   |                           VendorApprovedEvent.java
+|       |   |                           
+|       |   \---resources
+|       \---test
+|           +---java
+|           \---resources
++---shipping-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   +---main
+|   |   |   |   application.yml
+|   |   |   |   
+|   |   |   \---com
+|   |   |       \---platform
+|   |   |           \---shipping
+|   |   |               +---api
+|   |   |               |       ShippingController.class
+|   |   |               |       ShippingWebhookController.class
+|   |   |               |       TrackingController.class
+|   |   |               |       
+|   |   |               +---application
+|   |   |               |   +---dto
+|   |   |               |   |       CarrierWebhookPayload.class
+|   |   |               |   |       CreateShipmentRequest.class
+|   |   |               |   |       ShipmentResponse.class
+|   |   |               |   |       ShippingRateRequest.class
+|   |   |               |   |       ShippingRateResponse.class
+|   |   |               |   |       TrackingResponse$TrackingEvent.class
+|   |   |               |   |       TrackingResponse.class
+|   |   |               |   |       
+|   |   |               |   +---mapper
+|   |   |               |   |       ShippingMapper.class
+|   |   |               |   |       
+|   |   |               |   +---provider
+|   |   |               |   |   |   ShippingProviderAdapter.class
+|   |   |               |   |   |   ShippingProviderFactory.class
+|   |   |               |   |   |   
+|   |   |               |   |   \---impl
+|   |   |               |   |           DummyShippingProvider.class
+|   |   |               |   |           PathaoShippingProvider.class
+|   |   |               |   |           RedxShippingProvider.class
+|   |   |               |   |           
+|   |   |               |   \---service
+|   |   |               |           CarrierWebhookService.class
+|   |   |               |           ShippingRateCalculator.class
+|   |   |               |           ShippingService$AssignShipmentRequest.class
+|   |   |               |           ShippingService$SubOrderInfo.class
+|   |   |               |           ShippingService.class
+|   |   |               |           TrackingService.class
+|   |   |               |           
+|   |   |               +---config
+|   |   |               |       ShippingModuleConfig.class
+|   |   |               |       
+|   |   |               +---domain
+|   |   |               |   +---event
+|   |   |               |   +---model
+|   |   |               |   |       DeliveryZone.class
+|   |   |               |   |       Shipment.class
+|   |   |               |   |       ShipmentStatus.class
+|   |   |               |   |       ShippingMethod.class
+|   |   |               |   |       ShippingRate.class
+|   |   |               |   |       
+|   |   |               |   \---repository
+|   |   |               |           DeliveryZoneRepository.class
+|   |   |               |           ShipmentRepository.class
+|   |   |               |           
+|   |   |               \---infrastructure
+|   |   \---test
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---shipping
+|   |   |                       +---api
+|   |   |                       |       ShippingController.class
+|   |   |                       |       ShippingWebhookController.class
+|   |   |                       |       TrackingController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       CarrierWebhookPayload$CarrierWebhookPayloadBuilder.class
+|   |   |                       |   |       CarrierWebhookPayload.class
+|   |   |                       |   |       CreateShipmentRequest$CreateShipmentRequestBuilder.class
+|   |   |                       |   |       CreateShipmentRequest.class
+|   |   |                       |   |       ShipmentResponse$ShipmentResponseBuilder.class
+|   |   |                       |   |       ShipmentResponse.class
+|   |   |                       |   |       ShippingRateRequest$ShippingRateRequestBuilder.class
+|   |   |                       |   |       ShippingRateRequest.class
+|   |   |                       |   |       ShippingRateResponse$ShippingRateResponseBuilder.class
+|   |   |                       |   |       ShippingRateResponse.class
+|   |   |                       |   |       TrackingResponse$TrackingEvent$TrackingEventBuilder.class
+|   |   |                       |   |       TrackingResponse$TrackingEvent.class
+|   |   |                       |   |       TrackingResponse$TrackingResponseBuilder.class
+|   |   |                       |   |       TrackingResponse.class
+|   |   |                       |   |       
+|   |   |                       |   +---mapper
+|   |   |                       |   |       ShippingMapper.class
+|   |   |                       |   |       
+|   |   |                       |   +---provider
+|   |   |                       |   |   |   ShippingProviderAdapter.class
+|   |   |                       |   |   |   ShippingProviderFactory.class
+|   |   |                       |   |   |   
+|   |   |                       |   |   \---impl
+|   |   |                       |   |           DummyShippingProvider.class
+|   |   |                       |   |           PathaoShippingProvider.class
+|   |   |                       |   |           RedxShippingProvider.class
+|   |   |                       |   |           
+|   |   |                       |   \---service
+|   |   |                       |           CarrierWebhookService.class
+|   |   |                       |           ShippingRateCalculator.class
+|   |   |                       |           ShippingService$1.class
+|   |   |                       |           ShippingService$AssignShipmentRequest.class
+|   |   |                       |           ShippingService$SubOrderInfo.class
+|   |   |                       |           ShippingService.class
+|   |   |                       |           TrackingService.class
+|   |   |                       |           
+|   |   |                       +---config
+|   |   |                       |       ShippingModuleConfig.class
+|   |   |                       |       
+|   |   |                       \---domain
+|   |   |                           +---model
+|   |   |                           |       DeliveryZone$DeliveryZoneBuilder.class
+|   |   |                           |       DeliveryZone.class
+|   |   |                           |       Shipment$ShipmentBuilder.class
+|   |   |                           |       Shipment.class
+|   |   |                           |       ShipmentStatus.class
+|   |   |                           |       ShippingMethod.class
+|   |   |                           |       ShippingRate$ShippingRateBuilder.class
+|   |   |                           |       ShippingRate.class
+|   |   |                           |       
+|   |   |                           \---repository
+|   |   |                                   DeliveryZoneRepository.class
+|   |   |                                   ShipmentRepository.class
+|   |   |                                   
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       shipping-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       +---main
+|       |   +---java
+|       |   |   \---com
+|       |   |       \---platform
+|       |   |           \---shipping
+|       |   |               +---api
+|       |   |               |       ShippingController.java
+|       |   |               |       ShippingWebhookController.java
+|       |   |               |       TrackingController.java
+|       |   |               |       
+|       |   |               +---application
+|       |   |               |   +---dto
+|       |   |               |   |       CarrierWebhookPayload.java
+|       |   |               |   |       CreateShipmentRequest.java
+|       |   |               |   |       ShipmentResponse.java
+|       |   |               |   |       ShippingRateRequest.java
+|       |   |               |   |       ShippingRateResponse.java
+|       |   |               |   |       TrackingResponse.java
+|       |   |               |   |       
+|       |   |               |   +---mapper
+|       |   |               |   |       ShippingMapper.java
+|       |   |               |   |       
+|       |   |               |   +---provider
+|       |   |               |   |   |   ShippingProviderAdapter.java
+|       |   |               |   |   |   ShippingProviderFactory.java
+|       |   |               |   |   |   
+|       |   |               |   |   \---impl
+|       |   |               |   |           DummyShippingProvider.java
+|       |   |               |   |           PathaoShippingProvider.java
+|       |   |               |   |           RedxShippingProvider.java
+|       |   |               |   |           
+|       |   |               |   \---service
+|       |   |               |           CarrierWebhookService.java
+|       |   |               |           ShippingRateCalculator.java
+|       |   |               |           ShippingService.java
+|       |   |               |           TrackingService.java
+|       |   |               |           
+|       |   |               +---config
+|       |   |               |       ShippingModuleConfig.java
+|       |   |               |       
+|       |   |               +---domain
+|       |   |               |   +---event
+|       |   |               |   +---model
+|       |   |               |   |       DeliveryZone.java
+|       |   |               |   |       Shipment.java
+|       |   |               |   |       ShipmentStatus.java
+|       |   |               |   |       ShippingMethod.java
+|       |   |               |   |       ShippingRate.java
+|       |   |               |   |       
+|       |   |               |   \---repository
+|       |   |               |           DeliveryZoneRepository.java
+|       |   |               |           ShipmentRepository.java
+|       |   |               |           
+|       |   |               \---infrastructure
+|       |   \---resources
+|       |           application.yml
+|       |           
+|       \---test
+|           \---java
++---support-module
+|   |   .classpath
+|   |   .project
+|   |   build.gradle
+|   |   
+|   +---.settings
+|   |       org.eclipse.buildship.core.prefs
+|   |       org.eclipse.jdt.core.prefs
+|   |       
+|   +---bin
+|   |   +---main
+|   |   |   |   application.yml
+|   |   |   |   
+|   |   |   \---com
+|   |   |       \---platform
+|   |   |           \---support
+|   |   |               |   SupportModuleConfig.class
+|   |   |               |   
+|   |   |               +---api
+|   |   |               |       AdminSupportController.class
+|   |   |               |       ChatController.class
+|   |   |               |       CustomerSupportController.class
+|   |   |               |       VendorSupportController.class
+|   |   |               |       
+|   |   |               +---application
+|   |   |               |   +---dto
+|   |   |               |   |       ChatMessageDTO.class
+|   |   |               |   |       CreateDisputeRequest.class
+|   |   |               |   |       CreateTicketRequest.class
+|   |   |               |   |       DisputeRequest.class
+|   |   |               |   |       DisputeResponse.class
+|   |   |               |   |       SupportStatsResponse.class
+|   |   |               |   |       TicketMessageRequest.class
+|   |   |               |   |       TicketMessageResponse.class
+|   |   |               |   |       TicketResponse.class
+|   |   |               |   |       
+|   |   |               |   +---integration
+|   |   |               |   +---mapper
+|   |   |               |   |       SupportMapper.class
+|   |   |               |   |       
+|   |   |               |   \---service
+|   |   |               |           ChatPresenceService.class
+|   |   |               |           ChatService.class
+|   |   |               |           DisputeService$OrderInfo.class
+|   |   |               |           DisputeService$RefundRequest.class
+|   |   |               |           DisputeService$SubOrderInfo.class
+|   |   |               |           DisputeService$UserInfo.class
+|   |   |               |           DisputeService$VendorInfo.class
+|   |   |               |           DisputeService.class
+|   |   |               |           SupportAutomationService.class
+|   |   |               |           TicketService$OrderInfo.class
+|   |   |               |           TicketService$UserInfo.class
+|   |   |               |           TicketService$VendorInfo.class
+|   |   |               |           TicketService.class
+|   |   |               |           
+|   |   |               +---config
+|   |   |               |       WebSocketConfig.class
+|   |   |               |       
+|   |   |               +---domain
+|   |   |               |   +---event
+|   |   |               |   |       TicketAssignedEvent.class
+|   |   |               |   |       TicketCreatedEvent.class
+|   |   |               |   |       TicketUpdatedEvent.class
+|   |   |               |   |       
+|   |   |               |   +---model
+|   |   |               |   |       ChatMessage.class
+|   |   |               |   |       ChatSession.class
+|   |   |               |   |       Dispute.class
+|   |   |               |   |       DisputeResolution.class
+|   |   |               |   |       DisputeStatus.class
+|   |   |               |   |       Ticket.class
+|   |   |               |   |       TicketCategory.class
+|   |   |               |   |       TicketMessage.class
+|   |   |               |   |       TicketPriority.class
+|   |   |               |   |       TicketStatus.class
+|   |   |               |   |       
+|   |   |               |   \---repository
+|   |   |               |           ChatMessageRepository.class
+|   |   |               |           ChatSessionRepository.class
+|   |   |               |           DisputeRepository.class
+|   |   |               |           TicketCategoryRepository.class
+|   |   |               |           TicketMessageRepository.class
+|   |   |               |           TicketRepository.class
+|   |   |               |           
+|   |   |               \---infrastructure
+|   |   |                   |   ChatWebSocketConfig.class
+|   |   |                   |   
+|   |   |                   \---websocket
+|   |   \---test
+|   +---build
+|   |   +---classes
+|   |   |   \---java
+|   |   |       \---main
+|   |   |           \---com
+|   |   |               \---platform
+|   |   |                   \---support
+|   |   |                       |   SupportModuleConfig.class
+|   |   |                       |   
+|   |   |                       +---api
+|   |   |                       |       AdminSupportController.class
+|   |   |                       |       ChatController.class
+|   |   |                       |       CustomerSupportController.class
+|   |   |                       |       VendorSupportController.class
+|   |   |                       |       
+|   |   |                       +---application
+|   |   |                       |   +---dto
+|   |   |                       |   |       ChatMessageDTO$ChatMessageDTOBuilder.class
+|   |   |                       |   |       ChatMessageDTO.class
+|   |   |                       |   |       CreateDisputeRequest$CreateDisputeRequestBuilder.class
+|   |   |                       |   |       CreateDisputeRequest.class
+|   |   |                       |   |       CreateTicketRequest$CreateTicketRequestBuilder.class
+|   |   |                       |   |       CreateTicketRequest.class
+|   |   |                       |   |       DisputeRequest$DisputeRequestBuilder.class
+|   |   |                       |   |       DisputeRequest.class
+|   |   |                       |   |       DisputeResponse$DisputeResponseBuilder.class
+|   |   |                       |   |       DisputeResponse.class
+|   |   |                       |   |       SupportStatsResponse$SupportStatsResponseBuilder.class
+|   |   |                       |   |       SupportStatsResponse.class
+|   |   |                       |   |       TicketMessageRequest$TicketMessageRequestBuilder.class
+|   |   |                       |   |       TicketMessageRequest.class
+|   |   |                       |   |       TicketMessageResponse$TicketMessageResponseBuilder.class
+|   |   |                       |   |       TicketMessageResponse.class
+|   |   |                       |   |       TicketResponse$TicketResponseBuilder.class
+|   |   |                       |   |       TicketResponse.class
+|   |   |                       |   |       
+|   |   |                       |   +---mapper
+|   |   |                       |   |       SupportMapper.class
+|   |   |                       |   |       
+|   |   |                       |   \---service
+|   |   |                       |           ChatPresenceService.class
+|   |   |                       |           ChatService.class
+|   |   |                       |           DisputeService$OrderInfo.class
+|   |   |                       |           DisputeService$RefundRequest.class
+|   |   |                       |           DisputeService$SubOrderInfo.class
+|   |   |                       |           DisputeService$UserInfo.class
+|   |   |                       |           DisputeService$VendorInfo.class
+|   |   |                       |           DisputeService.class
+|   |   |                       |           SupportAutomationService.class
+|   |   |                       |           TicketService$OrderInfo.class
+|   |   |                       |           TicketService$UserInfo.class
+|   |   |                       |           TicketService$VendorInfo.class
+|   |   |                       |           TicketService.class
+|   |   |                       |           
+|   |   |                       +---config
+|   |   |                       |       WebSocketConfig.class
+|   |   |                       |       
+|   |   |                       +---domain
+|   |   |                       |   +---event
+|   |   |                       |   |       TicketAssignedEvent.class
+|   |   |                       |   |       TicketCreatedEvent.class
+|   |   |                       |   |       TicketUpdatedEvent.class
+|   |   |                       |   |       
+|   |   |                       |   +---model
+|   |   |                       |   |       ChatMessage$ChatMessageBuilder.class
+|   |   |                       |   |       ChatMessage.class
+|   |   |                       |   |       ChatSession$ChatSessionBuilder.class
+|   |   |                       |   |       ChatSession.class
+|   |   |                       |   |       Dispute$DisputeBuilder.class
+|   |   |                       |   |       Dispute.class
+|   |   |                       |   |       DisputeResolution$DisputeResolutionBuilder.class
+|   |   |                       |   |       DisputeResolution.class
+|   |   |                       |   |       DisputeStatus.class
+|   |   |                       |   |       Ticket$TicketBuilder.class
+|   |   |                       |   |       Ticket.class
+|   |   |                       |   |       TicketCategory$TicketCategoryBuilder.class
+|   |   |                       |   |       TicketCategory.class
+|   |   |                       |   |       TicketMessage$TicketMessageBuilder.class
+|   |   |                       |   |       TicketMessage.class
+|   |   |                       |   |       TicketPriority.class
+|   |   |                       |   |       TicketStatus.class
+|   |   |                       |   |       
+|   |   |                       |   \---repository
+|   |   |                       |           ChatMessageRepository.class
+|   |   |                       |           ChatSessionRepository.class
+|   |   |                       |           DisputeRepository.class
+|   |   |                       |           TicketCategoryRepository.class
+|   |   |                       |           TicketMessageRepository.class
+|   |   |                       |           TicketRepository.class
+|   |   |                       |           
+|   |   |                       \---infrastructure
+|   |   |                               ChatWebSocketConfig.class
+|   |   |                               
+|   |   +---generated
+|   |   |   \---sources
+|   |   |       +---annotationProcessor
+|   |   |       |   \---java
+|   |   |       |       \---main
+|   |   |       \---headers
+|   |   |           \---java
+|   |   |               \---main
+|   |   +---libs
+|   |   |       support-module-1.0.0-SNAPSHOT.jar
+|   |   |       
+|   |   +---resources
+|   |   |   \---main
+|   |   |           application.yml
+|   |   |           
+|   |   \---tmp
+|   |       +---compileJava
+|   |       |   |   previous-compilation-data.bin
+|   |       |   |   
+|   |       |   \---compileTransaction
+|   |       |       +---backup-dir
+|   |       |       \---stash-dir
+|   |       \---jar
+|   |               MANIFEST.MF
+|   |               
+|   \---src
+|       +---main
+|       |   +---java
+|       |   |   \---com
+|       |   |       \---platform
+|       |   |           \---support
+|       |   |               |   SupportModuleConfig.java
+|       |   |               |   
+|       |   |               +---api
+|       |   |               |       AdminSupportController.java
+|       |   |               |       ChatController.java
+|       |   |               |       CustomerSupportController.java
+|       |   |               |       VendorSupportController.java
+|       |   |               |       
+|       |   |               +---application
+|       |   |               |   +---dto
+|       |   |               |   |       ChatMessageDTO.java
+|       |   |               |   |       CreateDisputeRequest.java
+|       |   |               |   |       CreateTicketRequest.java
+|       |   |               |   |       DisputeRequest.java
+|       |   |               |   |       DisputeResponse.java
+|       |   |               |   |       SupportStatsResponse.java
+|       |   |               |   |       TicketMessageRequest.java
+|       |   |               |   |       TicketMessageResponse.java
+|       |   |               |   |       TicketResponse.java
+|       |   |               |   |       
+|       |   |               |   +---integration
+|       |   |               |   +---mapper
+|       |   |               |   |       SupportMapper.java
+|       |   |               |   |       
+|       |   |               |   \---service
+|       |   |               |           ChatPresenceService.java
+|       |   |               |           ChatService.java
+|       |   |               |           DisputeService.java
+|       |   |               |           SupportAutomationService.java
+|       |   |               |           TicketService.java
+|       |   |               |           
+|       |   |               +---config
+|       |   |               |       WebSocketConfig.java
+|       |   |               |       
+|       |   |               +---domain
+|       |   |               |   +---event
+|       |   |               |   |       TicketAssignedEvent.java
+|       |   |               |   |       TicketCreatedEvent.java
+|       |   |               |   |       TicketUpdatedEvent.java
+|       |   |               |   |       
+|       |   |               |   +---model
+|       |   |               |   |       ChatMessage.java
+|       |   |               |   |       ChatSession.java
+|       |   |               |   |       Dispute.java
+|       |   |               |   |       DisputeResolution.java
+|       |   |               |   |       DisputeStatus.java
+|       |   |               |   |       Ticket.java
+|       |   |               |   |       TicketCategory.java
+|       |   |               |   |       TicketMessage.java
+|       |   |               |   |       TicketPriority.java
+|       |   |               |   |       TicketStatus.java
+|       |   |               |   |       
+|       |   |               |   \---repository
+|       |   |               |           ChatMessageRepository.java
+|       |   |               |           ChatSessionRepository.java
+|       |   |               |           DisputeRepository.java
+|       |   |               |           TicketCategoryRepository.java
+|       |   |               |           TicketMessageRepository.java
+|       |   |               |           TicketRepository.java
+|       |   |               |           
+|       |   |               \---infrastructure
+|       |   |                   |   ChatWebSocketConfig.java
+|       |   |                   |   
+|       |   |                   \---websocket
+|       |   \---resources
+|       |           application.yml
+|       |           
+|       \---test
+|           +---java
+|           \---resources
+\---_unknown
+        block_1.txt
+        block_24.txt
+        block_25.txt
+        block_26.txt
+        block_27.txt
+        block_28.txt
+        

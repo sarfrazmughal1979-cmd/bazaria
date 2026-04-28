@@ -1,7 +1,7 @@
 package com.platform.order.application.service;
 
 import com.platform.common.domain.event.OrderPlacedEvent;
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.domain.Money;
 import com.platform.core.event.DomainEventPublisher;
@@ -50,10 +50,10 @@ public class OrderService {
     @Value("${module.payment.url:http://localhost:8080}")
     private String paymentBaseUrl;  // not used in this class, but kept for consistency
 
-    private RestClient cartRestClient;
-    private RestClient catalogRestClient;
-    private RestClient inventoryRestClient;
-    private RestClient promotionRestClient;
+    private ResilientRestClient cartRestClient;
+    private ResilientRestClient catalogRestClient;
+    private ResilientRestClient inventoryRestClient;
+    private ResilientRestClient promotionRestClient;
 
     @PostConstruct
     public void init() {
@@ -100,7 +100,7 @@ public class OrderService {
         }
 
         // 3. Calculate totals and group by vendor
-        String currency = "BDT";
+        String currency = "PKR";
         Money subtotal = Money.zero(currency);
         Map<UUID, List<OrderItemInfo>> vendorItems = new HashMap<>();
 
@@ -244,7 +244,7 @@ public class OrderService {
 
     private Money calculateShipping(PlaceOrderRequest request,
                                     Map<UUID, List<OrderItemInfo>> vendorItems) {
-        return Money.bdt(BigDecimal.valueOf(vendorItems.size() * 60));
+        return Money.PKR(BigDecimal.valueOf(vendorItems.size() * 60));
     }
 
 

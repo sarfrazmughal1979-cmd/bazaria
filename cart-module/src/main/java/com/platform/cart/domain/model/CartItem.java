@@ -35,6 +35,11 @@ public class CartItem extends BaseEntity {
     @Column(name = "total_price", precision = 19, scale = 4)
     private BigDecimal totalPrice;
 
+    @Transient
+    private String productName;
+    @Transient
+    private String productImage;
+
     public CartItem(Cart cart, UUID productId, UUID variantId, int quantity) {
         this.setCart(cart);
         this.setProductId(productId);

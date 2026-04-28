@@ -1,6 +1,6 @@
 package com.platform.notification.application.channel;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class EmailChannel implements NotificationChannelAdapter {
     @Value("${module.iam.url:http://localhost:8080}")
     private String iamBaseUrl;
 
-    private RestClient iamRestClient;
+    private ResilientRestClient iamRestClient;
 
     @PostConstruct
     public void init() {

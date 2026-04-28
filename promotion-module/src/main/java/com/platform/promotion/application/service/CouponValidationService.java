@@ -1,4 +1,4 @@
-package com.platform.promotion.domain.service;
+package com.platform.promotion.application.service;
 
 import com.platform.promotion.domain.model.Coupon;
 import com.platform.promotion.domain.repository.CouponUsageRepository;

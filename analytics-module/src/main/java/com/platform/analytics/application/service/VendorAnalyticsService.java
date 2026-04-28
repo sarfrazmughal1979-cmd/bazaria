@@ -5,7 +5,7 @@ import com.platform.analytics.application.dto.VendorPerformanceResponse;
 import com.platform.analytics.domain.repository.SalesMetricRepository;
 import com.platform.analytics.domain.repository.VendorMetricRepository;
 import com.platform.analytics.domain.repository.ProductMetricRepository;
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.exception.ResourceNotFoundException;
 import jakarta.annotation.PostConstruct;
@@ -32,7 +32,7 @@ public class VendorAnalyticsService {
     @Value("${module.iam.url:http://localhost:8080}")
     private String iamBaseUrl;
 
-    private RestClient iamRestClient;
+    private ResilientRestClient iamRestClient;
 
     @PostConstruct
     public void init() {

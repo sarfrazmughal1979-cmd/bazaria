@@ -31,6 +31,12 @@ public class CatalogController {
         ProductSearchRequest request = ProductSearchRequest.builder().isFeatured(true).build();
         return ResponseEntity.ok(ApiResponse.success(catalogService.searchProducts(request, pageable)));
     }
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<PagedResponse<ProductResponse>>> searchProducts(@RequestParam(name = "categoryId", required = false, defaultValue = "0") UUID category,
+            @PageableDefault(size = 8) Pageable pageable) {
+        ProductSearchRequest request = ProductSearchRequest.builder().categoryId(category).build();
+        return ResponseEntity.ok(ApiResponse.success(catalogService.searchProducts(request, pageable)));
+    }
     @GetMapping("/categories/all")
     public ResponseEntity<ApiResponse<PagedResponse<ProductDetailResponse.CategoryInfo>>> getAllCategories(
             @PageableDefault(size = 8) Pageable pageable) {

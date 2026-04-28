@@ -40,6 +40,9 @@ public class SubOrder extends AuditableEntity {
     @Column(name = "category", nullable = false)
     private String category;
 
+    @Column(name = "category_id")
+    private UUID categoryId;
+
     @Column(name= "delivered_at")
     private Instant deliveredAt;
 

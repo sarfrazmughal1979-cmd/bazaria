@@ -20,6 +20,8 @@ public interface CartRepository extends BaseRepository<Cart> {
 
     Optional<Cart> findBySessionIdAndStatus(String sessionId, CartStatus status);
 
+    List<Cart> findByStatusAndUpdatedAtBefore(CartStatus status, Instant updatedAt);
+
     @Modifying
     @Query("UPDATE Cart c SET c.status = :status WHERE c.expiresAt < :now AND c.status = 'ACTIVE'")
     int expireOldCarts(@Param("now") Instant now, @Param("status") CartStatus status);

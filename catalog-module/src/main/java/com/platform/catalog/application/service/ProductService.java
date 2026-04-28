@@ -7,7 +7,7 @@ import com.platform.catalog.domain.model.*;
 import com.platform.catalog.domain.repository.CategoryRepository;
 import com.platform.catalog.domain.repository.ProductRepository;
 import com.platform.catalog.domain.repository.ProductVariantRepository;
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.domain.Money;
 import com.platform.core.dto.PagedResponse;
@@ -46,7 +46,7 @@ public class ProductService {
     @Value("${module.iam.url:http://localhost:8080}")
     private String iamBaseUrl;
 
-    private RestClient iamRestClient;
+    private ResilientRestClient iamRestClient;
 
     @PostConstruct
     public void init() {

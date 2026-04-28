@@ -110,14 +110,29 @@ public class InventoryService {
 
     @Transactional
     public void confirmReservation(UUID reservationId) {
-        // Deduct from actual stock when order is confirmed
-        // Implementation similar to reserveStock with different movement type
+        StockReservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Reservation", "id", reservationId));
+        if (!"ACTIVE".equals(reservation.getStatus())) return;
+        reservation.confirm();
+        InventoryItem item = reservation.getInventoryItem();
+        item.setQuantity(item.getQuantity() - reservation.getQuantity());
+        item.setReservedQuantity(item.getReservedQuantity() - reservation.getQuantity());
+        inventoryRepository.save(item);
+        reservationRepository.save(reservation);
+        log.info("Confirmed reservation {}", reservationId);
     }
 
     @Transactional
     public void releaseReservation(UUID reservationId) {
-        // Release reserved stock back
-        // Used for order cancellation or reservation timeout
+        StockReservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Reservation", "id", reservationId));
+        if (!"ACTIVE".equals(reservation.getStatus())) return;
+        reservation.release();
+        InventoryItem item = reservation.getInventoryItem();
+        item.setReservedQuantity(item.getReservedQuantity() - reservation.getQuantity());
+        inventoryRepository.save(item);
+        reservationRepository.save(reservation);
+        log.info("Released reservation {}", reservationId);
     }
 
     @Transactional

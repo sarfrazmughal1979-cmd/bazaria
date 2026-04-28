@@ -28,6 +28,13 @@ dependencies {
     implementation project(':shared-objects')
     implementation project(':shipping-module')
     implementation project(':support-module')
+    implementation project(':review-module')
+    implementation project(':search-module')
+    implementation project(':wishlist-module')
+    implementation project(':pricing-module')
+    implementation project(':media-module')
+    implementation project(':loyalty-module')
+    implementation project(':fraud-module')
 }
 
 flyway {

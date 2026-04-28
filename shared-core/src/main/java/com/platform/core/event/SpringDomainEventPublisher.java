@@ -7,14 +7,14 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+//@Component
 @RequiredArgsConstructor
-public class SpringDomainEventPublisher implements DomainEventPublisher {
+public class SpringDomainEventPublisher  { //implements DomainEventPublisher
 
     private final ApplicationEventPublisher applicationEventPublisher;
     private final EventStore eventStore;
 
-    @Override
+//    @Override
     public void publish(DomainEvent event) {
         log.debug("Publishing domain event: {} [{}]", event.getEventType(), event.getEventId());
         eventStore.store(event);
@@ -22,7 +22,7 @@ public class SpringDomainEventPublisher implements DomainEventPublisher {
     }
 
     @Async("domainEventExecutor")
-    @Override
+//    @Override
     public void publishAsync(DomainEvent event) {
         publish(event);
     }

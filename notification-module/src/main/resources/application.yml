@@ -73,7 +73,7 @@ cloud:
 
 # Platform Settings
 platform:
-  default-currency: BDT
+  default-currency: PKR
   default-commission-rate: 10
   max-products-per-vendor: 10000
   order-auto-cancel-hours: 24

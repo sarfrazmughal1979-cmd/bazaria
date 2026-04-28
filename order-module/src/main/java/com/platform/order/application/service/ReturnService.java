@@ -1,6 +1,6 @@
 package com.platform.order.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.exception.BusinessException;
 import com.platform.core.exception.ResourceNotFoundException;
@@ -30,7 +30,7 @@ public class ReturnService {
     @Value("${module.payment.url:http://localhost:8080}")
     private String paymentBaseUrl;
 
-    private RestClient paymentRestClient;
+    private ResilientRestClient paymentRestClient;
 
     @PostConstruct
     public void init() {

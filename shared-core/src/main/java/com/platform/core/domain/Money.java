@@ -35,12 +35,12 @@ public class Money {
         return new Money(BigDecimal.ZERO.setScale(4, RoundingMode.HALF_UP), currency);
     }
 
-    public static Money bdt(BigDecimal amount) {
-        return of(amount, "BDT");
+    public static Money PKR(BigDecimal amount) {
+        return of(amount, "PKR");
     }
 
-    public static Money bdt(double amount) {
-        return of(BigDecimal.valueOf(amount), "BDT");
+    public static Money PKR(double amount) {
+        return of(BigDecimal.valueOf(amount), "PKR");
     }
 
     public Money add(Money other) {

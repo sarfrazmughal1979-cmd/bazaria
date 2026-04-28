@@ -1,6 +1,6 @@
 package com.platform.support.application.service;
 
-import com.platform.core.client.RestClient;
+import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.dto.PagedResponse;
 import com.platform.core.event.DomainEventPublisher;
@@ -48,8 +48,8 @@ public class TicketService {
     @Value("${module.order.url:http://localhost:8080}")
     private String orderBaseUrl;
 
-    private RestClient iamRestClient;
-    private RestClient orderRestClient;
+    private ResilientRestClient iamRestClient;
+    private ResilientRestClient orderRestClient;
 
     @PostConstruct
     public void init() {

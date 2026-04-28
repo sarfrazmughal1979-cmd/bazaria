@@ -38,7 +38,7 @@ subprojects {
         implementation platform(libs.spring.boot.bom)
         implementation platform(libs.spring.cloud.bom)
         implementation platform(libs.aws.bom)
-
+		implementation 'org.springframework.boot:spring-boot-devtools'
         // Lombok: Essential for almost every Java module
         compileOnly libs.lombok
         annotationProcessor libs.lombok
@@ -51,5 +51,9 @@ subprojects {
         annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
         // Testing: Every module should have a test suite
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+    test {
+        useJUnitPlatform()
+        failOnNoDiscoveredTests = false
     }
 }

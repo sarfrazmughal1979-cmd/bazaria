@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: fraud-module
+
+platform:
+  fraud:
+    max-order-amount: 50000          # suspicious if above this
+    max-orders-per-hour: 10          # from same IP or user
+    high-risk-countries: XX,YY       # ISO codes, commaÃ¢â‚¬â€˜separated
+    auto-approve-score-below: 30     # autoÃ¢â‚¬â€˜approve if score < 30
+    auto-reject-score-above: 80      # autoÃ¢â‚¬â€˜reject if score > 80
