@@ -38,8 +38,8 @@ dependencies {
 }
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/ecommerce'
-    user = 'postgres'
-    password = 'postgres'
+    url = System.getenv("FLYWAY_URL") ?: 'jdbc:postgresql://localhost:5432/ecommerce'
+    user = System.getenv("FLYWAY_USER") ?: 'postgres'
+    password = System.getenv("FLYWAY_PASSWORD") ?: 'postgres'
     locations = ['filesystem:src/main/resources/db/migration']
 }

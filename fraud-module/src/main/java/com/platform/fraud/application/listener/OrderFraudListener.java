@@ -24,7 +24,7 @@ public class OrderFraudListener {
                 UUID.fromString(event.getOrderId()),
                 UUID.fromString(event.getCustomerId()),
                 event.getTotalAmount().doubleValue(),
-                "0.0.0.0" // placeholder IP
+                event.getCustomerIp()  // placeholder IP
         );
     }
 }

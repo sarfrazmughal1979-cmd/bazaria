@@ -22,7 +22,7 @@ public class OutboxEventPublisher implements DomainEventPublisher {
                     .id(UUID.randomUUID())
                     .aggregateType(event.getAggregateType())
                     .aggregateId(event.getAggregateId())
-                    .eventType(event.getClass().getSimpleName())
+                    .eventType(event.getClass().getName())
                     .payload(objectMapper.writeValueAsString(event))
                     .occurredOn(event.getOccurredOn())
                     .processed(false)

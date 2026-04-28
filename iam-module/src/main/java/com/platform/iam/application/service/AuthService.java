@@ -1,5 +1,6 @@
 package com.platform.iam.application.service;
 
+import com.platform.common.domain.event.UserLoggedInEvent;
 import com.platform.common.domain.event.UserRegisteredEvent;
 import com.platform.core.event.DomainEventPublisher;
 import com.platform.core.exception.BusinessException;
@@ -64,7 +65,7 @@ public class AuthService {
     }
 
     @Transactional
-    public TokenResponse login(LoginRequest request) {
+    public TokenResponse login(LoginRequest request, String sessionId) {
         User user = userRepository.findByEmail(request.getEmail().toLowerCase().trim())
                 .orElseThrow(() -> new BusinessException("INVALID_CREDENTIALS",
                         "Invalid email or password"));
@@ -82,6 +83,10 @@ public class AuthService {
         userRepository.save(user);
 
         UserContext userContext = buildUserContext(user);
+
+        if (sessionId != null && !sessionId.isBlank()) {
+            eventPublisher.publishAsync(new UserLoggedInEvent(user.getId().toString(), sessionId));
+        }
         return buildTokenResponse(userContext, user);
     }
 

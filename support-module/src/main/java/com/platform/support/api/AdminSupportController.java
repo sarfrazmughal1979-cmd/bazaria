@@ -3,11 +3,15 @@ package com.platform.support.api;
 import com.platform.core.dto.ApiResponse;
 import com.platform.core.dto.PagedResponse;
 import com.platform.support.application.dto.*;
+import com.platform.support.application.mapper.SupportMapper;
 import com.platform.support.application.service.DisputeService;
 import com.platform.support.application.service.SupportAutomationService;
 import com.platform.support.application.service.TicketService;
+import com.platform.support.domain.model.DisputeStatus;
+import com.platform.support.domain.model.Ticket;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +30,15 @@ public class AdminSupportController {
     private final TicketService ticketService;
     private final DisputeService disputeService;
     private final SupportAutomationService automationService;
+    private final SupportMapper mapper;
 
     @GetMapping("/tickets/pending")
     @Operation(summary = "Get all open tickets")
     public ResponseEntity<ApiResponse<PagedResponse<TicketResponse>>> getOpenTickets(
             @PageableDefault(size = 20) Pageable pageable) {
         // Implementation
-        throw new UnsupportedOperationException("Implement admin ticket list");
+        Page<Ticket> tickets = ticketService.findByStatus(pageable);
+        return ResponseEntity.ok(ApiResponse.success(PagedResponse.from(tickets.map(mapper::toResponse))));
     }
 
     @PutMapping("/tickets/{ticketId}/assign")
@@ -76,6 +82,13 @@ public class AdminSupportController {
     @Operation(summary = "Get support statistics")
     public ResponseEntity<ApiResponse<SupportStatsResponse>> getStats() {
         // Implementation would aggregate from repositories
-        throw new UnsupportedOperationException("Implement stats aggregation");
+        long openTickets = ticketService.countOpenTickets();
+        long pendingDisputes = disputeService.countByStatus(DisputeStatus.PENDING, Pageable.unpaged());
+        // ... compute averages etc.
+        return ResponseEntity.ok(ApiResponse.success(SupportStatsResponse.builder()
+                .openTickets(openTickets)
+                .pendingDisputes(pendingDisputes)
+                // ...
+                .build()));
     }
 }

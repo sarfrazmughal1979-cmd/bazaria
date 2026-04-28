@@ -5,6 +5,7 @@ import com.platform.iam.application.dto.*;
 import com.platform.iam.application.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,8 +32,10 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary = "Login with email and password")
     public ResponseEntity<ApiResponse<TokenResponse>> login(
-            @Valid @RequestBody LoginRequest request) {
-        TokenResponse response = authService.login(request);
+            @Valid @RequestBody LoginRequest request,
+            HttpServletRequest httpRequest) {
+        String sessionId = httpRequest.getHeader("X-Session-Id");
+        TokenResponse response = authService.login(request, sessionId);
         return ResponseEntity.ok(ApiResponse.success(response, "Login successful"));
     }
 

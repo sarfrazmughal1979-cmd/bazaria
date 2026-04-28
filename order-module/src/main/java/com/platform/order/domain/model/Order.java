@@ -78,6 +78,9 @@ public class Order extends AuditableEntity {
     @Column(name = "payment_id")
     private UUID paymentId;
 
+    @Column(name = "customer_ip")
+    private String customerIp;
+
     @Embedded
     @AttributeOverrides({
         @AttributeOverride(name = "addressLine1", column = @Column(name = "shipping_address_line1", insertable=false, updatable=false)),

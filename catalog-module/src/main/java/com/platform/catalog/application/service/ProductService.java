@@ -2,11 +2,13 @@ package com.platform.catalog.application.service;
 
 import com.platform.catalog.application.dto.*;
 import com.platform.catalog.application.mapper.ProductMapper;
-import com.platform.catalog.domain.event.ProductCreatedEvent;
 import com.platform.catalog.domain.model.*;
 import com.platform.catalog.domain.repository.CategoryRepository;
 import com.platform.catalog.domain.repository.ProductRepository;
 import com.platform.catalog.domain.repository.ProductVariantRepository;
+import com.platform.common.domain.event.ProductApprovedEvent;
+import com.platform.common.domain.event.ProductCreatedEvent;
+import com.platform.common.domain.event.ProductViewedEvent;
 import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.domain.Money;
@@ -123,7 +125,7 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "slug", slug));
 
         product.incrementViewCount();
-        
+        eventPublisher.publishAsync(new ProductViewedEvent(product.getId().toString(), product.getVendorId().toString()));
         ProductDetailResponse response = productMapper.toDetailResponse(product);
         // Fetch vendor name via REST
         String vendorName = iamRestClient.get(
@@ -196,7 +198,7 @@ public class ProductService {
         product.approve();
         productRepository.save(product);
 
-        eventPublisher.publish(new com.platform.catalog.domain.event.ProductApprovedEvent(
+        eventPublisher.publish(new ProductApprovedEvent(
                 productId.toString(), product.getVendorId().toString()));
     }
 

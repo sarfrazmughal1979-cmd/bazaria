@@ -7,6 +7,7 @@ import com.platform.cart.domain.model.Cart;
 import com.platform.cart.domain.model.CartItem;
 import com.platform.cart.domain.model.CartStatus;
 import com.platform.cart.domain.repository.CartRepository;
+import com.platform.common.domain.event.ProductAddedToCartEvent;
 import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.event.DomainEventPublisher;
@@ -110,7 +111,7 @@ public class CartService {
                     .orElseGet(() -> createEmptyCart(customerId, sessionId));
 
             // Validate product and price
-            BigDecimal unitPrice = validationService.validateAndGetPrice(
+            CartValidationService.ProductValResult valResult = validationService.validateAndGetPrice(
                     request.getProductId(), request.getVariantId(), request.getQuantity());
 
             // Find existing item or create new
@@ -123,13 +124,13 @@ public class CartService {
 
             if (existing != null) {
                 existing.setQuantity(existing.getQuantity() + request.getQuantity());
-                existing.setUnitPrice(unitPrice); // update price in case it changed
+                existing.setUnitPrice(valResult.price()); // update price in case it changed
             } else {
                 CartItem newItem = CartItem.builder()
                         .productId(request.getProductId())
                         .variantId(request.getVariantId())
                         .quantity(request.getQuantity())
-                        .unitPrice(unitPrice)
+                        .unitPrice(valResult.price())
                         .build();
                 cart.addItem(newItem);
             }
@@ -144,7 +145,12 @@ public class CartService {
 
             cartRepository.save(cart);
             eventPublisher.publishAsync(new CartUpdatedEvent(cart.getId().toString(), "ADD_ITEM"));
-
+            eventPublisher.publishAsync(new ProductAddedToCartEvent(
+                    request.getProductId().toString(),
+                    request.getVariantId() != null ? request.getVariantId().toString() : null,
+                    valResult.vendorId().toString(),
+                    request.getQuantity()
+            ));
             return cartMapper.toResponse(cart);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
