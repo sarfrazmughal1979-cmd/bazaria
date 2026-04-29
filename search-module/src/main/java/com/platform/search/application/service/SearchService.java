@@ -1,27 +1,17 @@
 package com.platform.search.application.service;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.MultiMatchQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.NumberRangeQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.query_dsl.*;
+import co.elastic.clients.elasticsearch.core.*;
+import co.elastic.clients.elasticsearch.core.search.*;
+import co.elastic.clients.json.JsonData;
 import com.platform.search.domain.model.ProductDocument;
-import co.elastic.clients.elasticsearch.core.SearchRequest;
-import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.core.search.CompletionSuggester;
-import co.elastic.clients.elasticsearch.core.search.FieldSuggester;
-import co.elastic.clients.elasticsearch.core.search.Suggester;
-import co.elastic.clients.elasticsearch.core.search.Suggestion;
-import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.elasticsearch.client.elc.NativeQuery;
-import org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.SearchHit;
-import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,13 +22,16 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SearchService {
 
-    private final ElasticsearchTemplate elasticsearchTemplate;
+    private final ElasticsearchClient elasticsearchClient;   // <-- auto‑configured bean
 
+    // ---------- Search ----------
     public Page<ProductDocument> search(String keyword, String categoryId, Double minPrice, Double maxPrice,
                                         String sortBy, String sortDir, int page, int size) {
+
+        // Build the bool query
         BoolQuery.Builder boolQuery = new BoolQuery.Builder();
 
-        // Keyword search
+        // Keyword
         if (keyword != null && !keyword.isBlank()) {
             boolQuery.must(Query.of(q -> q.multiMatch(MultiMatchQuery.of(mm -> mm
                     .query(keyword)
@@ -51,76 +44,117 @@ public class SearchService {
             boolQuery.filter(Query.of(q -> q.term(t -> t.field("categoryId").value(categoryId))));
         }
 
-        // Price range filter â€“ using NumberRangeQuery
+        // Price range
         if (minPrice != null || maxPrice != null) {
-            NumberRangeQuery.Builder nrBuilder = new NumberRangeQuery.Builder()
+            NumberRangeQuery.Builder rangeBuilder = new NumberRangeQuery.Builder()
                     .field("effectivePrice");
-            if (minPrice != null) nrBuilder.gte(minPrice.doubleValue());
-            if (maxPrice != null) nrBuilder.lte(maxPrice.doubleValue());
-            boolQuery.filter(Query.of(q -> q.range(r -> r.number(nrBuilder.build()))));
+            if (minPrice != null) rangeBuilder.gte(minPrice.doubleValue());
+            if (maxPrice != null) rangeBuilder.lte(maxPrice.doubleValue());
+            boolQuery.filter(Query.of(q -> q.range(r -> r.number(rangeBuilder.build()))));
         }
 
-        // Sorting
-        Sort sort = Sort.by(sortDir.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC,
-                sortBy != null ? sortBy : "_score");
+        // Sorting (default _score)
+        String sortField = (sortBy != null) ? sortBy : "_score";
+        boolean descending = "desc".equalsIgnoreCase(sortDir);
 
-        // Build and execute query
-        NativeQuery searchQuery = NativeQuery.builder()
-                .withQuery(q -> q.bool(boolQuery.build()))
-                .withPageable(PageRequest.of(page, size))
-                .withSort(sort)
-                .build();
+        try {
+            SearchRequest searchRequest = SearchRequest.of(sr -> sr
+                    .index("products")
+                    .query(q -> q.bool(boolQuery.build()))
+                    .from(page * size)
+                    .size(size)
+                    .sort(s -> s.field(f -> f.field(sortField).order(descending ? SortOrder.Desc : SortOrder.Asc)))
+            );
 
-        SearchHits<ProductDocument> hits = elasticsearchTemplate.search(searchQuery, ProductDocument.class);
-        List<ProductDocument> content = hits.getSearchHits().stream()
-                .map(SearchHit::getContent)
-                .collect(Collectors.toList());
-        return new PageImpl<>(content, PageRequest.of(page, size), hits.getTotalHits());
+            SearchResponse<ProductDocument> response = elasticsearchClient.search(searchRequest, ProductDocument.class);
+
+            List<ProductDocument> content = response.hits().hits().stream()
+                    .map(hit -> hit.source())
+                    .collect(Collectors.toList());
+
+            long totalHits = response.hits().total() != null ? response.hits().total().value() : 0;
+            return new PageImpl<>(content, PageRequest.of(page, size), totalHits);
+        } catch (Exception e) {
+            log.error("Search failed", e);
+            return Page.empty();
+        }
     }
 
+    // ---------- Featured ----------
     public Page<ProductDocument> findFeatured(int page, int size) {
-        NativeQuery query = NativeQuery.builder()
-                .withQuery(q -> q.term(t -> t.field("featured").value(true)))
-                .withPageable(PageRequest.of(page, size))
-                .build();
-        SearchHits<ProductDocument> hits = elasticsearchTemplate.search(query, ProductDocument.class);
-        List<ProductDocument> content = hits.getSearchHits().stream()
-                .map(SearchHit::getContent)
-                .collect(Collectors.toList());
-        return new PageImpl<>(content, PageRequest.of(page, size), hits.getTotalHits());
+        try {
+            SearchRequest request = SearchRequest.of(sr -> sr
+                    .index("products")
+                    .query(q -> q.term(t -> t.field("featured").value(true)))
+                    .from(page * size)
+                    .size(size)
+            );
+
+            SearchResponse<ProductDocument> response = elasticsearchClient.search(request, ProductDocument.class);
+            List<ProductDocument> content = response.hits().hits().stream()
+                    .map(hit -> hit.source())
+                    .collect(Collectors.toList());
+            long total = response.hits().total() != null ? response.hits().total().value() : 0;
+            return new PageImpl<>(content, PageRequest.of(page, size), total);
+        } catch (Exception e) {
+            log.error("Featured search failed", e);
+            return Page.empty();
+        }
     }
 
-        public List<String> autoComplete(String prefix, int size) {
-            try {
-                CompletionSuggester completionSuggester = CompletionSuggester.of(c -> c
-                        .field("suggest")
-                        .size(size)
-                        .skipDuplicates(true)
-                        .fuzzy(f -> f.fuzziness("AUTO"))
-                );
+    // ---------- Autocomplete ----------
+    public List<String> autoComplete(String prefix, int size) {
+        try {
+            SearchRequest request = SearchRequest.of(sr -> sr
+                    .index("products")
+                    .suggest(s -> s
+                            .suggesters("product-suggest", FieldSuggester.of(f -> f
+                                    .completion(CompletionSuggester.of(c -> c
+                                            .field("suggest")
+                                            .size(size)
+                                            .skipDuplicates(true)
+                                            .fuzzy(fuzzy -> fuzzy.fuzziness("AUTO"))
+                                    ))
+                            ))
+                    )
+                    .query(Query.of(q -> q.matchAll(m -> m)))
+            );
 
-                FieldSuggester fieldSuggester = FieldSuggester.of(f -> f.completion(completionSuggester));
-                Suggester suggester = Suggester.of(s -> s.suggesters("product-suggest", fieldSuggester));
+            SearchResponse<ProductDocument> response = elasticsearchClient.search(request, ProductDocument.class);
 
-                SearchRequest request = SearchRequest.of(sr -> sr
-                        .index("products")
-                        .suggest(suggester)
-                        .query(Query.of(q -> q.matchAll(m -> m)))
-                );
+            return response.suggest().get("product-suggest").stream()
+                    .filter(Suggestion::isCompletion)
+                    .flatMap(s -> s.completion().options().stream())
+                    .map(opt -> opt.text())
+                    .distinct()
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            log.error("Autocomplete failed", e);
+            return List.of();
+        }
+    }
 
-                SearchResponse<ProductDocument> response = elasticsearchTemplate.execute(
-                        client -> client.search(request, ProductDocument.class)
-                );
+    // ---------- Index a product (called from CatalogSyncListener) ----------
+    public void indexProduct(ProductDocument product) {
+        try {
+            elasticsearchClient.index(i -> i
+                    .index("products")
+                    .id(product.getId())
+                    .document(product)
+            );
+            log.debug("Indexed product {}", product.getId());
+        } catch (Exception e) {
+            log.error("Failed to index product {}", product.getId(), e);
+        }
+    }
 
-                return response.suggest().get("product-suggest").stream()
-                        .filter(Suggestion::isCompletion)
-                        .flatMap(s -> s.completion().options().stream())
-                        .map(opt -> opt.text())
-                        .distinct()
-                        .collect(Collectors.toList());
-            } catch (Exception e) {
-                log.error("Autocomplete failed for prefix '{}'", prefix, e);
-                return List.of();
-            }
+    // ---------- Delete a product from index ----------
+    public void deleteProduct(String productId) {
+        try {
+            elasticsearchClient.delete(d -> d.index("products").id(productId));
+            log.debug("Deleted product {} from index", productId);
+        } catch (Exception e) {
+            log.error("Failed to delete product {}", productId, e);
+        }
     }
 }

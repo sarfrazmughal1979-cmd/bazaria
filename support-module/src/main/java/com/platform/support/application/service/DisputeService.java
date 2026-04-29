@@ -196,8 +196,8 @@ public class DisputeService {
         }
         return response;
     }
-    public long countByStatus(DisputeStatus status, Pageable pageable){
-        return disputeRepository.countByStatus(status, pageable);
+    public long countByStatus(DisputeStatus status){
+        return disputeRepository.countByStatus(status);
     }
     // Request DTO for refund
     private record RefundRequest(UUID orderId, UUID subOrderId, BigDecimal amount, String reason) {}

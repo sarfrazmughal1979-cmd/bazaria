@@ -1,87 +1,105 @@
 package com.platform.search.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.*;
-import org.springframework.data.elasticsearch.core.suggest.Completion;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-@Document(indexName = "products")
-@Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductDocument {
 
-    @Id
+    @JsonProperty("id")
     private String id;
 
-    @Field(type = FieldType.Text, analyzer = "standard")
+    @JsonProperty("name")
     private String name;
 
-    @Field(type = FieldType.Keyword)
+    @JsonProperty("slug")
     private String slug;
 
-    @Field(type = FieldType.Keyword)
+    @JsonProperty("sku")
     private String sku;
 
-    @MultiField(
-        mainField = @Field(type = FieldType.Text, name = "description"),
-        otherFields = {
-            @InnerField(suffix = "keyword", type = FieldType.Keyword)
-        }
-    )
+    @JsonProperty("description")
     private String description;
 
-    @Field(type = FieldType.Text)
+    @JsonProperty("shortDescription")
     private String shortDescription;
 
-    @Field(type = FieldType.Keyword)
+    @JsonProperty("categoryId")
     private String categoryId;
 
-    @Field(type = FieldType.Text)
+    @JsonProperty("categoryName")
     private String categoryName;
 
-    @Field(type = FieldType.Keyword)
+    @JsonProperty("brandId")
     private String brandId;
 
-    @Field(type = FieldType.Text)
+    @JsonProperty("brandName")
     private String brandName;
 
-    @Field(type = FieldType.Keyword)
+    @JsonProperty("vendorId")
     private String vendorId;
 
-    @Field(type = FieldType.Text)
+    @JsonProperty("vendorName")
     private String vendorName;
 
-    @Field(type = FieldType.Double)
+    @JsonProperty("basePrice")
     private BigDecimal basePrice;
 
-    @Field(type = FieldType.Double)
+    @JsonProperty("effectivePrice")
     private BigDecimal effectivePrice;
 
-    @Field(type = FieldType.Double)
+    @JsonProperty("salePrice")
     private BigDecimal salePrice;
 
-    @Field(type = FieldType.Keyword)
+    @JsonProperty("currency")
     private String currency;
 
-    @Field(type = FieldType.Double)
+    @JsonProperty("averageRating")
     private BigDecimal averageRating;
 
-    @Field(type = FieldType.Integer)
+    @JsonProperty("reviewCount")
     private int reviewCount;
 
-    @Field(type = FieldType.Long)
+    @JsonProperty("soldCount")
     private long soldCount;
 
-    @Field(type = FieldType.Boolean)
+    @JsonProperty("inStock")
     private boolean inStock;
 
-    @Field(type = FieldType.Boolean)
+    @JsonProperty("featured")
     private boolean featured;
 
-    @Field(type = FieldType.Keyword)
+    @JsonProperty("primaryImage")
     private String primaryImage;
 
-    @CompletionField(maxInputLength = 100)
-    private Completion suggest;
+    // For completion suggester – must be a JSON object with an "input" array
+    @JsonProperty("suggest")
+    private Suggest suggest;
+
+    @Getter
+    @Setter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Suggest {
+        @JsonProperty("input")
+        private List<String> input;
+        @JsonProperty("weight")
+        private int weight;
+    }
+
+    // Helper to create suggest entry
+    public static Suggest createSuggest(String name) {
+        return Suggest.builder()
+                .input(List.of(name))
+                .weight(1)
+                .build();
+    }
 }

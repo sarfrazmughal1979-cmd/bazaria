@@ -1,11 +1,14 @@
 spring:
   application:
     name: ecommerce-platform
+  elasticsearch:
+    uris: https://my-elasticsearch-project-ab19d9.es.us-central1.gcp.elastic.cloud:443
+    api-key: WU1BNTJKMEJnYWQ5VDNTdVR2UVI6akVuSklNTW5NLVRPWWo0SEZLWE9hUQ==
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ecommerce}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:Mughal12}
+    url: jdbc:postgresql://pg-ecommerce-sarfraz-ecommerce.g.aivencloud.com:16798/ecommerce
+    username: avnadmin
+    password: AVNS_oUXR-o5QkAn4LivVVlM
     hikari:
       maximum-pool-size: 20
       minimum-idle: 5
@@ -32,12 +35,12 @@ spring:
 
   data:
     redis:
-      host: localhost
-#      host: ${REDIS_HOST:redis-11577.crce300.ap-south-1-2.ec2.cloud.redislabs.com}
-#      port: ${REDIS_PORT:11577}
-#      password: ${REDIS_PASSWORD:1Reasxce7sQwToXJm7FH3YFPclOeYuOq}
+#      host: localhost
+      host: ${REDIS_HOST:redis-11577.crce300.ap-south-1-2.ec2.cloud.redislabs.com}
+      port: ${REDIS_PORT:11577}
+      password: ${REDIS_PASSWORD:1Reasxce7sQwToXJm7FH3YFPclOeYuOq}
       timeout: 5000
-      port: 6379
+#      port: 6379
 
 
   cache:
@@ -81,8 +84,8 @@ platform:
 
 # Elasticsearch
 elasticsearch:
-  host: ${ES_HOST:localhost}
-  port: ${ES_PORT:9200}
+  host: https://my-elasticsearch-project-ab19d9.es.us-central1.gcp.elastic.cloud
+  port: 443
 
 # Actuator
 management:

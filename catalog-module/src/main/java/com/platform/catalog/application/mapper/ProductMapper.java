@@ -2,7 +2,7 @@ package com.platform.catalog.application.mapper;
 
 import com.platform.catalog.application.dto.CreateProductRequest;
 import com.platform.catalog.application.dto.ProductDetailResponse;
-import com.platform.catalog.application.dto.ProductResponse;
+import com.platform.common.application.dto.ProductResponse;
 import com.platform.catalog.domain.model.*;
 import org.springframework.stereotype.Component;
 

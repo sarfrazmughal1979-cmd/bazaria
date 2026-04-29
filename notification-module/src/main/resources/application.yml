@@ -81,8 +81,8 @@ platform:
 
 # Elasticsearch
 elasticsearch:
-  host: ${ES_HOST:localhost}
-  port: ${ES_PORT:9200}
+  host: https://my-elasticsearch-project-ab19d9.es.us-central1.gcp.elastic.cloud
+  port: ${ES_PORT:443}
 
 # Actuator
 management:

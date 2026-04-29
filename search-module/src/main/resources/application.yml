@@ -5,9 +5,8 @@ spring:
   application:
     name: search-module
   elasticsearch:
-    uris: ${ELASTICSEARCH_URI:http://localhost:9200}
-    username: ${ELASTICSEARCH_USERNAME:}
-    password: ${ELASTICSEARCH_PASSWORD:}
+    uris: https://my-elasticsearch-project-ab19d9.es.us-central1.gcp.elastic.cloud:443
+    api-key: WU1BNTJKMEJnYWQ5VDNTdVR2UVI6akVuSklNTW5NLVRPWWo0SEZLWE9hUQ==
 
 module:
   catalog:

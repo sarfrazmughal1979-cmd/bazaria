@@ -1,7 +1,7 @@
 package com.platform.catalog.api;
 
 import com.platform.catalog.application.dto.ProductDetailResponse;
-import com.platform.catalog.application.dto.ProductResponse;
+import com.platform.common.application.dto.ProductResponse;
 import com.platform.catalog.application.dto.ProductSearchRequest;
 import com.platform.catalog.application.service.ProductService;
 import com.platform.catalog.domain.model.Category;
@@ -84,7 +84,16 @@ public record ProductInfoMini(UUID id, String name, String slug, String imageUrl
                 category.getImageUrl()
         ));
     }
+// inside CatalogController.java
 
+    @GetMapping("/vendor/{vendorId}")
+    public ResponseEntity<ApiResponse<PagedResponse<ProductResponse>>> getVendorProducts(
+            @PathVariable UUID vendorId,
+            @PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(
+                ApiResponse.success(catalogService.getVendorProducts(vendorId, pageable))
+        );
+    }
     public record CatalogCategoryInfo(UUID categoryId, String name, String slug, String imageUrl) {}
     public record CatalogProductInfo(
             UUID productId,

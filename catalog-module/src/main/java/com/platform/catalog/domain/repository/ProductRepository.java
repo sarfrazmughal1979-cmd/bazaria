@@ -38,6 +38,7 @@ public interface ProductRepository extends SoftDeleteRepository<Product> {
 
     Page<Product> findByStatusAndDeletedFalse(ProductStatus status, Pageable pageable);
 
+	Page<Product> findByVendorId(UUID vendorId, Pageable pageable);
     // Featured products
     Page<Product> findByFeaturedTrueAndStatusAndDeletedFalse(
             ProductStatus status, Pageable pageable);
