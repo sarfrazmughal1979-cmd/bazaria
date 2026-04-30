@@ -83,7 +83,7 @@ public class AdminSupportController {
     public ResponseEntity<ApiResponse<SupportStatsResponse>> getStats() {
         // Implementation would aggregate from repositories
         long openTickets = ticketService.countOpenTickets();
-        long pendingDisputes = disputeService.countByStatus(DisputeStatus.PENDING, Pageable.unpaged());
+        long pendingDisputes = disputeService.countByStatus(DisputeStatus.PENDING);
         // ... compute averages etc.
         return ResponseEntity.ok(ApiResponse.success(SupportStatsResponse.builder()
                 .openTickets(openTickets)

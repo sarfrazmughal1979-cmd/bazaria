@@ -3,6 +3,7 @@ version = '1.0.0-SNAPSHOT'
 dependencies {
     implementation project(':shared-core')
     implementation project(':shared-objects')
-    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation 'co.elastic.clients:elasticsearch-java'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-client:9.3.3'
 }

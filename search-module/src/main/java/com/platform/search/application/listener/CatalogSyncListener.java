@@ -1,11 +1,10 @@
 package com.platform.search.application.listener;
 
-import com.platform.common.domain.event.ProductApprovedEvent;
-import com.platform.common.domain.event.ProductCreatedEvent;
+import com.platform.common.domain.event.*;
 import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
+import com.platform.search.application.service.SearchService;
 import com.platform.search.domain.model.ProductDocument;
-import com.platform.search.domain.repository.ProductSearchRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CatalogSyncListener {
 
-    private final ProductSearchRepository productSearchRepository;
+    private final SearchService searchService;
     private final RestClientFactory restClientFactory;
 
     @Value("${module.catalog.url:http://localhost:8080}")
@@ -45,6 +44,18 @@ public class CatalogSyncListener {
     @EventListener
     public void onProductApproved(ProductApprovedEvent event) {
         reindexProduct(UUID.fromString(event.getProductId()));
+    }
+
+    @Async
+    @EventListener
+    public void onProductUpdated(ProductUpdatedEvent event) {
+        reindexProduct(UUID.fromString(event.getProductId()));
+    }
+
+    @Async
+    @EventListener
+    public void onProductDeleted(ProductDeletedEvent event) {
+        searchService.deleteProduct(event.getProductId());
     }
 
     private void reindexProduct(UUID productId) {
@@ -75,16 +86,18 @@ public class CatalogSyncListener {
                     .soldCount(info.soldCount())
                     .inStock(info.inStock())
                     .featured(info.featured())
+                    .suggest(ProductDocument.createSuggest(info.name()))
                     .primaryImage(info.primaryImage())
                     .build();
 
-            productSearchRepository.save(doc);
+            searchService.indexProduct(doc);
             log.info("Indexed product {}", productId);
         } catch (Exception e) {
-            log.error("Failed to index product {}", productId, e);
+            log.error("Failed to reindex product {}", productId, e);
         }
     }
 
+    // DTO for catalog response
     private record CatalogProductInfo(
             UUID productId, String name, String slug, String sku,
             String description, String shortDescription,

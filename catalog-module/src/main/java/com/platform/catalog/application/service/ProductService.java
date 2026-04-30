@@ -6,9 +6,8 @@ import com.platform.catalog.domain.model.*;
 import com.platform.catalog.domain.repository.CategoryRepository;
 import com.platform.catalog.domain.repository.ProductRepository;
 import com.platform.catalog.domain.repository.ProductVariantRepository;
-import com.platform.common.domain.event.ProductApprovedEvent;
-import com.platform.common.domain.event.ProductCreatedEvent;
-import com.platform.common.domain.event.ProductViewedEvent;
+import com.platform.common.application.dto.ProductResponse;
+import com.platform.common.domain.event.*;
 import com.platform.core.client.ResilientRestClient;
 import com.platform.core.client.RestClientFactory;
 import com.platform.core.domain.Money;
@@ -188,9 +187,18 @@ public class ProductService {
         }
 
         Product saved = productRepository.save(product);
+        eventPublisher.publish(new ProductUpdatedEvent(saved.getId().toString()));
+
         return productMapper.toResponse(saved);
     }
+    @Transactional
+    public void deleteProduct(UUID productId) {
+        Product product = findProductForCurrentVendor(productId);
+        product.softDelete();
+        productRepository.save(product);
 
+        eventPublisher.publish(new ProductDeletedEvent(productId.toString()));
+    }
     @Transactional
     public void approveProduct(UUID productId) {
         Product product = productRepository.findById(productId)
@@ -272,6 +280,22 @@ public class ProductService {
         return variant.getPrice().getAmount();
     }
 
+    @Transactional(readOnly = true)
+    public Page<ProductResponse> getProductsByStatus(ProductStatus status, Pageable pageable) {
+        Page<Product> products = productRepository.findByStatus(status, pageable);
+        return products.map(productMapper::toResponse);
+    }
+    @Transactional
+    public void rejectProduct(UUID productId, String reason) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "id", productId));
+        product.reject(reason);
+        productRepository.save(product);
+    }
+    public Page<ProductResponse> getProductsByVendorId(UUID vendorId, Pageable pageable) {
+        Page<Product> products = productRepository.findByVendorId(vendorId, pageable);
+        return products.map(productMapper::toResponse);
+    }
     public Optional<Category> findActiveById(UUID categoryId){
         return categoryRepository.findByActiveTrue(categoryId);
     }

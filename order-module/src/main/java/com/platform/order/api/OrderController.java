@@ -3,6 +3,7 @@ package com.platform.order.api;
 import com.platform.common.domain.event.OrderDeliveredEvent;
 import com.platform.core.dto.ApiResponse;
 import com.platform.core.event.DomainEventPublisher;
+import com.platform.core.security.SecurityUtils;
 import com.platform.order.application.dto.OrderResponse;
 import com.platform.order.application.dto.PlaceOrderRequest;
 import com.platform.order.application.service.OrderService;
@@ -19,7 +20,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+import org.springframework.data.web.PageableDefault;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
@@ -140,7 +144,7 @@ public class OrderController {
                 .orElseThrow(() -> new ResourceNotFoundException("Order", "id", orderId));
         return ResponseEntity.ok(buildOrderDetail(order));
     }
-    @PostMapping("/place")
+    @PostMapping("/placeOrder")
     @Operation(summary = "Place a new order")
     public ResponseEntity<ApiResponse<OrderResponse>> placeOrder(
             @Valid @RequestBody PlaceOrderRequest request,
@@ -169,7 +173,18 @@ public class OrderController {
                 subDetails
         );
     }
-
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<Order>> getOrder(@PathVariable UUID id) {
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Order", "id", id));
+        return ResponseEntity.ok(ApiResponse.success(order));
+    }
+    @GetMapping
+    public ResponseEntity<ApiResponse<Page<Order>>> getMyOrders(@PageableDefault(size=20) Pageable pageable) {
+        UUID userId = SecurityUtils.getCurrentUserId();
+        Page<Order> orders = orderRepository.findByCustomerId(userId, pageable);
+        return ResponseEntity.ok(ApiResponse.success(orders));
+    }
     // DTO records (add inside OrderController)
     public record OrderDetailResponse(
             UUID orderId,

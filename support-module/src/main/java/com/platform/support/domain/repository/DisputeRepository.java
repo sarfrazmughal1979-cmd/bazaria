@@ -21,7 +21,7 @@ public interface DisputeRepository extends SoftDeleteRepository<Dispute> {
 
     Page<Dispute> findByStatus(DisputeStatus status, Pageable pageable);
 
-    long countByStatus(DisputeStatus status, Pageable pageable);
+    long countByStatus(DisputeStatus status);
 
     Optional<Dispute> findByOrderIdAndSubOrderId(UUID orderId, UUID subOrderId);
 }
