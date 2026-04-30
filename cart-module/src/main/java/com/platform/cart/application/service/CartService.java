@@ -69,7 +69,7 @@ public class CartService {
     // ---------- Retrieve cart ----------
 
     @Transactional(readOnly = true)
-    @Cacheable(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
+    @Cacheable(value = "cart", key = "#customerId != null ? #customerId : #sessionId != null ? #sessionId : 'anonymous'")
     public CartResponse getCart(UUID customerId, String sessionId) {
         Cart cart = findActiveCart(customerId, sessionId)
                 .orElseGet(() -> createEmptyCart(customerId, sessionId));
