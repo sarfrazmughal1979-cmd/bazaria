@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:notification-module/src/main/java/com/platform/notification/config/EmailConfig.java
 package com.platform.notification.config;
 
 import org.springframework.context.annotation.Bean;
@@ -23,5 +22,3 @@ public class EmailConfig {
     }
 
 }
-========
->>>>>>>> origin/master:notification-module/src/main/java/com/platform/notification/EmailConfig.java

@@ -3,7 +3,7 @@ package com.platform.cms.domain.model;
 import com.platform.core.domain.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -40,7 +40,8 @@ public class MenuItem extends AuditableEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    private MenuItem parent;
+    @JsonIgnore 
+	private MenuItem parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("sortOrder ASC")
