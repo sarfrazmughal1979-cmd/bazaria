@@ -5,60 +5,60 @@
 -- ---------------------------------------------
 -- 1. Roles (already seeded, but safe to repeat)
 -- ---------------------------------------------
-INSERT INTO roles (id, name, description) VALUES
-    (gen_random_uuid(), 'ADMIN', 'Platform Administrator'),
-    (gen_random_uuid(), 'VENDOR', 'Vendor/Seller'),
-    (gen_random_uuid(), 'CUSTOMER', 'Customer/Buyer'),
-    (gen_random_uuid(), 'SUPPORT', 'Customer Support Agent')
+INSERT INTO roles (id, name, description, created_at, created_by) VALUES
+    (gen_random_uuid(), 'ADMIN', 'Platform Administrator', now(), 'Mughal'),
+    (gen_random_uuid(), 'VENDOR', 'Vendor/Seller', now(), 'Mughal'),
+    (gen_random_uuid(), 'CUSTOMER', 'Customer/Buyer', now(), 'Mughal'),
+    (gen_random_uuid(), 'SUPPORT', 'Customer Support Agent', now(), 'Mughal')
 ON CONFLICT (name) DO NOTHING;
 
 -- ---------------------------------------------
 -- 2. Permissions (extended for new modules)
 -- ---------------------------------------------
-INSERT INTO permissions (id, name, description, module) VALUES
+INSERT INTO permissions (id, name, description, module, created_at, created_by) VALUES
     -- Catalog
-    (gen_random_uuid(), 'PRODUCT_CREATE', 'Create products', 'CATALOG'),
-    (gen_random_uuid(), 'PRODUCT_UPDATE', 'Update products', 'CATALOG'),
-    (gen_random_uuid(), 'PRODUCT_DELETE', 'Delete products', 'CATALOG'),
-    (gen_random_uuid(), 'PRODUCT_APPROVE', 'Approve products', 'CATALOG'),
+    (gen_random_uuid(), 'PRODUCT_CREATE', 'Create products', 'CATALOG', now(), 'Mughal'),
+    (gen_random_uuid(), 'PRODUCT_UPDATE', 'Update products', 'CATALOG', now(), 'Mughal'),
+    (gen_random_uuid(), 'PRODUCT_DELETE', 'Delete products', 'CATALOG', now(), 'Mughal'),
+    (gen_random_uuid(), 'PRODUCT_APPROVE', 'Approve products', 'CATALOG', now(), 'Mughal'),
 
     -- Order
-    (gen_random_uuid(), 'ORDER_VIEW', 'View orders', 'ORDER'),
-    (gen_random_uuid(), 'ORDER_MANAGE', 'Manage orders', 'ORDER'),
+    (gen_random_uuid(), 'ORDER_VIEW', 'View orders', 'ORDER', now(), 'Mughal'),
+    (gen_random_uuid(), 'ORDER_MANAGE', 'Manage orders', 'ORDER', now(), 'Mughal'),
 
     -- Vendor
-    (gen_random_uuid(), 'VENDOR_MANAGE', 'Manage vendors', 'IAM'),
+    (gen_random_uuid(), 'VENDOR_MANAGE', 'Manage vendors', 'IAM', now(), 'Mughal'),
 
     -- Settlement
-    (gen_random_uuid(), 'SETTLEMENT_VIEW', 'View settlements', 'SETTLEMENT'),
-    (gen_random_uuid(), 'SETTLEMENT_MANAGE', 'Manage settlements', 'SETTLEMENT'),
+    (gen_random_uuid(), 'SETTLEMENT_VIEW', 'View settlements', 'SETTLEMENT', now(), 'Mughal'),
+    (gen_random_uuid(), 'SETTLEMENT_MANAGE', 'Manage settlements', 'SETTLEMENT', now(), 'Mughal'),
 
     -- Analytics
-    (gen_random_uuid(), 'ANALYTICS_VIEW', 'View analytics', 'ANALYTICS'),
+    (gen_random_uuid(), 'ANALYTICS_VIEW', 'View analytics', 'ANALYTICS', now(), 'Mughal'),
 
     -- CMS
-    (gen_random_uuid(), 'CMS_MANAGE', 'Manage CMS content', 'CMS'),
+    (gen_random_uuid(), 'CMS_MANAGE', 'Manage CMS content', 'CMS', now(), 'Mughal'),
 
     -- Support
-    (gen_random_uuid(), 'SUPPORT_MANAGE', 'Manage support tickets', 'SUPPORT'),
+    (gen_random_uuid(), 'SUPPORT_MANAGE', 'Manage support tickets', 'SUPPORT', now(), 'Mughal'),
 
     -- Reviews
-    (gen_random_uuid(), 'REVIEW_MANAGE', 'Moderate reviews', 'REVIEW'),
+    (gen_random_uuid(), 'REVIEW_MANAGE', 'Moderate reviews', 'REVIEW', now(), 'Mughal'),
 
     -- Search
-    (gen_random_uuid(), 'SEARCH_ADMIN', 'Manage search index', 'SEARCH'),
+    (gen_random_uuid(), 'SEARCH_ADMIN', 'Manage search index', 'SEARCH', now(), 'Mughal'),
 
     -- Wishlist (customer only, but admin might also view)
-    (gen_random_uuid(), 'WISHLIST_VIEW', 'View wishlist', 'WISHLIST'),
+    (gen_random_uuid(), 'WISHLIST_VIEW', 'View wishlist', 'WISHLIST', now(), 'Mughal'),
 
     -- Media
-    (gen_random_uuid(), 'MEDIA_MANAGE', 'Manage media assets', 'MEDIA'),
+    (gen_random_uuid(), 'MEDIA_MANAGE', 'Manage media assets', 'MEDIA', now(), 'Mughal'),
 
     -- Loyalty
-    (gen_random_uuid(), 'LOYALTY_MANAGE', 'Manage loyalty rules', 'LOYALTY'),
+    (gen_random_uuid(), 'LOYALTY_MANAGE', 'Manage loyalty rules', 'LOYALTY', now(), 'Mughal'),
 
     -- Fraud
-    (gen_random_uuid(), 'FRAUD_MANAGE', 'Manage fraud rules', 'FRAUD')
+    (gen_random_uuid(), 'FRAUD_MANAGE', 'Manage fraud rules', 'FRAUD', now(), 'Mughal')
 ON CONFLICT (name) DO NOTHING;
 
 -- ---------------------------------------------
@@ -130,24 +130,20 @@ ON CONFLICT (template_key) DO NOTHING;
 -- ---------------------------------------------
 -- 5. Support Ticket Categories
 -- ---------------------------------------------
-INSERT INTO support_ticket_categories (id, name, description, icon, sort_order, is_active) VALUES
-    (gen_random_uuid(), 'Order Issue', 'Problems with order delivery, tracking, or status', 'package', 1, TRUE),
-    (gen_random_uuid(), 'Payment Problem', 'Issues with payment, refunds, or billing', 'credit-card', 2, TRUE),
-    (gen_random_uuid(), 'Product Quality', 'Damaged, defective, or wrong product received', 'alert-circle', 3, TRUE),
-    (gen_random_uuid(), 'Return & Refund', 'Request return or track refund status', 'rotate-ccw', 4, TRUE),
-    (gen_random_uuid(), 'Vendor Question', 'Questions about a specific vendor', 'store', 5, TRUE),
-    (gen_random_uuid(), 'Account Issue', 'Login, profile, or security concerns', 'user', 6, TRUE),
-    (gen_random_uuid(), 'Technical Support', 'Website or app technical problems', 'monitor', 7, TRUE),
-    (gen_random_uuid(), 'General Inquiry', 'Other questions or feedback', 'help-circle', 8, TRUE)
+INSERT INTO support_ticket_categories (id, name, description, icon, sort_order, is_active, created_at, created_by) VALUES
+    (gen_random_uuid(), 'Order Issue', 'Problems with order delivery, tracking, or status', 'package', 1, true, now(), 'Mughal'),
+    (gen_random_uuid(), 'Payment Problem', 'Issues with payment, refunds, or billing', 'credit-card', 2, TRUE, now(), 'Mughal'),
+    (gen_random_uuid(), 'Product Quality', 'Damaged, defective, or wrong product received', 'alert-circle', 3, TRUE, now(), 'Mughal'),
+    (gen_random_uuid(), 'Return & Refund', 'Request return or track refund status', 'rotate-ccw', 4, TRUE, now(), 'Mughal'),
+    (gen_random_uuid(), 'Vendor Question', 'Questions about a specific vendor', 'store', 5, true, now(), 'Mughal'),
+    (gen_random_uuid(), 'Account Issue', 'Login, profile, or security concerns', 'user', 6, TRUE, now(), 'Mughal'),
+    (gen_random_uuid(), 'Technical Support', 'Website or app technical problems', 'monitor', 7, TRUE, now(), 'Mughal'),
+    (gen_random_uuid(), 'General Inquiry', 'Other questions or feedback', 'help-circle', 8, TRUE, now(), 'Mughal')
 ON CONFLICT DO NOTHING; -- no unique constraint on name; if already seeded with the same data, they will be duplicated but harmless. Ideally use ON CONFLICT (name) DO NOTHING, but the schema didn't define a unique constraint on name. We'll keep it safe by checking existence via a sub-select in a separate DO block if needed. For now, it's acceptable because the seeder runs only once.
 
 -- ---------------------------------------------
 -- 6. Default Commission Rule
 -- ---------------------------------------------
-INSERT INTO commission_rules (id, vendor_id, category_id, rate, is_default, version) VALUES
-    (gen_random_uuid(), NULL, NULL, 10.00, TRUE, 0)
-ON CONFLICT (vendor_id) DO NOTHING; -- not a unique column, but we check default presence. Better approach: use a conditional insert.
--- Simplified: just insert if no default rule exists
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM commission_rules WHERE is_default = TRUE) THEN
@@ -159,37 +155,34 @@ END $$;
 -- ---------------------------------------------
 -- 7. Fraud Detection Rules
 -- ---------------------------------------------
-INSERT INTO fraud_rules (id, rule_name, description, points, is_active, rule_type, version) VALUES
-    (gen_random_uuid(), 'high_amount', 'Order amount exceeds PKR 50,000', 30, TRUE, 'AMOUNT', 0),
-    (gen_random_uuid(), 'velocity_check', 'More than 5 orders in one hour from same customer', 25, TRUE, 'VELOCITY', 0)
+INSERT INTO fraud_rules (id, rule_name, description, points, is_active, rule_type, version, created_at, created_by) VALUES
+    (gen_random_uuid(), 'high_amount', 'Order amount exceeds PKR 50,000', 30, TRUE, 'AMOUNT', 0, now(), 'Mughal'),
+    (gen_random_uuid(), 'velocity_check', 'More than 5 orders in one hour from same customer', 25, TRUE, 'VELOCITY', 0, now(), 'Mughal')
 ON CONFLICT (rule_name) DO NOTHING;  -- rule_name column is unique
 
 -- ---------------------------------------------
 -- 8. Tax Rule (Pakistan – VAT 15% for all categories)
 -- ---------------------------------------------
-INSERT INTO tax_rules (id, country_code, state_code, category_id, tax_type, rate, is_active, priority, version) VALUES
-    (gen_random_uuid(), 'PAK', NULL, NULL, 'VAT', 15.00, TRUE, 1, 0)
-ON CONFLICT DO NOTHING; -- No unique constraint defined; to avoid duplicates, you may want to add a unique index on (country_code, state_code, category_id). For now, we just skip if any tax rule exists for PAK.
 -- Safe insert with NOT EXISTS
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM tax_rules WHERE country_code = 'PAK' AND state_code IS NULL AND category_id IS NULL) THEN
-        INSERT INTO tax_rules (id, country_code, state_code, category_id, tax_type, rate, is_active, priority, version)
-        VALUES (gen_random_uuid(), 'PAK', NULL, NULL, 'VAT', 15.00, TRUE, 1, 0);
+        INSERT INTO tax_rules (id, country_code, state_code, category_id, tax_type, rate, is_active, priority, version, created_at, created_by)
+        VALUES (gen_random_uuid(), 'PAK', NULL, NULL, 'VAT', 15.00, TRUE, 1, 0, now(), 'Mughal');
     END IF;
 END $$;
 
 -- ---------------------------------------------
 -- 9. Delivery Zones (sample cities in Pakistan)
 -- ---------------------------------------------
-INSERT INTO delivery_zones (id, name, country, region, city, postal_code_pattern, base_rate, rate_per_kg, is_active, version, created_at, updated_at) VALUES
-    (gen_random_uuid(), 'Karachi Zone', 'PK', 'Sindh', 'Karachi', '75%', 0, 0, TRUE, 0, now(), NULL),
-    (gen_random_uuid(), 'Lahore Zone', 'PK', 'Punjab', 'Lahore', '54%', 0, 0, TRUE, 0, now(), NULL),
-    (gen_random_uuid(), 'Islamabad Zone', 'PK', 'ICT', 'Islamabad', '44%', 0, 0, TRUE, 0, now(), NULL),
-    (gen_random_uuid(), 'Rawalpindi Zone', 'PK', 'Punjab', 'Rawalpindi', '45%', 0, 0, TRUE, 0, now(), NULL),
-    (gen_random_uuid(), 'Faisalabad Zone', 'PK', 'Punjab', 'Faisalabad', '37%', 0, 0, TRUE, 0, now(), NULL),
-    (gen_random_uuid(), 'Peshawar Zone', 'PK', 'KPK', 'Peshawar', '25%', 0, 0, TRUE, 0, now(), NULL),
-    (gen_random_uuid(), 'Quetta Zone', 'PK', 'Balochistan', 'Quetta', '87%', 0, 0, TRUE, 0, now(), NULL)
+INSERT INTO delivery_zones (id, name, country, region, city, postal_code_pattern, base_rate, rate_per_kg, is_active, version) VALUES
+    (gen_random_uuid(), 'Karachi Zone', 'PK', 'Sindh', 'Karachi', '75%', 0, 0, TRUE, 0),
+    (gen_random_uuid(), 'Lahore Zone', 'PK', 'Punjab', 'Lahore', '54%', 0, 0, TRUE, 0),
+    (gen_random_uuid(), 'Islamabad Zone', 'PK', 'ICT', 'Islamabad', '44%', 0, 0, TRUE, 0),
+    (gen_random_uuid(), 'Rawalpindi Zone', 'PK', 'Punjab', 'Rawalpindi', '45%', 0, 0, TRUE, 0),
+    (gen_random_uuid(), 'Faisalabad Zone', 'PK', 'Punjab', 'Faisalabad', '37%', 0, 0, TRUE, 0),
+    (gen_random_uuid(), 'Peshawar Zone', 'PK', 'KPK', 'Peshawar', '25%', 0, 0, TRUE, 0),
+    (gen_random_uuid(), 'Quetta Zone', 'PK', 'Balochistan', 'Quetta', '87%', 0, 0, TRUE, 0)
 ON CONFLICT DO NOTHING;  -- assuming no conflict; if duplicates possible, wrap in DO block.
 
 -- ---------------------------------------------
