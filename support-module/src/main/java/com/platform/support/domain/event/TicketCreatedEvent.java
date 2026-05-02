@@ -1,15 +1,17 @@
 package com.platform.support.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
+@NoArgsConstructor
 public class TicketCreatedEvent extends DomainEvent {
-    private final String ticketId;
-    private final String ticketNumber;
-    private final String customerId;
-    private final String category;
-    private final String subject;
+    private  String ticketId;
+    private  String ticketNumber;
+    private  String customerId;
+    private  String category;
+    private  String subject;
     public TicketCreatedEvent(String ticketId, String ticketNumber, String customerId, String category, String subject) {
         super();
         this.ticketId = ticketId;

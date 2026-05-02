@@ -1,12 +1,14 @@
 package com.platform.common.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
+@NoArgsConstructor
 public class UserLoggedInEvent extends DomainEvent {
-    private final String userId;
-    private final String sessionId;
+    private  String userId;
+    private  String sessionId;
 
     public UserLoggedInEvent(String userId, String sessionId) {
         super();

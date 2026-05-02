@@ -1,4 +1,5 @@
 package com.platform.inventory.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
@@ -6,12 +7,13 @@ import lombok.Getter;
 import java.math.BigDecimal;
 
 @Getter
+@NoArgsConstructor
 public class StockDepletedEvent extends DomainEvent {
 
-    private final String productId;
-    private final String variantId;   // can be null for simple products
-    private final int remainingStock;
-    private final int reorderPoint;
+    private  String productId;
+    private  String variantId;   // can be null for simple products
+    private  int remainingStock;
+    private  int reorderPoint;
 
     /**
      * Event fired when inventory stock falls below or equal to reorder point.

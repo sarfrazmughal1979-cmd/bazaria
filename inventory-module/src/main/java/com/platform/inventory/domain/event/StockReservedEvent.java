@@ -1,4 +1,5 @@
 package com.platform.inventory.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
@@ -6,12 +7,13 @@ import lombok.Getter;
 import java.util.UUID;
 
 @Getter
+@NoArgsConstructor
 public class StockReservedEvent extends DomainEvent {
 
-    private final String productId;
-    private final int quantity;
-    private final String reservationId;
-    private final String orderId;      // optional – can be null if reserved without order
+    private  String productId;
+    private  int quantity;
+    private  String reservationId;
+    private  String orderId;      // optional – can be null if reserved without order
 
     /**
      * Event fired when stock is successfully reserved for an order or cart.

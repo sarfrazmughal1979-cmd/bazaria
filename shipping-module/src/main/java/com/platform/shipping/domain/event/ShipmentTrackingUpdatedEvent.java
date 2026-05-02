@@ -1,13 +1,15 @@
 package com.platform.shipping.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
+@NoArgsConstructor
 public class ShipmentTrackingUpdatedEvent extends DomainEvent {
-    private final String shipmentId;
-    private final String trackingNumber;
-    private final String newStatus;
+    private  String shipmentId;
+    private  String trackingNumber;
+    private  String newStatus;
 
     public ShipmentTrackingUpdatedEvent(String shipmentId, String trackingNumber, String newStatus) {
         super();

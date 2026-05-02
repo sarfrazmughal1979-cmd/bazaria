@@ -1,14 +1,16 @@
 package com.platform.core.event;
+import lombok.NoArgsConstructor;
 
 import lombok.Getter;
 
 @Getter
+@NoArgsConstructor
 public class OrderShippedEvent extends DomainEvent {
-    private final String orderId;
-    private final String subOrderId;
-    private final String customerId;
-    private final String trackingNumber;
-    private final String carrier;
+    private  String orderId;
+    private  String subOrderId;
+    private  String customerId;
+    private  String trackingNumber;
+    private  String carrier;
 
     public OrderShippedEvent(String orderId, String subOrderId, String customerId, String trackingNumber, String carrier) {
         super();

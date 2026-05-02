@@ -1,12 +1,14 @@
 package com.platform.cms.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
+@NoArgsConstructor
 public class PageUpdatedEvent extends DomainEvent {
-    private final String pageId;
-    private final String slug;
+    private  String pageId;
+    private  String slug;
 
     public PageUpdatedEvent(String pageId, String slug) {
         super();

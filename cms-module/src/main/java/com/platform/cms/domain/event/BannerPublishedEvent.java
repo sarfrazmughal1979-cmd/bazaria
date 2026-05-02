@@ -1,12 +1,14 @@
 package com.platform.cms.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
+@NoArgsConstructor
 public class BannerPublishedEvent extends DomainEvent {
-    private final String bannerId;
-    private final String position;
+    private  String bannerId;
+    private  String position;
 
     public BannerPublishedEvent(String bannerId, String position) {
         super();

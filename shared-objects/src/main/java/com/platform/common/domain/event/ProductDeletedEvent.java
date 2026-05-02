@@ -1,11 +1,13 @@
 package com.platform.common.domain.event;
+import lombok.NoArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
+@NoArgsConstructor
 public class ProductDeletedEvent extends DomainEvent {
-    private final String productId;
+    private  String productId;
 
     public ProductDeletedEvent(String productId) {
         super();
