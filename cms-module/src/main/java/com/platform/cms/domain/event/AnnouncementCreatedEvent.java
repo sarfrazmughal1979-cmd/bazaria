@@ -1,16 +1,14 @@
 package com.platform.cms.domain.event;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
- extends DomainEvent {
-    private final String announcementId;
-    private final String title;
+ public class AnnouncementCreatedEvent extends DomainEvent {
+    private  String announcementId;
+    private  String title;
 
     public AnnouncementCreatedEvent(String announcementId, String title) {
         super();

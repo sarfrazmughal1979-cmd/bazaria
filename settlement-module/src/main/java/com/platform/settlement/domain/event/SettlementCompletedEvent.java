@@ -1,15 +1,13 @@
 package com.platform.settlement.domain.event;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
- extends DomainEvent {
-    private final String settlementId;
+ public class SettlementCompletedEvent extends DomainEvent {
+    private  String settlementId;
 
     public SettlementCompletedEvent(String settlementId) {
         super();

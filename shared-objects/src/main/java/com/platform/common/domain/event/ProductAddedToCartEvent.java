@@ -1,6 +1,5 @@
 package com.platform.common.domain.event;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 
 import com.platform.core.event.DomainEvent;
@@ -8,12 +7,11 @@ import lombok.Getter;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
- extends DomainEvent {
-    private final String productId;
-    private final String variantId;
-    private final String vendorId;
-    private final int quantity;
+ public class ProductAddedToCartEvent extends DomainEvent {
+    private  String productId;
+    private  String variantId;
+    private  String vendorId;
+    private  int quantity;
 
     public ProductAddedToCartEvent(String productId, String variantId, String vendorId, int quantity) {
         super();

@@ -1,35 +1,31 @@
-# Fix all event classes across the whole project
-# Adds @NoArgsConstructor and @AllArgsConstructor (Lombok) + required imports
+# remove-final-from-event-fields.ps1
+# Removes 'final' from field declarations in event classes that have @NoArgsConstructor
 
-# Find all Java files in the project (assuming Gradle layout)
-$javaFiles = Get-ChildItem -Recurse -Path . -Filter *.java | 
-    Where-Object { $_.FullName -match 'src\\main\\java' }
+$javaFiles = Get-ChildItem -Recurse -Path . -Filter *.java |
+             Where-Object { $_.FullName -match 'src\\main\\java' }
 
 foreach ($file in $javaFiles) {
     $content = Get-Content $file.FullName -Raw
-    # Only process files that extend DomainEvent (or IntegrationEvent)
-    if ($content -match 'extends\s+(Integration|Domain)Event\b') {
-        # Skip if it's the DomainEvent base class itself (the abstract one)
-        if ($file.Name -eq 'DomainEvent.java' -or $file.Name -eq 'IntegrationEvent.java') { continue }
 
-        # Skip if already has @NoArgsConstructor
-        if ($content -match '@NoArgsConstructor') { continue }
+    # Only classes extending DomainEvent/IntegrationEvent
+    if ($content -notmatch 'extends\s+(Domain|Integration)Event') { continue }
 
-        Write-Host "Processing $($file.FullName)"
+    # Only if the class has @NoArgsConstructor (we already added it)
+    if ($content -notmatch '@NoArgsConstructor') { continue }
 
-        # 1️⃣ Add imports (after the package line) if missing
-        if ($content -notmatch 'import\s+lombok\.NoArgsConstructor;') {
-            $content = $content -replace '(package\s+[^\n;]+[;\n])', "`$1`r`nimport lombok.NoArgsConstructor;`r`nimport lombok.AllArgsConstructor;"
-        } elseif ($content -notmatch 'import\s+lombok\.AllArgsConstructor;') {
-            # If NoArgsConstructor import exists but AllArgsConstructor missing, add it
-            $content = $content -replace 'import lombok.NoArgsConstructor;', "import lombok.NoArgsConstructor;`r`nimport lombok.AllArgsConstructor;"
-        }
+    # Check if there are any 'final' fields
+    if ($content -match '\bfinal\b') {
+        Write-Host "Removing 'final' from fields in $($file.Name)"
 
-        # 2️⃣ Add annotations just before the class declaration
-        $content = $content -replace '(public class \w+)', "@NoArgsConstructor`r`n@AllArgsConstructor`r`n$1"
+        # Remove 'final' that appears before field type (and after access modifier)
+        # Pattern: (private|protected|public)(\s+)(final)(\s+) -> $1$2$4
+        $content = $content -replace '(\bprivate\b|\bprotected\b|\bpublic\b)(\s+)(final)(\s+)', '$1$2$4'
 
-        # Save the file back
+        # Also handle fields declared without an explicit access modifier (rare but possible)
+        $content = $content -replace '(\s)(final)(\s+)(\w+\s+\w+)', '$1$3$4'
+
+        # Save
         $content | Set-Content -Path $file.FullName -NoNewline
-        Write-Host " Fixed"
+        Write-Host "  Done"
     }
 }

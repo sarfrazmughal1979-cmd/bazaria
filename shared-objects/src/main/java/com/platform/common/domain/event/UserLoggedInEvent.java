@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UserLoggedInEvent extends DomainEvent {
-    private final String userId;
-    private final String sessionId;
+    private  String userId;
+    private  String sessionId;
 
 	@JsonCreator
     public UserLoggedInEvent(@JsonProperty("userId") String userId, @JsonProperty("sessionId") String sessionId) {

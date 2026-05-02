@@ -1,6 +1,5 @@
 package com.platform.core.event;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import lombok.Getter;
 
@@ -8,13 +7,12 @@ import java.math.BigDecimal;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
- extends DomainEvent {
+ public class PaymentCompletedEvent extends DomainEvent {
 
-    private final String paymentId;
-    private final String orderId;
-    private final BigDecimal amount;
-    private final String currency;
+    private  String paymentId;
+    private  String orderId;
+    private  BigDecimal amount;
+    private  String currency;
 
     public PaymentCompletedEvent(String paymentId, String orderId, BigDecimal amount) {
         this(paymentId, orderId, amount, null);
