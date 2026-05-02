@@ -1,11 +1,15 @@
 package com.platform.core.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import lombok.Getter;
 
 import java.math.BigDecimal;
 
 @Getter
-public class DisputeResolvedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
 
     private final String disputeId;
     private final String resolution;

@@ -1,10 +1,14 @@
 package com.platform.support.domain.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
-public class TicketAssignedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
     private final String ticketId;
     private final String ticketNumber;
     private final String assignedToUserId;

@@ -1,4 +1,6 @@
 package com.platform.inventory.domain.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
@@ -6,7 +8,9 @@ import lombok.Getter;
 import java.util.UUID;
 
 @Getter
-public class StockReservedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
 
     private final String productId;
     private final int quantity;

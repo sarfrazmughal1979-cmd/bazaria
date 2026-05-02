@@ -4,7 +4,7 @@
         <encoder class="ch.qos.logback.classic.encoder.JsonEncoder"/>
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/var/log/app/app.log</file>
+        <file>/home/ec2-user/logs/app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/var/log/app/app-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>

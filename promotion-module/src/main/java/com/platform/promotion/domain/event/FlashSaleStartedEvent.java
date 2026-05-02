@@ -1,10 +1,14 @@
 package com.platform.promotion.domain.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
-public class FlashSaleStartedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
 
     private final String flashSaleId;
     private final String flashSaleName;

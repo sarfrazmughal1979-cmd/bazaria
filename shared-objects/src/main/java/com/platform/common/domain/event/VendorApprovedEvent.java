@@ -1,10 +1,14 @@
 package com.platform.common.domain.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
-public class VendorApprovedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
 
     private final String vendorId;
     private final String shopName;

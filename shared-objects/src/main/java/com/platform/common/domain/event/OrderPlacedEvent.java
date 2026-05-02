@@ -1,4 +1,6 @@
 package com.platform.common.domain.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
@@ -6,7 +8,9 @@ import lombok.Getter;
 import java.math.BigDecimal;
 
 @Getter
-public class OrderPlacedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
 
     private final String orderId;
     private final String customerId;

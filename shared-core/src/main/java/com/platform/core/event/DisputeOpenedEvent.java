@@ -1,9 +1,13 @@
 package com.platform.core.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import lombok.Getter;
 
 @Getter
-public class DisputeOpenedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
 
     private final String disputeId;
     private final String orderId;

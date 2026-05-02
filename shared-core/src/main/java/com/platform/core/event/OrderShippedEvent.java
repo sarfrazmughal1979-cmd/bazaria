@@ -1,9 +1,13 @@
 package com.platform.core.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import lombok.Getter;
 
 @Getter
-public class OrderShippedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
     private final String orderId;
     private final String subOrderId;
     private final String customerId;

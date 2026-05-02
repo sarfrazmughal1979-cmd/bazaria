@@ -1,10 +1,14 @@
 package com.platform.cart.domain.event;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import com.platform.core.event.DomainEvent;
 import lombok.Getter;
 
 @Getter
-public class CartUpdatedEvent extends DomainEvent {
+@NoArgsConstructor
+@AllArgsConstructor
+ extends DomainEvent {
 
     private final String cartId;
     private final String action;  // e.g., "ADD_ITEM", "REMOVE_ITEM", "UPDATE_QUANTITY", "APPLY_COUPON", "CLEAR"
