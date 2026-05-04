@@ -42,7 +42,7 @@ public class MenuItem extends AuditableEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-	@JsonIgnor
+	@JsonIgnore
     private MenuItem parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
