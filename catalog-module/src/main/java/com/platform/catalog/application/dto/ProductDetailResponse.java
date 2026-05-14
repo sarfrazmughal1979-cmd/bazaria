@@ -68,6 +68,7 @@ public class ProductDetailResponse {
         private UUID id;
         private String name;
         private String slug;
+        private String imageUrl;
     }
 
     @Data

@@ -102,6 +102,7 @@ public class ProductMapper {
                 .id(category.getId())
                 .name(category.getName())
                 .slug(category.getSlug())
+                .imageUrl(category.getImageUrl())
                 .build();
     }
 
