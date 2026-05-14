@@ -32,7 +32,7 @@ public class CatalogController {
         return ResponseEntity.ok(ApiResponse.success(catalogService.searchProducts(request, pageable)));
     }
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse<PagedResponse<ProductResponse>>> searchProducts(@RequestParam(name = "categoryId", required = false, defaultValue = "0") UUID category,
+    public ResponseEntity<ApiResponse<PagedResponse<ProductResponse>>> searchProducts(@RequestParam(name = "categoryId", required = false) UUID category,
             @PageableDefault(size = 8) Pageable pageable) {
         ProductSearchRequest request = ProductSearchRequest.builder().categoryId(category).build();
         return ResponseEntity.ok(ApiResponse.success(catalogService.searchProducts(request, pageable)));
