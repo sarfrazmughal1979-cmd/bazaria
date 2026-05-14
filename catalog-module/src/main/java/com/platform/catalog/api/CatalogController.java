@@ -56,7 +56,7 @@ public class CatalogController {
     }
     @GetMapping("/{slug}")
     public ResponseEntity<ApiResponse<ProductDetailResponse>> getProductBySlug(
-            @PathVariable String slug) {
+            @PathVariable("slug") String slug) {
         ProductDetailResponse product = catalogService.getProductBySlug(slug);
         return ResponseEntity.ok(ApiResponse.success(product));
     }

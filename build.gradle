@@ -19,6 +19,9 @@ allprojects {
         maven { url 'https://jitpack.io' }
         google()
     }
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs << "-parameters"
+    }
 }
 subprojects {
     // Apply plugins to every child module automatically

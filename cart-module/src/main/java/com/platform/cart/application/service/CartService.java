@@ -262,7 +262,7 @@ public class CartService {
         } else if (sessionId != null && !sessionId.isBlank()) {
             return cartRepository.findBySessionIdAndStatus(sessionId, CartStatus.ACTIVE);
         }
-        return Optional.empty();
+        return Optional.of(createEmptyCart(customerId, sessionId));
     }
 
     private Cart createEmptyCart(UUID customerId, String sessionId) {
