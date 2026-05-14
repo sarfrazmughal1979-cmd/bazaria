@@ -54,7 +54,12 @@ public class CatalogController {
                 product.getSku()
         ));
     }
- 
+    @GetMapping("/{slug}")
+    public ResponseEntity<ApiResponse<ProductDetailResponse>> getProductBySlug(
+            @PathVariable String slug) {
+        ProductDetailResponse product = catalogService.getProductBySlug(slug);
+        return ResponseEntity.ok(ApiResponse.success(product));
+    }
 	@GetMapping("/products/{productId}/info-mini")
 public ResponseEntity<ProductInfoMini> getProductInfoMini(@PathVariable UUID productId) {
     Product product = catalogService.findById(productId);
