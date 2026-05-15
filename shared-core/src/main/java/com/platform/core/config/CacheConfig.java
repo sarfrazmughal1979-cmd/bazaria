@@ -9,7 +9,10 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.GenericJacksonJsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -21,7 +24,13 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = JsonMapper.builder()
+                        .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
+                        .disable(SerializationFeature.FAIL_ON_ORDER_MAP_BY_INCOMPARABLE_KEY)
+                        .disable(SerializationFeature.FAIL_ON_SELF_REFERENCES)
+                        .disable(SerializationFeature.FAIL_ON_UNWRAPPED_TYPE_IDENTIFIERS)
+                        .disable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).build();
 
         RedisCacheConfiguration defaultConfig = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofHours(1))
