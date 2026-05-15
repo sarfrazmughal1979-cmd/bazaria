@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -43,6 +44,7 @@ public class CatalogController {
         return ResponseEntity.ok(ApiResponse.success(catalogService.findActiveById(pageable)));
     }
     @GetMapping("/{productId}/info")
+    @Transactional(readOnly = true)    // ← add this
     public ResponseEntity<CatalogProductInfo> getProductInfo(@PathVariable UUID productId) {
         var product = catalogService.findById(productId); // returns your internal DTO
         return ResponseEntity.ok(new CatalogProductInfo(
