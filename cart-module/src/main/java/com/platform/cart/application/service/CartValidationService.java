@@ -50,7 +50,7 @@ public class CartValidationService {
         // 2. Get available stock from Inventory module
         int available = inventoryRestClient.get(
                 "/api/internal/inventory/stock?productId={productId}&variantId={variantId}",
-                Integer.class, productId, variantId != null ? variantId : "null");
+                Integer.class, productId, variantId != null ? variantId : "");
         if (available < quantity) {
             throw new BusinessException("INSUFFICIENT_STOCK",
                     String.format("Only %d items available", available));
