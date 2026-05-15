@@ -118,7 +118,7 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    @Cacheable(value = "products", key = "#slug")
+//    @Cacheable(value = "products", key = "#slug")
     public ProductDetailResponse getProductBySlug(String slug) {
         Product product = productRepository.findBySlugAndStatus(slug, ProductStatus.ACTIVE)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "slug", slug));
