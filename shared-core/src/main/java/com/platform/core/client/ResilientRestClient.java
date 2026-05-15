@@ -25,7 +25,7 @@ public class ResilientRestClient {
     private final CircuitBreaker circuitBreaker;
     private final Retry retry;
 
-    public ResilientRestClient(String baseUrl, int timeoutSeconds,
+    public ResilientRestClient(String baseUrl, int timeoutSeconds, String apiKey,
                                ObjectMapper objectMapper,
                                CircuitBreakerRegistry circuitBreakerRegistry,
                                String serviceName) {
@@ -33,6 +33,7 @@ public class ResilientRestClient {
         this.webClient = WebClient.builder()
                 .baseUrl(baseUrl)
                 .defaultHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                .defaultHeader("X-Internal-API-Key", apiKey)
                 .build();
         this.circuitBreaker = circuitBreakerRegistry.circuitBreaker(serviceName);
         this.retry = Retry.of(serviceName + "-retry", RetryConfig.custom()
