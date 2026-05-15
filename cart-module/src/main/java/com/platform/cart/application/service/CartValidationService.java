@@ -36,7 +36,7 @@ public class CartValidationService {
 
     // DTOs for REST responses
     private record CatalogProductInfo(UUID productId, String name, BigDecimal effectivePrice,
-                                      UUID vendorId, boolean active, String imageUrl, String sku) {}
+                                      UUID vendorId,  String imageUrl, String sku) {}
     public record ProductValResult(UUID vendorId, BigDecimal price) {}
 
     public ProductValResult validateAndGetPrice(UUID productId, UUID variantId, int quantity) {
@@ -45,9 +45,6 @@ public class CartValidationService {
                 "/api/v1/products/{productId}/info", CatalogProductInfo.class, productId);
         if (productInfo == null) {
             throw new BusinessException("PRODUCT_NOT_FOUND", "Product not found");
-        }
-        if (!productInfo.active()) {
-            throw new BusinessException("PRODUCT_INACTIVE", "Product is not active");
         }
 
         // 2. Get available stock from Inventory module
