@@ -27,7 +27,8 @@ public interface ProductRepository extends SoftDeleteRepository<Product> {
     boolean existsBySlug(String slug);
 
     boolean existsBySku(String sku);
-
+    @Query("SELECT p FROM Product p LEFT JOIN FETCH p.images WHERE p.id = :id")
+    Optional<Product> findByIdWithImages(@Param("id") UUID id);
     // Vendor-specific
     Page<Product> findByVendorIdAndDeletedFalse(UUID vendorId, Pageable pageable);
 

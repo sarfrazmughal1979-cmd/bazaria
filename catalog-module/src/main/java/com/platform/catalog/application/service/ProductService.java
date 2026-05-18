@@ -220,7 +220,7 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public Product findById(UUID productId){
-        return productRepository.findById(productId).orElse(null);
+        return productRepository.findByIdWithImages(productId).orElse(null);
     }
     private String generateSlug(String name) {
         String slug = name.toLowerCase().replaceAll("[^a-z0-9]+", "-")
