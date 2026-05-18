@@ -67,9 +67,13 @@ public class CartService {
     private static final int USER_CART_TTL_DAYS = 30;
 
     // ---------- Retrieve cart ----------
-
+    private String cacheKey(UUID customerId, String sessionId) {
+        if (customerId != null) return customerId.toString();
+        if (sessionId != null && !sessionId.isBlank()) return sessionId;
+        return "anonymous";
+    }
     @Transactional(readOnly = true)
-    @Cacheable(value = "cart", key = "#customerId != null ? #customerId : #sessionId != null ? #sessionId : 'anonymous'")
+    @Cacheable(value = "cart", key = "T(com.platform.cart.application.service.CartService).cacheKey(#customerId, #sessionId)")
     public CartResponse getCart(UUID customerId, String sessionId) {
         Cart cart = findActiveCart(customerId, sessionId)
                 .orElseGet(() -> createEmptyCart(customerId, sessionId));
@@ -99,7 +103,7 @@ public class CartService {
     // ---------- Add to cart ----------
 
     @Transactional
-    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
+    @CacheEvict(value = "cart", key = "T(com.platform.cart.application.service.CartService).cacheKey(#customerId, #sessionId)")
     public CartResponse addToCart(UUID customerId, String sessionId, AddToCartRequest request) {
         String lockKey = "cart:lock:" + (customerId != null ? customerId : sessionId);
         RLock lock = redissonClient.getLock(lockKey);

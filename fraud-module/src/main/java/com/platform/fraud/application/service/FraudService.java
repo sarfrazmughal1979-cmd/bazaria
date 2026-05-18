@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class FraudService {
 
     private final FraudRuleRepository ruleRepository;
     private final FraudCheckRepository checkRepository;
-
+    private final FraudEvaluationEngine engine;
     @Value("${platform.fraud.auto-approve-score-below:30}")
     private int autoApproveBelow;
 
@@ -31,19 +32,36 @@ public class FraudService {
     public FraudEvaluationResponse evaluateOrder(UUID orderId, UUID customerId, double amount, String ipAddress) {
         List<String> triggered = new ArrayList<>();
         int totalScore = 0;
-
+        String status="";
         for (FraudRule rule : ruleRepository.findByActiveTrue()) {
-            int ruleScore = evaluateRule(rule, amount, ipAddress, customerId);
-            if (ruleScore > 0) {
-                totalScore += ruleScore;
-                triggered.add(rule.getRuleName());
+            if (rule.getConditions() != null) {
+                // Dynamic rule – use engine
+                OrderContext ctx = buildContext(customerId, amount, ipAddress);
+                FraudEvaluationEngine.EvaluationResult result = engine.evaluate(rule, ctx);
+                if (!result.action().equals("NONE")) {
+                    totalScore += result.points();
+                    triggered.add(rule.getRuleName());
+                    if ("BLOCK".equals(result.action())) {
+                        status = "REJECTED";
+                        break; // no need to process further rules if blocked
+                    }
+                }
+            } else {
+                // Backward compatible static rule (old logic)
+                int ruleScore = evaluateRule(rule, amount, ipAddress, customerId);
+                if (ruleScore > 0) {
+                    totalScore += ruleScore;
+                    triggered.add(rule.getRuleName());
+                }
             }
         }
 
-        String status;
-        if (totalScore <= autoApproveBelow) status = "APPROVED";
-        else if (totalScore >= autoRejectAbove) status = "REJECTED";
-        else status = "REVIEW";
+
+        if (!status.equalsIgnoreCase("REJECTED")) {
+            if (totalScore <= autoApproveBelow) status = "APPROVED";
+            else if (totalScore >= autoRejectAbove) status = "REJECTED";
+            else status = "REVIEW";
+        }
 
         FraudCheck check = FraudCheck.builder()
                 .orderId(orderId).customerId(customerId)
@@ -77,5 +95,13 @@ public class FraudService {
         check.setReviewNotes(notes);
         check.setReviewedAt(java.time.Instant.now());
         checkRepository.save(check);
+    }
+    private OrderContext buildContext(UUID customerId, double amount, String ipAddress) {
+        return OrderContext.builder()
+                .customerId(customerId)
+                .amount(BigDecimal.valueOf(amount))
+                .ipAddress(ipAddress)
+                .recentOrderCount((int) checkRepository.countByCustomerIdAndCheckedAtAfter(customerId, Instant.now().minus(1, ChronoUnit.HOURS)))
+                .build();
     }
 }
