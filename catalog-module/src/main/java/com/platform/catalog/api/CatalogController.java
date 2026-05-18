@@ -62,7 +62,7 @@ public class CatalogController {
         ProductDetailResponse product = catalogService.getProductBySlug(slug);
         return ResponseEntity.ok(ApiResponse.success(product));
     }
-	@GetMapping("/products/{productId}/info-mini")
+	@GetMapping("/{productId}/info-mini")
 public ResponseEntity<ProductInfoMini> getProductInfoMini(@PathVariable UUID productId) {
     Product product = catalogService.findById(productId);
     if (product == null) return ResponseEntity.notFound().build();
