@@ -43,7 +43,18 @@ public class CartInternalController {
         CartResponse cart = cartService.getCart(customerId, sessionId);
         return ResponseEntity.ok(ApiResponse.success(cart));
     }
-
+    /**
+     * Returns the items in the authenticated user's cart.
+     * This endpoint is protected by the X-Internal-API-Key header.
+     */
+    @GetMapping("/{customerId}/items")
+    public ResponseEntity<ApiResponse<CartResponse>> getCartItems(
+            @PathVariable UUID customerId,
+            HttpServletRequest request) {
+        String sessionId = getSessionId(request);
+        CartResponse cart = cartService.getCart(customerId, sessionId);
+        return ResponseEntity.ok(ApiResponse.success(cart));
+    }
     @PostMapping("/items")
     @Operation(summary = "Add item to cart")
     public ResponseEntity<ApiResponse<CartResponse>> addToCart(

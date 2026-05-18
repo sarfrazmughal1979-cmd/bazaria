@@ -86,7 +86,7 @@ public class CartService {
         cartMergeService.mergeGuestCart(customerId, sessionId);
     }
 
-    record CartItemInfo(UUID productId, UUID variantId, int quantity, BigDecimal unitPrice) {}
+    public record CartItemInfo(UUID productId, UUID variantId, int quantity, BigDecimal unitPrice) {}
 
     public List<CartItemInfo> getCartItems(UUID customerId) {
         Cart cart = cartRepository.findByCustomerIdAndStatus(customerId, CartStatus.ACTIVE)

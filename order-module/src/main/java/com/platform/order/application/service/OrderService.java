@@ -78,7 +78,7 @@ public class OrderService {
 
         // 1. Get cart items via REST
         CartResponse cart = cartRestClient.get(
-                "/api/internal/cart?customerId={customerId}", CartResponse.class, customerId);
+                "/api/internal/cart/{customerId}/items", CartResponse.class, customerId);
         if (cart == null || cart.items().isEmpty()) {
             throw new BusinessException("EMPTY_CART", "Cart is empty");
         }
