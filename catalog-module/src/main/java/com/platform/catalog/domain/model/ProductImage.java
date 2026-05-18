@@ -12,7 +12,7 @@ import lombok.*;
 @Builder
 public class ProductImage extends AuditableEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
