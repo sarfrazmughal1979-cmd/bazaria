@@ -44,7 +44,7 @@ spring:
 
 
   cache:
-    type: redis
+    type: none
 
   servlet:
     multipart:
