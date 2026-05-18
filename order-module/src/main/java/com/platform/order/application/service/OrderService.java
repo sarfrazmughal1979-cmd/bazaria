@@ -78,7 +78,7 @@ public class OrderService {
 
         // 1. Get cart items via REST
         CartResponse cart = cartRestClient.get(
-                "/api/v1/cart?customerId={customerId}", CartResponse.class, customerId);
+                "/api/internal/cart?customerId={customerId}", CartResponse.class, customerId);
         if (cart == null || cart.items().isEmpty()) {
             throw new BusinessException("EMPTY_CART", "Cart is empty");
         }
@@ -189,7 +189,7 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
 
         // 8. Clear cart via REST
-        cartRestClient.delete("/api/v1/cart/clear?customerId={customerId}", customerId);
+        cartRestClient.delete("/api/internal/cart/clear?customerId={customerId}", customerId);
 
         // 9. Apply coupon usage via REST
         if (request.getCouponCode() != null) {
