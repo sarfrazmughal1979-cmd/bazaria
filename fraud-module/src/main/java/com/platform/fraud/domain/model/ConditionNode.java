@@ -18,7 +18,7 @@ import java.util.Map;
         @JsonSubTypes.Type(value = ConditionNode.Leaf.class, name = "LEAF"),
         @JsonSubTypes.Type(value = ConditionNode.Composite.class, name = "COMPOSITE")
 })
-public abstract class ConditionNode {
+public class ConditionNode {
 
     private String type; // LEAF or COMPOSITE
 
