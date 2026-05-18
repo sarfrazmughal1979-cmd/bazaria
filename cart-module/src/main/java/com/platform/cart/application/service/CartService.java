@@ -73,11 +73,12 @@ public class CartService {
         return "anonymous";
     }
     @Transactional(readOnly = true)
-//    @Cacheable(value = "cart", key = "#customerId != null ? #customerId.toString() : (#sessionId != null ? #sessionId : 'anonymous')")
+    @Cacheable(value = "cart", key = "#customerId != null ? #customerId.toString() : (#sessionId != null ? #sessionId : 'anonymous')")
     public CartResponse getCart(UUID customerId, String sessionId) {
         Cart cart = findActiveCart(customerId, sessionId)
                 .orElseGet(() -> createEmptyCart(customerId, sessionId));
         enrichWithProductDetails(cart);
+        cart.recalculateTotal();   // ← add this line
         return cartMapper.toResponse(cart);
     }
 
@@ -103,7 +104,7 @@ public class CartService {
     // ---------- Add to cart ----------
 
     @Transactional
-//    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId.toString() : (#sessionId != null ? #sessionId : 'anonymous')")
+    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId.toString() : (#sessionId != null ? #sessionId : 'anonymous')")
     public CartResponse addToCart(UUID customerId, String sessionId, AddToCartRequest request) {
         String lockKey = "cart:lock:" + (customerId != null ? customerId : sessionId);
         RLock lock = redissonClient.getLock(lockKey);
@@ -169,7 +170,7 @@ public class CartService {
     // ---------- Update quantity ----------
 
     @Transactional
-//    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
+    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
     public CartResponse updateCartItem(UUID customerId, String sessionId, UpdateCartItemRequest request) {
         Cart cart = findActiveCart(customerId, sessionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Cart", "user/session", "not found"));
@@ -193,7 +194,7 @@ public class CartService {
     // ---------- Remove item ----------
 
     @Transactional
-//    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
+    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
     public CartResponse removeCartItem(UUID customerId, String sessionId, UUID itemId) {
         Cart cart = findActiveCart(customerId, sessionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Cart", "user/session", "not found"));
@@ -209,7 +210,7 @@ public class CartService {
     // ---------- Apply coupon ----------
 
     @Transactional
-//    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
+    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
     public CartResponse applyCoupon(UUID customerId, String sessionId, String couponCode) {
         Cart cart = findActiveCart(customerId, sessionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Cart", "user/session", "not found"));
@@ -235,7 +236,7 @@ public class CartService {
     // ---------- Remove coupon ----------
 
     @Transactional
-//    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
+    @CacheEvict(value = "cart", key = "#customerId != null ? #customerId : #sessionId")
     public CartResponse removeCoupon(UUID customerId, String sessionId) {
         Cart cart = findActiveCart(customerId, sessionId)
                 .orElseThrow(() -> new ResourceNotFoundException("Cart", "user/session", "not found"));

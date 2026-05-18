@@ -15,7 +15,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         return parameter.hasParameterAnnotation(CurrentUser.class) &&
-                parameter.getParameterType().equals(UserContext.class);
+               parameter.getParameterType().equals(UserContext.class);
     }
 
     @Override
@@ -24,12 +24,9 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
                                   NativeWebRequest webRequest,
                                   WebDataBinderFactory binderFactory) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication == null || !(authentication.getPrincipal() instanceof UserContext)) {
-            // Return null if not authenticated; Spring Security will handle 401
-            return null;
+        if (authentication != null && authentication.getPrincipal() instanceof UserContext) {
+            return authentication.getPrincipal();
         }
-
-        return authentication.getPrincipal();
+        return null;
     }
 }

@@ -4,7 +4,6 @@ import com.platform.cart.application.dto.*;
 import com.platform.cart.application.service.CartService;
 import com.platform.core.dto.ApiResponse;
 import com.platform.core.security.CurrentUser;
-import com.platform.core.security.SecurityUtils;
 import com.platform.core.security.UserContext;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,9 +36,7 @@ public class CartController {
     public ResponseEntity<ApiResponse<CartResponse>> getCart(
             @CurrentUser UserContext user,
             HttpServletRequest request) {
-        UUID customerId = SecurityUtils.getCurrentUser()
-                .map(UserContext::getUserId)
-                .orElse(null);
+        UUID customerId = user != null ? user.getUserId() : null;
         String sessionId = getSessionId(request);
         CartResponse cart = cartService.getCart(customerId, sessionId);
         return ResponseEntity.ok(ApiResponse.success(cart));
@@ -51,9 +48,7 @@ public class CartController {
             @CurrentUser UserContext user,
             HttpServletRequest request,
             @Valid @RequestBody AddToCartRequest addRequest) {
-        UUID customerId = SecurityUtils.getCurrentUser()
-                .map(UserContext::getUserId)
-                .orElse(null);
+        UUID customerId = user != null ? user.getUserId() : null;
         String sessionId = getSessionId(request);
         CartResponse cart = cartService.addToCart(customerId, sessionId, addRequest);
         return ResponseEntity.ok(ApiResponse.success(cart));
@@ -67,9 +62,7 @@ public class CartController {
             @PathVariable UUID itemId,
             @Valid @RequestBody UpdateCartItemRequest updateRequest) {
         updateRequest.setItemId(itemId);
-        UUID customerId = SecurityUtils.getCurrentUser()
-                .map(UserContext::getUserId)
-                .orElse(null);
+        UUID customerId = user != null ? user.getUserId() : null;
         String sessionId = getSessionId(request);
         CartResponse cart = cartService.updateCartItem(customerId, sessionId, updateRequest);
         return ResponseEntity.ok(ApiResponse.success(cart));
@@ -81,9 +74,7 @@ public class CartController {
             @CurrentUser UserContext user,
             HttpServletRequest request,
             @PathVariable UUID itemId) {
-        UUID customerId = SecurityUtils.getCurrentUser()
-                .map(UserContext::getUserId)
-                .orElse(null);
+        UUID customerId = user != null ? user.getUserId() : null;
         String sessionId = getSessionId(request);
         CartResponse cart = cartService.removeCartItem(customerId, sessionId, itemId);
         return ResponseEntity.ok(ApiResponse.success(cart));
@@ -95,9 +86,7 @@ public class CartController {
             @CurrentUser UserContext user,
             HttpServletRequest request,
             @RequestParam String couponCode) {
-        UUID customerId = SecurityUtils.getCurrentUser()
-                .map(UserContext::getUserId)
-                .orElse(null);
+        UUID customerId = user != null ? user.getUserId() : null;
         String sessionId = getSessionId(request);
         CartResponse cart = cartService.applyCoupon(customerId, sessionId, couponCode);
         return ResponseEntity.ok(ApiResponse.success(cart));
@@ -108,9 +97,7 @@ public class CartController {
     public ResponseEntity<ApiResponse<CartResponse>> removeCoupon(
             @CurrentUser UserContext user,
             HttpServletRequest request) {
-        UUID customerId = SecurityUtils.getCurrentUser()
-                .map(UserContext::getUserId)
-                .orElse(null);
+        UUID customerId = user != null ? user.getUserId() : null;
         String sessionId = getSessionId(request);
         CartResponse cart = cartService.removeCoupon(customerId, sessionId);
         return ResponseEntity.ok(ApiResponse.success(cart));
