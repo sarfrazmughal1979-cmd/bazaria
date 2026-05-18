@@ -218,6 +218,7 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "id", productId));
     }
 
+    @Transactional(readOnly = true)
     public Product findById(UUID productId){
         return productRepository.findById(productId).orElse(null);
     }
