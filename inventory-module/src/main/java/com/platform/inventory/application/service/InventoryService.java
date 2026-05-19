@@ -72,7 +72,7 @@ public class InventoryService {
                     .status("ACTIVE")
                     .expiresAt(Instant.now().plusSeconds(1800)) // 30 min expiry
                     .build();
-
+            reservation.setId(UUID.randomUUID());
             item.getReservations().add(reservation);
             inventoryRepository.save(item);
 
@@ -83,6 +83,7 @@ public class InventoryService {
                     .quantity(-quantity)
                     .reason("Stock reserved for order")
                     .build();
+            movement.setId(UUID.randomUUID());
             stockMovementRepository.save(movement);
 
             eventPublisher.publish(new StockReservedEvent(
