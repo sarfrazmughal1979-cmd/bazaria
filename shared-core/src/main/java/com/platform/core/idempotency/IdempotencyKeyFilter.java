@@ -17,7 +17,11 @@ import java.time.Duration;
 public class IdempotencyKeyFilter extends OncePerRequestFilter {
 
     private final IdempotencyService idempotencyService;
-
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return path.startsWith("/api/internal/");
+    }
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
