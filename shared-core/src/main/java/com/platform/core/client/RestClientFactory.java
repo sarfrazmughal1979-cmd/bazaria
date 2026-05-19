@@ -1,6 +1,7 @@
 package com.platform.core.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.platform.core.idempotency.IdempotencyContext;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +17,8 @@ public class RestClientFactory {
     private String internalApiKey;
 
     public ResilientRestClient create(String baseUrl, int timeoutSeconds) {
-        return new ResilientRestClient(baseUrl, timeoutSeconds, internalApiKey, objectMapper,
+        String idempotencyKey = IdempotencyContext.getCurrentKey();
+        return new ResilientRestClient(baseUrl, timeoutSeconds, idempotencyKey, internalApiKey, objectMapper,
                 circuitBreakerRegistry, baseUrl.replaceAll("[^a-zA-Z0-9]", "_"));
     }
 }

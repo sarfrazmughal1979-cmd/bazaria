@@ -15,10 +15,16 @@ import java.util.UUID;
 public abstract class BaseEntity implements Serializable {
 
     @Id
-    @UuidGenerator
+//    @UuidGenerator
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
+    @PrePersist
+    private void ensureId() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+    }
     @Version
     @Column(name = "version")
     private Long version;
